@@ -24,7 +24,10 @@ const organizationSchema = new Schema(
     licenseNumber: String,
     registrar: String,
     campaigns: [{ type: mongoose.Schema.Types.ObjectId, ref: "Campaign" }],
-    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }]
+    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+    singleDonations: [
+      { type: mongoose.Schema.Types.ObjectId, ref: 'SingleDonation' }
+    ]
   },
   {
     timestamps: {

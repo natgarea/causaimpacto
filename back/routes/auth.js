@@ -8,20 +8,12 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
-});
-
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
 }));
-
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
 
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
@@ -55,9 +47,23 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
-router.get("/logout", (req, res) => {
+router.get('/currentuser', (req,res,next) => {
+  if(req.user){
+    res.status(200).json(req.user);
+  }else{
+    next(new Error('Not logged in'))
+  }
+})
+
+
+router.get('/logout', (req,res) => {
   req.logout();
-  res.redirect("/");
+  res.status(200).json({message:'logged out'})
 });
+
+
+router.use((err, req, res, next) => {
+  res.status(500).json({ message: err.message });
+})
 
 module.exports = router;
