@@ -2,12 +2,23 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
+  type: {
+    type: String,
+    enum: ["donor", "organization"],
+    default: "donor"
+  },
   username: String,
   password: String,
   email: String,
-  name: String,
-  surname: String,
-  image: String,
+  userFirstname: String,
+  userSurname: String,
+  userImage: String,
+  orgName: String,
+  orgLogo: String,
+  orgDescription: String,
+  orgContactPerson: String,
+  orgTelephone: String,
+  orgEmail: String,
   address: {
     line1: String,
     line2: String,
@@ -18,23 +29,31 @@ const userSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["Pending", "Active", "Inactive"],
-    default: "Pending"
+    enum: ["pending", "active", "inactive"],
+    default: "pending"
   },
   confirmationCode: {
     type: String,
     unique: true
   },
-  organizations: [
-    { type: mongoose.Schema.Types.ObjectId, ref: 'Organization' }
+  userOrganizations: [
+    { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   ],
-  interests: [
+  userInterests: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'Category' }
   ],
-  singleDonations: [
+  userDonations: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'SingleDonation' }
   ],
-  totalDonated: Number
+  userAmountDonated: Number,
+  orgUrl: String,
+  orgLicense: String,
+  orgRegistrar: String,
+  orgCampaigns: [{ type: mongoose.Schema.Types.ObjectId, ref: "Campaign" }],
+  orgCategories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+  orgDonations: [
+    { type: mongoose.Schema.Types.ObjectId, ref: 'SingleDonation' }
+  ]
 }, {
   timestamps: {
     createdAt: 'created_at',

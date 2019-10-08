@@ -1,0 +1,116 @@
+[
+  {
+    "_id": 1,
+    "name": "Adicciones",
+    "pictures": "String",
+    "description": "String"
+  },
+  {
+    "_id": 2,
+    "name": "Ayuda Humanitaria",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 3,
+    "name": "Consumo responsable",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 4,
+    "name": "Cooperación al Desarrollo",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 5,
+    "name": "Cultura y Arte Social",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 6,
+    "name": "Deportes",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 7,
+    "name": "Derechos Humanos",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 8,
+    "name": "Infancia, juventud y familia",
+    "pictures": "String",
+    "description": String,
+  },
+  {
+    "_id": 9,
+    "name": "Mayores",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 10,
+    "name": "Medio Ambiente",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 11,
+    "name": "Minorías Étnicas",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 12,
+    "name": "Mujeres",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 13,
+    "name": "Personas con diversidad funcional",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 14,
+    "name": "Personas en riesgo de exclusión",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 15,
+    "name": "Personas en situación penitenciaria",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 16,
+    "name": "Personas sin hogar",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 17,
+    "name": "Protección de animales",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 18,
+    "name": "Salud",
+    "pictures": "String",
+    "description": String
+  },
+  {
+    "_id": 19,
+    "name": "Sexualidades / Diversidad sexual",
+    "pictures": "String",
+    "description": String
+  }
+]

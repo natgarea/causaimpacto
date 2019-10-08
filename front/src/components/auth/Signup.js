@@ -39,7 +39,7 @@ export default class Signup extends Component {
 
   render() {
     return(
-      <div>
+      <div className="contents">
         <h3>Welcome!, create your account next:</h3>
 
         <form onSubmit={this.handleFormSubmit}>

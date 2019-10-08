@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Navigation from "./components/navbar/Navigation";
+import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/auth/AuthService";
+import Home from "./components/home/Home";
 
 export default class App extends Component {
   constructor(props) {
@@ -45,34 +46,33 @@ export default class App extends Component {
   }
 
   render() {
-    //aqui hacemos rendering condicional dependiendo de si tenemos un usuario logeado o no
     if (this.state.loggedInUser) {
-      //en este caso mostramos los contenidos ya que hay usuario
       return (
         <React.Fragment>
           <Redirect to="/home" />
 
           <div className="App">
-            <header className="App-header">
-              <Navigation
+              <Navbar
                 userInSession={this.state.loggedInUser}
                 logout={this.logout}
               />
-              {/* aqui simplemente se muestra un lorem ipsum genérico para que veáis contenidos que solo se muestran a usuarios logeados */}
-              <h1>Hello</h1>
-            </header>
+              <Switch className="contents">
+                <Route
+                  exact
+                  path="/home"
+                  render={() => <Home userInSession={this.state.loggedInUser} />}
+                />
+              </Switch>
           </div>
         </React.Fragment>
       );
     } else {
-      //si no estás logeado, mostrar opcionalmente o login o signup
       return (
         <React.Fragment>
           <Redirect to="/login" />
 
           <div className="App">
-            <header className="App-header">
-              <Navigation
+              <Navbar
                 userInSession={this.state.loggedInUser}
                 logout={this.logout}
               />
@@ -88,7 +88,6 @@ export default class App extends Component {
                   render={() => <Login getUser={this.getUser} />}
                 />
               </Switch>
-            </header>
           </div>
         </React.Fragment>
       );
