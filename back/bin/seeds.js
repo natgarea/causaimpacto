@@ -517,6 +517,7 @@ let users = [
       "status": "active",
       "orgUrl": "https://www.accioncontraelhambre.org/es/",
       "orgCategories": [1,8,12,14,15,16]
+    }
 ]
 
 User.deleteMany()
