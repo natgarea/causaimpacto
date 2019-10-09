@@ -1,145 +1,161 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-require('dotenv').config();
+const Category = require("../models/Category");
 
 const bcryptSalt = 10;
 
-mongoose
-  .connect(process.env.DB, {useNewUrlParser: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  })
-  .catch(err => {
-    console.error('Error connecting to mongo', err)
-  });
+require("../configs/db.config");
+
+Category.deleteMany()
+.then(() => {
+  return Category.create(categories)
+})
+.then(categoriesCreated => {
+  console.log(`${categoriesCreated.length} categories created with the following id:`);
+  console.log(categoriesCreated.map(u => u._id));
+})
+.then(() => {
+  mongoose.disconnect()
+})
+.catch(err => {
+  mongoose.disconnect()
+  throw err
+})
 
   let categories = [
     {
-      "_id": 1,
+      // "_id": 1,
       "name": "Adicciones",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619745/causaImpacto/categories/category01_o1tols.png"
     },
     {
-      "_id": 2,
+      // "_id": 2,
       "name": "Ayuda Humanitaria",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category02_l7uvnh.png"
     },
     {
-      "_id": 3,
+      // "_id": 3,
       "name": "Consumo responsable",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category03_flrlvj.png"
     },
     {
-      "_id": 4,
+      // "_id": 4,
       "name": "Cooperación al Desarrollo",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category04_jv9okk.png"
     },
     {
-      "_id": 5,
+      // "_id": 5,
       "name": "Cultura y Arte Social",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category05_lcw9bb.png"
     },
     {
-      "_id": 6,
+      // "_id": 6,
       "name": "Deportes",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category06_d3z2vd.png"
     },
     {
-      "_id": 7,
+      // "_id": 7,
       "name": "Derechos Humanos",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category07_eiir0d.png"
     },
     {
-      "_id": 8,
+      // "_id": 8,
       "name": "Infancia, juventud y familia",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category08_egreck.png"
     },
     {
-      "_id": 9,
+      // "_id": 9,
       "name": "Mayores",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category09_nbzmxo.png"
     },
     {
-      "_id": 10,
+      // "_id": 10,
       "name": "Medio Ambiente",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category10_cotyzd.png"
     },
     {
-      "_id": 11,
+      // "_id": 11,
       "name": "Minorías Étnicas",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category11_laf1ho.png"
     },
     {
-      "_id": 12,
+      // "_id": 12,
       "name": "Mujeres",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category12_xuuxw9.png"
     },
     {
-      "_id": 13,
+      // "_id": 13,
       "name": "Personas con diversidad funcional",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category13_aydlgl.png"
     },
     {
-      "_id": 14,
+      // "_id": 14,
       "name": "Personas en riesgo de exclusión",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category14_n3yen6.png"
     },
     {
-      "_id": 15,
+      // "_id": 15,
       "name": "Personas en situación penitenciaria",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category15_wcrw18.png"
     },
     {
-      "_id": 16,
+      // "_id": 16,
       "name": "Personas sin hogar",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category16_zcauxh.png"
     },
     {
-      "_id": 17,
+      // "_id": 17,
       "name": "Protección de animales",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category17_hqk5ak.png"
     },
     {
-      "_id": 18,
+      // "_id": 18,
       "name": "Salud",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category18_tijlzh.png"
     },
     {
-      "_id": 19,
+      // "_id": 19,
       "name": "Sexualidades / Diversidad sexual",
       "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category19_szfi1m.png"
     }
   ]
   
-  Category.deleteMany()
-  .then(() => {
-    return Category.create(categories)
-  })
-  .then(categoriesCreated => {
-    console.log(`${categoriesCreated.length} categories created with the following id:`);
-    console.log(categoriesCreated.map(u => u._id));
-  })
-  .then(() => {
-    mongoose.disconnect()
-  })
-  .catch(err => {
-    mongoose.disconnect()
-    throw err
-  })
+  User.deleteMany()
+.then(() => {
+  return User.create(users)
+})
+.then(usersCreated => {
+  console.log(`${usersCreated.length} users created with the following id:`);
+  console.log(usersCreated.map(u => u._id));
+})
+.then(() => {
+  mongoose.disconnect()
+})
+.catch(err => {
+  mongoose.disconnect()
+  throw err
+})
 
 let users = [
   {
+    "confirmationCode": 1,
+    "type": "donor",
+    "status": "active",
     "username": "alicia",
     "email": "causaimpacto.ironhack@gmail.com",
     "password": bcrypt.hashSync("alicia", bcrypt.genSaltSync(bcryptSalt)),
   },
   {
+    "confirmationCode": 2,
+    "type": "donor",
+    "status": "active",
     "username": "roberto",
     "email": "causaimpacto.ironhack@gmail.com",
     "password": bcrypt.hashSync("roberto", bcrypt.genSaltSync(bcryptSalt)),
   },
   {
+    "confirmationCode": 3,
     "type": "organization",
     "username": "org0",
     "password": bcrypt.hashSync("org0", bcrypt.genSaltSync(bcryptSalt)),
@@ -161,9 +177,10 @@ let users = [
     "orgUrl": "https://www.accioncontraelhambre.org/es/",
     "orgLicense": "29/0968",
     "orgRegistrar": "Registro del Protectorado de Fundaciones",
-    "orgCategories": [2,4,18]
+    "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1b4","5d9e2121e8afda188b34b1c2"]
   },
   {
+    "confirmationCode": 4,
     "type": "organization",
     "username": "org1",
     "password": bcrypt.hashSync("org1", bcrypt.genSaltSync(bcryptSalt)),
@@ -182,9 +199,10 @@ let users = [
     },
     "status": "active",
     "orgUrl": "http://www.adoptaunabuelo.com/",
-    "orgCategories": [9]
+    "orgCategories": ["5d9e2121e8afda188b34b1b9"]
   },
   {
+    "confirmationCode": 5,
     "type": "organization",
     "username": "org2",
     "password": bcrypt.hashSync("org2", bcrypt.genSaltSync(bcryptSalt)),
@@ -206,9 +224,10 @@ let users = [
     "orgUrl": "https://www.aecc.es/",
     "orgLicense": "3827",
     "orgRegistrar": "Registro Nacional de Asociaciones",
-    "orgCategories": [18]
+    "orgCategories": ["5d9e2121e8afda188b34b1c2"]
   },
   {
+    "confirmationCode": 6,
     "type": "organization",
     "username": "org3",
     "password": bcrypt.hashSync("org3", bcrypt.genSaltSync(bcryptSalt)),
@@ -228,9 +247,10 @@ let users = [
     },
     "status": "active",
     "orgUrl": "https://www.es.amnesty.org/",
-    "orgCategories": [7]
+    "orgCategories": ["5d9e2121e8afda188b34b1b7"]
   },
   {
+    "confirmationCode": 7,
     "type": "organization",
     "username": "org4",
     "password": bcrypt.hashSync("org4", bcrypt.genSaltSync(bcryptSalt)),
@@ -249,9 +269,10 @@ let users = [
     },
     "status": "active",
     "orgUrl": "https://asociacionpaideia.org/",
-    "orgCategories": [8, 14]
+    "orgCategories": ["5d9e2121e8afda188b34b1b8", "5d9e2121e8afda188b34b1be"]
   },
   {
+    "confirmationCode": 8,
     "type": "organization",
     "username": "org5",
     "password": bcrypt.hashSync("org5", bcrypt.genSaltSync(bcryptSalt)),
@@ -270,9 +291,10 @@ let users = [
     },
     "status": "active",
     "orgUrl": "https://www.caritas.es/",
-    "orgCategories": [4,14,16]
+    "orgCategories": ["5d9e2121e8afda188b34b1b4","5d9e2121e8afda188b34b1be", "5d9e2121e8afda188b34b1c0"]
   },
   {
+    "confirmationCode": 9,
     "type": "organization",
     "username": "org6",
     "password": bcrypt.hashSync("org6", bcrypt.genSaltSync(bcryptSalt)),
@@ -293,9 +315,10 @@ let users = [
     "orgUrl": "https://www.cruzroja.es/",
     "orgLicense": "E00006",
     "orgRegistrar": "Registro de entidades y servicios sociales",
-    "orgCategories": [2,4,10,14,18]
+    "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1b4","5d9e2121e8afda188b34b1ba","5d9e2121e8afda188b34b1be","5d9e2121e8afda188b34b1c2"]
   },
   {
+    "confirmationCode": 10,
     "type": "organization",
     "username": "org7",
     "password": bcrypt.hashSync("org7", bcrypt.genSaltSync(bcryptSalt)),
@@ -315,9 +338,10 @@ let users = [
     },
     "status": "active",
     "orgUrl": "https://www.esparkinson.es/",
-    "orgCategories": [18]
+    "orgCategories": ["5d9e2121e8afda188b34b1c2"]
   },
   {
+    "confirmationCode": 11,
     "type": "organization",
     "username": "org8",
     "password": bcrypt.hashSync("org8", bcrypt.genSaltSync(bcryptSalt)),
@@ -337,9 +361,10 @@ let users = [
     },
     "status": "active",
     "orgUrl": "https://www.gitanos.org/",
-    "orgCategories": [11]
+    "orgCategories": ["5d9e2121e8afda188b34b1bb"]
   },
   {
+    "confirmationCode": 12,
     "type": "organization",
     "username": "org9",
     "password": bcrypt.hashSync("org9", bcrypt.genSaltSync(bcryptSalt)),
@@ -360,9 +385,10 @@ let users = [
     "orgUrl": "https://www.savethechildren.es/",
     "orgLicense": "162",
     "orgRegistrar": "Registro de Fundaciones",
-    "orgCategories": [2,4,8,14]
+    "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1b4","5d9e2121e8afda188b34b1b8","5d9e2121e8afda188b34b1be"]
   },
   {
+    "confirmationCode": 13,
     "type": "organization",
     "username": "org10",
     "password": bcrypt.hashSync("org10", bcrypt.genSaltSync(bcryptSalt)),
@@ -382,9 +408,10 @@ let users = [
     },
     "status": "active",
     "orgUrl": "https://www.unicef.es/",
-    "orgCategories": [2,4,8,14]
+    "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1b4","5d9e2121e8afda188b34b1b8","5d9e2121e8afda188b34b1be"]
   },
   {
+    "confirmationCode": 14,
     "type": "organization",
     "username": "org11",
     "password": bcrypt.hashSync("org11", bcrypt.genSaltSync(bcryptSalt)),
@@ -406,9 +433,10 @@ let users = [
       "orgUrl": "https://www.oxfamintermon.org/es",
       "orgLicense": "259",
       "orgRegistrar": "Registro de Fundaciones Privadas de la Generalitat de Cataluña",
-      "orgCategories": [2,3,4,7]
+      "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1b3","5d9e2121e8afda188b34b1b4","5d9e2121e8afda188b34b1b7"]
     },
     {
+      "confirmationCode": 15,
       "type": "organization",
       "username": "org12",
       "password": bcrypt.hashSync("org12", bcrypt.genSaltSync(bcryptSalt)),
@@ -428,9 +456,10 @@ let users = [
       },
       "status": "active",
       "orgUrl": "https://www.acnur.org/es-es/",
-      "orgCategories": [2,7,10,14,18]
+      "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1b7","5d9e2121e8afda188b34b1ba","5d9e2121e8afda188b34b1be","5d9e2121e8afda188b34b1c2"]
     },
     {
+      "confirmationCode": 16,
       "type": "organization",
       "username": "org13",
       "password": bcrypt.hashSync("org13", bcrypt.genSaltSync(bcryptSalt)),
@@ -450,9 +479,10 @@ let users = [
       },
       "status": "active",
       "orgUrl": "http://www.colegas.lgbt",
-      "orgCategories": [19]
+      "orgCategories": ["5d9e2121e8afda188b34b1c3"]
     },
     {
+      "confirmationCode": 17,
       "type": "organization",
       "username": "org14",
       "password": bcrypt.hashSync("org14", bcrypt.genSaltSync(bcryptSalt)),
@@ -472,9 +502,10 @@ let users = [
       },
       "status": "active",
       "orgUrl": "https://www.msf.es/",
-      "orgCategories": [2,19]
+      "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1c2"]
     },
     {
+      "confirmationCode": 18,
       "type": "organization",
       "username": "org15",
       "password": bcrypt.hashSync("org15", bcrypt.genSaltSync(bcryptSalt)),
@@ -494,9 +525,10 @@ let users = [
       },
       "status": "active",
       "orgUrl": "https://www.manosunidas.org/",
-      "orgCategories": [2,4]
+      "orgCategories": ["5d9e2121e8afda188b34b1b2","5d9e2121e8afda188b34b1b4"]
     },
     {
+      "confirmationCode": 19,
       "type": "organization",
       "username": "org16",
       "password": bcrypt.hashSync("org16", bcrypt.genSaltSync(bcryptSalt)),
@@ -516,22 +548,6 @@ let users = [
       },
       "status": "active",
       "orgUrl": "https://www.accioncontraelhambre.org/es/",
-      "orgCategories": [1,8,12,14,15,16]
+      "orgCategories": ["5d9e2121e8afda188b34b1b1","5d9e2121e8afda188b34b1b8","5d9e2121e8afda188b34b1bc","5d9e2121e8afda188b34b1be","5d9e2121e8afda188b34b1bf","5d9e2121e8afda188b34b1c0"]
     }
 ]
-
-User.deleteMany()
-.then(() => {
-  return User.create(users)
-})
-.then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
-})
-.then(() => {
-  mongoose.disconnect()
-})
-.catch(err => {
-  mongoose.disconnect()
-  throw err
-})
