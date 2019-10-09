@@ -2,12 +2,12 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
-// const Organization = require("../models/Organization");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+let transporter = require("../configs/nodemailer.config");
 
 const login = (req, user) => {
   return new Promise((resolve,reject) => {
@@ -29,13 +29,9 @@ const login = (req, user) => {
 // SIGNUP
 router.post('/signup', (req, res, next) => {
 
-  const {username, password} = req.body;
+  const {type, username, email, password} = req.body;
 
-  console.log('username', username)
-  console.log('password', password)
-
-  // Check for non empty user or password
-  if (!username || !password){
+  if (!username || !password || !email){
     next(new Error('You must provide valid credentials'));
   }
 
@@ -47,14 +43,46 @@ router.post('/signup', (req, res, next) => {
     const salt     = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
 
+    const characters =
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let token = "";
+    for (let i = 0; i < 25; i++) {
+      token += characters[Math.floor(Math.random() * characters.length)];
+    }
+
     return new User({
+      type,
       username,
-      password: hashPass
+      email,
+      password: hashPass,
+      status: "pending",
+      confirmationCode: token
     }).save();
   })
+  .then( () => { 
+    transporter.sendMail({
+      from: "causa impacto",
+      to: email,
+      subject: "Verificación de cuenta",
+      text: `Por favor, accede al siguiente enlace para verificar tu cuenta: http://localhost:3000/auth/confirm/${token}`,
+      html: `Por favor, accede al siguiente enlace para verificar tu cuenta: <h3><a href="http://localhost:3000/auth/confirm/${token}">Verifica tu cuenta</a></h3>`
+    })
   .then( savedUser => login(req, savedUser)) // Login the user using passport
   .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
   .catch(e => next(e));
+});
+
+router.get("/confirm/:confirmCode", (req, res, next) => {
+  const confirmCode = req.params.confirmCode;
+  User.findOne({ confirmationCode: confirmCode })
+  .then(
+    User.update({ confirmationCode: confirmCode }, {
+      $set: {
+        status: "active"
+        }
+    })
+    .then({status: 'successful account verification', user})
+  ).catch( (err) => console.log(err));
 });
 
 router.post('/login', (req, res, next) => {

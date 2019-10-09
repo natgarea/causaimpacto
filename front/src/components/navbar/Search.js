@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Search extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class Search extends Component {
             <input class="input" type="text" placeholder="Búsqueda" />
           </div>
           <div class="control">
-            <a class="button is-info">Buscar</a>
+            <Link class="button is-info">Buscar</Link>
           </div>
         </div>
       </div>

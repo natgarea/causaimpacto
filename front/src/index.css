@@ -6,13 +6,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   box-sizing: border-box;
 }
 
-html {
-  font-size: 10px;
-}
-
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.8rem;
 }
 
 h1, h2, h3, h4 {
@@ -21,5 +16,8 @@ h1, h2, h3, h4 {
 
 input {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.8rem;
+}
+
+select, option, button {
+  font-family: 'Open Sans', sans-serif;
 }

@@ -27,14 +27,14 @@ export default class Navbar extends Component {
           aria-label="main navigation"
         >
           <div className="navbar-brand">
-            <a className="navbar-item" href="https://bulma.io">
-              <img
+            <Link className="navbar-item" to="https://bulma.io">
+              <img alt="causa impacto logo"
                 src="/images/logo.png"
                 className="nav-logo"
               />
-            </a>
+            </Link>
 
-            <a
+            <Link
               role="button"
               className="navbar-burger burger"
               aria-label="menu"
@@ -44,12 +44,12 @@ export default class Navbar extends Component {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
-            </a>
+            </Link>
           </div>
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <a className="navbar-item">Inicio</a>
+              <Link className="navbar-item">Inicio</Link>
 
               
             </div>
@@ -59,18 +59,18 @@ export default class Navbar extends Component {
                 <Search />
               </div>
               <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">
+                <Link className="navbar-link">
                   {this.state.loggedInUser.username}
-                </a>
+                </Link>
 
                 <div className="navbar-dropdown">
-                  <a className="navbar-item">About</a>
-                  <a className="navbar-item">Jobs</a>
-                  <a className="navbar-item">Contact</a>
+                  <Link className="navbar-item">About</Link>
+                  <Link className="navbar-item">Jobs</Link>
+                  <Link className="navbar-item">Contact</Link>
                   <hr className="navbar-divider" />
-                  <a className="navbar-item" onClick={this.handleLogout}>
+                  <Link className="navbar-item" onClick={this.handleLogout}>
                     Log out
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -85,14 +85,14 @@ export default class Navbar extends Component {
           aria-label="main navigation"
         >
           <div className="navbar-brand">
-            <a className="navbar-item" href="https://bulma.io">
-              <img
+            <Link className="navbar-item" to="https://bulma.io">
+              <img alt="causa impacto logo"
                 src="/images/logo.png"
                 className="nav-logo"
               />
-            </a>
+            </Link>
 
-            <a
+            <Link
               role="button"
               className="navbar-burger burger"
               aria-label="menu"
@@ -102,22 +102,22 @@ export default class Navbar extends Component {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
-            </a>
+            </Link>
           </div>
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <a className="navbar-item">Inicio</a>
+              <Link className="navbar-item">Inicio</Link>
 
               <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">More</a>
+                <Link className="navbar-link">More</Link>
 
                 <div className="navbar-dropdown">
-                  <a className="navbar-item">About</a>
-                  <a className="navbar-item">Jobs</a>
-                  <a className="navbar-item">Contact</a>
+                  <Link className="navbar-item">About</Link>
+                  <Link className="navbar-item">Jobs</Link>
+                  <Link className="navbar-item">Contact</Link>
                   <hr className="navbar-divider" />
-                  <a className="navbar-item">Report an issue</a>
+                  <Link className="navbar-item">Report an issue</Link>
                 </div>
               </div>
             </div>

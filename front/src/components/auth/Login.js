@@ -41,23 +41,23 @@ export default class Login extends Component {
   render() {
 
     return (<div className="contents">
-      <h3>Please, login to our site</h3>
-
+      <h1 class="title">Log In</h1>
+     
       <form onSubmit={this.handleFormSubmit}>
         <fieldset>
           <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+          <input type="text" name="username" title="username" placeholder="username" value={this.state.username} onChange={e => this.handleChange(e)} required autofocus />
         </fieldset>
 
         <fieldset>
           <label>Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+          <input type="password" name="password" title="password" placeholder="password" value={this.state.password} onChange={e => this.handleChange(e)} required />
         </fieldset>
 
-        <input type="submit" value="Login" />
+        <input type="submit" className="btn btn-primary" value="Login" />
       </form>
 
-      <h1>{this.state.error ? 'Error' : ''}</h1>
-    </div>)
+      <h3>{this.state.error ? 'Error' : ''}</h3>
+      </div>)
   }
 }
