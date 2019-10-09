@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+// const Organization = require("../models/Organization");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -66,7 +67,7 @@ router.post('/signup', (req, res, next) => {
       subject: "Verificación de cuenta",
       text: `Por favor, accede al siguiente enlace para verificar tu cuenta: http://localhost:3000/auth/confirm/${token}`,
       html: `Por favor, accede al siguiente enlace para verificar tu cuenta: <h3><a href="http://localhost:3000/auth/confirm/${token}">Verifica tu cuenta</a></h3>`
-    })
+    })})
   .then( savedUser => login(req, savedUser)) // Login the user using passport
   .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
   .catch(e => next(e));
@@ -105,7 +106,7 @@ router.get('/currentuser', (req,res,next) => {
   }else{
     next(new Error('Not logged in'))
   }
-})
+});
 
 
 router.get('/logout', (req,res) => {
@@ -116,6 +117,6 @@ router.get('/logout', (req,res) => {
 
 router.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
-})
+});
 
 module.exports = router;
