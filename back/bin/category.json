@@ -2,115 +2,96 @@
   {
     "_id": 1,
     "name": "Adicciones",
-    "pictures": "String",
-    "description": "String"
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619745/causaImpacto/categories/category01_o1tols.png"
   },
   {
     "_id": 2,
     "name": "Ayuda Humanitaria",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category02_l7uvnh.png"
   },
   {
     "_id": 3,
     "name": "Consumo responsable",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category03_flrlvj.png"
   },
   {
     "_id": 4,
     "name": "Cooperación al Desarrollo",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category04_jv9okk.png"
   },
   {
     "_id": 5,
     "name": "Cultura y Arte Social",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category05_lcw9bb.png"
   },
   {
     "_id": 6,
     "name": "Deportes",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category06_d3z2vd.png"
   },
   {
     "_id": 7,
     "name": "Derechos Humanos",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category07_eiir0d.png"
   },
   {
     "_id": 8,
     "name": "Infancia, juventud y familia",
-    "pictures": "String",
-    "description": String,
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category08_egreck.png"
   },
   {
     "_id": 9,
     "name": "Mayores",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category09_nbzmxo.png"
   },
   {
     "_id": 10,
     "name": "Medio Ambiente",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category10_cotyzd.png"
   },
   {
     "_id": 11,
     "name": "Minorías Étnicas",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category11_laf1ho.png"
   },
   {
     "_id": 12,
     "name": "Mujeres",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619746/causaImpacto/categories/category12_xuuxw9.png"
   },
   {
     "_id": 13,
     "name": "Personas con diversidad funcional",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category13_aydlgl.png"
   },
   {
     "_id": 14,
     "name": "Personas en riesgo de exclusión",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category14_n3yen6.png"
   },
   {
     "_id": 15,
     "name": "Personas en situación penitenciaria",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category15_wcrw18.png"
   },
   {
     "_id": 16,
     "name": "Personas sin hogar",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category16_zcauxh.png"
   },
   {
     "_id": 17,
     "name": "Protección de animales",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category17_hqk5ak.png"
   },
   {
     "_id": 18,
     "name": "Salud",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category18_tijlzh.png"
   },
   {
     "_id": 19,
     "name": "Sexualidades / Diversidad sexual",
-    "pictures": "String",
-    "description": String
+    "pictures": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category19_szfi1m.png"
   }
 ]
