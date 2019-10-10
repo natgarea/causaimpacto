@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
+import ConfirmAccount from "./components/auth/ConfirmAccount";
 import AuthService from "./components/auth/AuthService";
 import Home from "./components/home/Home";
 
@@ -12,7 +13,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { loggedInUser: null };
+    this.state = { loggedInUser: null,
+    confimationCode: "" };
     this.service = new AuthService();
 
     this.fetchUser();
@@ -76,7 +78,7 @@ export default class App extends Component {
                 userInSession={this.state.loggedInUser}
                 logout={this.logout}
               />
-              <Switch>
+              <Switch className="contents">
                 <Route
                   exact
                   path="/signup"
@@ -86,6 +88,11 @@ export default class App extends Component {
                   exact
                   path="/login"
                   render={() => <Login getUser={this.getUser} />}
+                />
+                <Route
+                  exact
+                  path="/confirm/:confirmCode"
+                  render={() => <ConfirmAccount confirmCode={this.props.match.params} />}
                 />
               </Switch>
           </div>

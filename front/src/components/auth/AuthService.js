@@ -10,9 +10,9 @@ export default class AuthService {
     });
   }
 
-  signup = (username, password) => {
+  signup = (type, username, email, password) => {
     return this.service
-      .post("/signup", { username, password })
+      .post("/signup", { type, username, email, password })
       .then(response => response.data);
   };
 

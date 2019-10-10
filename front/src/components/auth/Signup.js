@@ -4,20 +4,24 @@ import AuthService from "./AuthService";
 export default class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = { type: "donor", username: "", email: "", password: "" };
     this.service = new AuthService();
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
+    const type = this.state.type;
     const username = this.state.username;
+    const email = this.state.email;
     const password = this.state.password;
 
     this.service
-      .signup(username, password)
+      .signup(type, username, email, password)
       .then(response => {
         this.setState({
+          type: "",
           username: "",
+          email: "",
           password: ""
         });
 
@@ -25,7 +29,9 @@ export default class Signup extends Component {
       })
       .catch(error => {
         this.setState({
+          type: type,
           username: username,
+          email: email,
           password: password,
           error: true
         });
@@ -39,24 +45,24 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div class="contents">
-        <h1 class="title">Sign Up</h1>
+      <div className="contents">
+        <h1 className="title">Sign Up</h1>
         <form onSubmit={this.handleFormSubmit}>
-          <div class="field">
+          <div className="field">
             <label>Tipo de usuario:</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="">Cuenta personal</option>
-                  <option value="">Cuenta para organización</option>
+            <div className="control">
+              <div className="select">
+                <select name="type" value={this.state.type} onChange={e => this.handleChange(e)}>
+                  <option value="donor">Cuenta personal</option>
+                  <option value="organization">Cuenta para organización</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <div class="field">
+          <div className="field">
             <label>Username:</label>
-            <div class="control">
+            <div className="control">
               <input
                 type="text"
                 name="username"
@@ -66,9 +72,9 @@ export default class Signup extends Component {
             </div>
           </div>
 
-          <div class="field">
+          <div className="field">
             <label>Email:</label>
-            <div class="control">
+            <div className="control">
               <input
                 type="email"
                 name="email"
@@ -78,9 +84,9 @@ export default class Signup extends Component {
               </div>
           </div>
 
-          <div class="field">
+          <div className="field">
             <label>Password:</label>
-            <div class="control">
+            <div className="control">
             <input
               type="password"
               name="password"
@@ -88,11 +94,12 @@ export default class Signup extends Component {
               onChange={e => this.handleChange(e)}
             />
             </div>
+            <p class="help">Debe contener al menos 8 caracteres.</p>
           </div>
 
-          <input class="button is-link" type="submit" value="Sign up" />
+          <input className="button is-link" type="submit" value="Sign up" />
         </form>
-        <p class="help is-danger has-icons-right">{this.state.error ? "Error: por favor, complete todos los campos." : ""}</p>
+        <p className="help is-danger has-icons-right">{this.state.error ? "Error: por favor, complete correctamente todos los campos." : ""}</p>
       </div>
     );
   }
