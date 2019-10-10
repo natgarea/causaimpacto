@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FormButton from "../formButton/FormButton";
 import AuthService from "./AuthService";
 
 export default class Signup extends Component {
@@ -45,7 +46,9 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div className="contents">
+      <div className="columns is-centered">
+              <div className="column"></div>
+      <div className="column">
         <h1 className="title">Sign Up</h1>
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">
@@ -94,12 +97,14 @@ export default class Signup extends Component {
               onChange={e => this.handleChange(e)}
             />
             </div>
-            <p class="help">Debe contener al menos 8 caracteres.</p>
+            <p className="help">Debe contener al menos 8 caracteres.</p>
           </div>
 
-          <input className="button is-link" type="submit" value="Sign up" />
+          <FormButton children="Sign Up"/>
         </form>
         <p className="help is-danger has-icons-right">{this.state.error ? "Error: por favor, complete correctamente todos los campos." : ""}</p>
+      </div>
+      <div className="column"></div>
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default class AuthService {
- // process.env.REACT_APP_BACKENDPORT
   constructor() {
     this.URL =  "http://localhost:5000/api/auth";
     this.service = axios.create({

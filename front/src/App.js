@@ -5,16 +5,16 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
-import ConfirmAccount from "./components/auth/ConfirmAccount";
 import AuthService from "./components/auth/AuthService";
 import Home from "./components/home/Home";
+import UpdateData from "./components/home/update/UpdateData";
+import UpdatePicture from "./components/home/update/UpdatePicture";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { loggedInUser: null,
-    confimationCode: "" };
+    this.state = { loggedInUser: null, confimationCode: "" };
     this.service = new AuthService();
 
     this.fetchUser();
@@ -48,56 +48,48 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.loggedInUser) {
-      return (
-        <React.Fragment>
-          <Redirect to="/home" />
+    return (
+      <React.Fragment>
+        <Redirect to="/home" />
 
-          <div className="App">
-              <Navbar
-                userInSession={this.state.loggedInUser}
-                logout={this.logout}
-              />
-              <Switch className="contents">
-                <Route
-                  exact
-                  path="/home"
-                  render={() => <Home userInSession={this.state.loggedInUser} />}
-                />
-              </Switch>
-          </div>
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment>
-          <Redirect to="/login" />
-
-          <div className="App">
-              <Navbar
-                userInSession={this.state.loggedInUser}
-                logout={this.logout}
-              />
-              <Switch className="contents">
-                <Route
-                  exact
-                  path="/signup"
-                  render={() => <Signup getUser={this.getUser} />}
-                />
-                <Route
-                  exact
-                  path="/login"
-                  render={() => <Login getUser={this.getUser} />}
-                />
-                <Route
-                  exact
-                  path="/confirm/:confirmCode"
-                  render={() => <ConfirmAccount confirmCode={this.props.match.params} />}
-                />
-              </Switch>
-          </div>
-        </React.Fragment>
-      );
-    }
+        <div className="App">
+          <Navbar
+            userInSession={this.state.loggedInUser}
+            logout={this.logout}
+          />
+          <Switch>
+            <Route
+              exact
+              path="/home"
+              render={() => <Home userInSession={this.state.loggedInUser} />}
+            />
+            <Route
+              exact
+              path="/home/updateData"
+              render={() => (
+                <UpdateData userInSession={this.state.loggedInUser} />
+              )}
+            />
+            <Route
+              exact
+              path="/home/updatePicture"
+              render={() => (
+                <UpdatePicture userInSession={this.state.loggedInUser} />
+              )}
+            />
+            <Route
+              exact
+              path="/signup"
+              render={() => <Signup getUser={this.getUser} />}
+            />
+            <Route
+              exact
+              path="/login"
+              render={() => <Login getUser={this.getUser} />}
+            />
+          </Switch>
+        </div>
+      </React.Fragment>
+    );
   }
 }

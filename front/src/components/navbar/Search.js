@@ -5,12 +5,12 @@ export default class Search extends Component {
   render() {
     return (
       <div>
-        <div class="field has-addons">
-          <div class="control">
-            <input class="input" type="text" placeholder="Búsqueda" />
+        <div className="field has-addons">
+          <div className="control">
+            <input className="input" type="text" placeholder="Búsqueda" />
           </div>
-          <div class="control">
-            <Link class="button is-info">Buscar</Link>
+          <div className="control">
+            <Link to="#" className="button is-info">Buscar</Link>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 body {
   font-family: 'Open Sans', sans-serif;
+  padding: 100px 50px;
 }
 
 h1, h2, h3, h4 {
@@ -20,4 +21,20 @@ input {
 
 select, option, button {
   font-family: 'Open Sans', sans-serif;
+}
+
+.txt-is-blue {
+  color: #48A9A6;
+}
+
+.txt-is-orange {
+  color: #48A9A6;
+}
+
+.is-bold {
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
 }

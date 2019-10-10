@@ -11,7 +11,6 @@ let transporter = require("../configs/nodemailer.config");
 
 const login = (req, user) => {
   return new Promise((resolve, reject) => {
-    console.log(user);
     req.login(user, err => {
       if (err) {
         console.log(err);
@@ -25,23 +24,19 @@ const login = (req, user) => {
 
 // SIGNUP
 router.post("/signup", (req, res, next) => {
-  console.log(req.body);
   const { type, username, email, password } = req.body;
-  console.log("username req del body: " + username);
-  console.log("email req del body: " + email);
   if (!username || !password || !email) {
     next(new Error("You must provide valid credentials"));
   }
 
   // Check if user exists in DB
   User.findOne({ username }, "username", (err, user) => {
-    console.log("hago el findOne");
-    console.log(user);
+
     if (user !== null) {
       res.status(500).json({ errorMsg: "Username already exists" });
-      return
+      return  
     }
-    console.log("paso el if !user");
+
     const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
 
@@ -60,32 +55,25 @@ router.post("/signup", (req, res, next) => {
       status: "pending",
       confirmationCode: token
     });
-    console.log(newUser);
+
 
     newUser
       .save()
       .then(user => {
-        console.log(user);
-        console.log("creo usuario y mando mail");
-        console.log(email + " o " + user.email);
+
         transporter.sendMail({
           from: "causa impacto",
           to: email,
           subject: "Verificación de cuenta",
-          text: `Por favor, accede al siguiente enlace para verificar tu cuenta: http://localhost:3000/auth/confirm/${token}`,
-          html: `<a href="http://localhost:3000/auth/confirm/${token}">Haz click para verificar tu cuenta</a>`
+          text: `Por favor, accede al siguiente enlace para verificar tu cuenta: http://localhost:5000/api/auth/confirm/${token}`,
+          html: `<a href="http://localhost:5000/api/auth/confirm/${token}">Haz click para verificar tu cuenta</a>`
         });
 
-        console.log("about to login");
-        // console.log(req)
-        // console.log(savedUser)
         login(req, user)
           .then(x => {
-            console.log("ok");
             res.json({ status: "signup & login successfully", user });
           })
           .catch(error => {
-            console.log("no ok");
             res.status(500).json({
               status: "login failed",
               error
@@ -98,16 +86,10 @@ router.post("/signup", (req, res, next) => {
 
 router.get("/confirm/:confirmCode", (req, res, next) => {
   const confirmCode = req.params.confirmCode;
-  User.findOne({ confirmationCode: confirmCode })
-    .then(
-      User.update(
-        { confirmationCode: confirmCode },
-        {
-          $set: {
-            status: "active"
-          }
-        }
-      ).then({ status: "successful account verification", user })
+  User.findOneAndUpdate({ confirmationCode: confirmCode }, {status: "active"}, {new: true})
+    .then(user => {
+      res.status(200).redirect('http://localhost:3000/home')
+    }
     )
     .catch(err => console.log(err));
 });

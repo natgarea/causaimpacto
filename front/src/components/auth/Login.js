@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FormButton from "../formButton/FormButton";
 import AuthService from "./AuthService";
 
 export default class Login extends Component {
@@ -40,24 +41,32 @@ export default class Login extends Component {
 
   render() {
 
-    return (<div className="contents">
-      <h1 class="title">Log In</h1>
+    return (<div className="columns is-centered">
+    <div className="column"></div>
+    <div className="column">
+      <h1 className="title">Log In</h1>
      
       <form onSubmit={this.handleFormSubmit}>
-        <fieldset>
+      <div className="field">
           <label>Username:</label>
-          <input type="text" name="username" title="username" placeholder="username" value={this.state.username} onChange={e => this.handleChange(e)} required autofocus />
-        </fieldset>
+          <div className="control">
+          <input type="text" name="username" title="username" placeholder="username" value={this.state.username} onChange={e => this.handleChange(e)} required />
+        </div>
+        </div>
 
-        <fieldset>
+        <div className="field">
           <label>Password:</label>
+          <div className="control">
           <input type="password" name="password" title="password" placeholder="password" value={this.state.password} onChange={e => this.handleChange(e)} required />
-        </fieldset>
+        </div>
+        </div>
 
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <FormButton children="Login"/>
       </form>
 
       <h3>{this.state.error ? 'Error' : ''}</h3>
+      </div>
+      <div className="column"></div>
       </div>)
   }
 }
