@@ -16,8 +16,8 @@ router.put("/updateDonor", (req, res, next) => {
     },
     { new: true }
   )
-    .then(() => {
-      res.status(200).redirect('http://localhost:3000/home');
+    .then((data) => {
+      res.status(200).json(data);
     })
     .catch(err => console.log(err));
 });
@@ -40,8 +40,8 @@ router.put("/updateOrganization", (req, res, next) => {
       },
       { new: true }
     )
-      .then(() => {
-        res.status(200).redirect('http://localhost:3000/home');
+      .then((data) => {
+        res.status(200).json({data});
       })
       .catch(err => console.log(err));
   });

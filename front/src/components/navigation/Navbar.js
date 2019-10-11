@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AuthService from "../auth/AuthService";
 import { Link } from "react-router-dom";
 import Search from "./Search";
+import './Navbar.css';
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -60,7 +61,13 @@ export default class Navbar extends Component {
               </div>
               <div className="navbar-item has-dropdown is-hoverable">
                 <Link to="#" className="navbar-link">
-                  {this.state.loggedInUser.username}
+                <figure className="image is-24x24">
+                  <img
+                    className = "is-rounded nav-img"
+                    src="https://bulma.io/images/placeholders/24x24.png"
+                    alt={this.state.loggedInUser.username}
+                  />
+                </figure> {this.state.loggedInUser.username}
                 </Link>
 
                 <div className="navbar-dropdown">

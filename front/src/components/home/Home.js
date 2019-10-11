@@ -9,45 +9,49 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: props.userInSession.status,
-      notification: null
+      loggedUser: this.props.userInSession,
+      notification: null,
+      prueba: ""
     };
   }
 
-  componentDidMount() {
-    this.checkStatus();
-  }
-
-  checkStatus() {
-    if (this.state.status === "active")
-      this.setState({ ...this.state, notification: true });
-    else this.setState({ ...this.state, notification: false });
-  }
-
-  toggleClass() {
-    this.setState({ notification: true });
-  }
-  render() {
-    if (this.props.userInSession) {
-      if (this.props.userInSession.type === "donor") {
-        return (
-          <div>
-            <Notification />  
-            <div className="columns">
-              <ProfileSettings userData={this.props.userInSession} />
-              <SuggestedOrg />
-            </div>
-            <div className="columns">
-              <DonationList />
-              <CauseList />
-            </div>
-          </div>
-        );
-      } else {
-        return (<div></div>)
-      }
-    } else {
-      return (<div></div>);
+  static getDerivedStateFromProps(props, state) {
+    if (!!props.userInSession) {
+      let notification;
+      props.userInSession.status === "active"
+        ? (notification = true)
+        : (notification = false);
+      return (
+        (state.loggedUser = props.userInSession),
+        (state.notification = notification)
+      );
     }
+    return null;
+  }
+
+  toggleClass = () => this.setState({ notification: true });
+
+  render() {
+      if (this.props.userInSession) {
+        if (this.state.loggedUser.type === "donor") {
+          return (
+            <div>
+              <Notification toggleClass={this.toggleClass} notification={this.state.notification} />
+              <div className="columns">
+                <ProfileSettings userData={this.state.loggedUser} />
+                <SuggestedOrg />
+              </div>
+              <div className="columns">
+                <DonationList />
+                <CauseList />
+              </div>
+            </div>
+          );
+        } else {
+          return (<div></div>)
+        }
+      } else {
+        return (<div></div>);
+      }
   }
 }

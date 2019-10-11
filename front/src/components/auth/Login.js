@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import FormButton from "../formButton/FormButton";
+import FormButton from "../form/FormButton";
 import AuthService from "./AuthService";
+import { withRouter } from "react-router-dom";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
@@ -24,6 +25,7 @@ export default class Login extends Component {
         });
 
         this.props.getUser(response);
+        this.props.history.push('/home');
       })
       .catch(error => {
         this.setState({
@@ -40,33 +42,52 @@ export default class Login extends Component {
   };
 
   render() {
+    return (
+      <div className="columns is-centered">
+        <div className="column"></div>
+        <div className="column">
+          <h1 className="title">Log In</h1>
 
-    return (<div className="columns is-centered">
-    <div className="column"></div>
-    <div className="column">
-      <h1 className="title">Log In</h1>
-     
-      <form onSubmit={this.handleFormSubmit}>
-      <div className="field">
-          <label>Username:</label>
-          <div className="control">
-          <input type="text" name="username" title="username" placeholder="username" value={this.state.username} onChange={e => this.handleChange(e)} required />
-        </div>
-        </div>
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="field">
+              <label>Username:</label>
+              <div className="control">
+                <input
+                  type="text"
+                  name="username"
+                  title="username"
+                  placeholder="username"
+                  value={this.state.username}
+                  onChange={e => this.handleChange(e)}
+                  required
+                />
+              </div>
+            </div>
 
-        <div className="field">
-          <label>Password:</label>
-          <div className="control">
-          <input type="password" name="password" title="password" placeholder="password" value={this.state.password} onChange={e => this.handleChange(e)} required />
-        </div>
-        </div>
+            <div className="field">
+              <label>Password:</label>
+              <div className="control">
+                <input
+                  type="password"
+                  name="password"
+                  title="password"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={e => this.handleChange(e)}
+                  required
+                />
+              </div>
+            </div>
 
-        <FormButton children="Login"/>
-      </form>
+            <FormButton children="Login" />
+          </form>
 
-      <h3>{this.state.error ? 'Error' : ''}</h3>
+          <h3>{this.state.error ? "Error" : ""}</h3>
+        </div>
+        <div className="column"></div>
       </div>
-      <div className="column"></div>
-      </div>)
+    );
   }
 }
+
+export default withRouter(Login);

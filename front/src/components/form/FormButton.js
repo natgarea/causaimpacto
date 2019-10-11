@@ -13,7 +13,7 @@ export default class FormButton extends Component {
     render() {
         return (
             <div>
-                <button className={this.state.buttonClass} onClick="() => this.toggleClass()" type="submit">{this.props.children}</button>
+                <button className={this.state.buttonClass} onClick={() => this.toggleClass()} type="submit">{this.props.children}</button>
             </div>
         )
     }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/auth/AuthService";
@@ -61,13 +61,13 @@ export default class App extends Component {
             <Route
               exact
               path="/home"
-              render={() => <Home userInSession={this.state.loggedInUser} />}
+              render={(props) => <Home {...props} userInSession={this.state.loggedInUser} />}
             />
             <Route
               exact
               path="/home/updateData"
               render={() => (
-                <UpdateData userInSession={this.state.loggedInUser} />
+                <UpdateData userInSession={this.state.loggedInUser} getUser={(user) => this.getUser(user)} />
               )}
             />
             <Route
