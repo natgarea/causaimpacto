@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import UserService from "../UserService";
-import AuthService from "../../auth/AuthService";
-import FormButton from "../../form/FormButton";
-import { withRouter } from "react-router-dom";
 
-class UpdateData extends Component {
+export default class UpdateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,139 +10,8 @@ class UpdateData extends Component {
     this.authService = new AuthService();
   }
 
-  // componentDidMount() {
-  //   // this.fetchUser();
-  //   // this.checkForAddress(this.props);
-  // }
-
-  // fetchUser() {
-  //   return this.authService.loggedin().then(response => {
-  //     this.setState({
-  //       loggedInUser: response
-  //     });
-  //     this.checkForAddress(response);
-  //   });
-  //   // .catch(err => {
-  //   //   this.setState({
-  //   //     loggedInUser: false
-  //   //   });
-  //   // });
-  // }
-
-  static getDerivedStateFromProps(props, state) {
-    return {
-      loggedInUser: props.userInSession
-    }
-}
-
-  checkForAddress = props => {
-    let newUser;
-    if (!!props.address) newUser = { ...this.state.loggedInUser };
-    newUser.address = props.address;
-    this.setState({ ...this.state, loggedInUser: newUser });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-
-    if (this.props.loggedInUser.type === "donor") {
-      const { username, userFirstname, userSurname, address } = this.state;
-      this.service
-        .updateDonor(username, userFirstname, userSurname, address)
-        .then(response => {
-          this.setState({
-            userFirstname: "",
-            userSurname: "",
-            address: ""
-          });
-          this.props.getUser(response);
-          this.props.history.push("/home");
-        })
-        .catch(error => {
-          this.setState({
-            userFirstname: userFirstname,
-            userSurname: userSurname,
-            address: address,
-            error: true
-          });
-        });
-    } else {
-      const {
-        username,
-        orgName,
-        orgDescription,
-        orgContactPerson,
-        orgTelephone,
-        orgEmail,
-        address,
-        orgUrl,
-        orgLicense,
-        orgRegistrar
-      } = this.state;
-
-      this.service
-        .updateOrganization(
-          username,
-          orgName,
-          orgDescription,
-          orgContactPerson,
-          orgTelephone,
-          orgEmail,
-          address,
-          orgUrl,
-          orgLicense,
-          orgRegistrar
-        )
-        .then(response => {
-          this.setState({
-            orgName: "",
-            orgDescription: "",
-            orgContactPerson: "",
-            orgTelephone: "",
-            orgEmail: "",
-            address: "",
-            orgUrl: "",
-            orgLicense: "",
-            orgRegistrar: ""
-          });
-        })
-        .catch(error => {
-          this.setState({
-            orgName: orgName,
-            orgDescription: orgDescription,
-            orgContactPerson: orgContactPerson,
-            orgTelephone: orgTelephone,
-            orgEmail: orgEmail,
-            address: address,
-            orgUrl: orgUrl,
-            orgLicense: orgLicense,
-            orgRegistrar: orgRegistrar,
-            error: true
-          });
-        });
-    }
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
-  handleAddressChange = event => {
-    const { name, value } = event.target;
-    const address = { ...this.state.loggedInUser.address };
-    address[name] = value;
-    this.setState({
-      ...this.state,
-      address: address
-    });
-  };
-
   render() {
-    if (this.state.loggedInUser === null)  return <div></div>;
-    
-    if (this.state.loggedInUser.type === "donor") {
-      debugger
+    if (this.props.userInSession.type === "donor") {
       return (
         <div className="columns is-centered">
           <div className="column">
@@ -490,5 +355,3 @@ class UpdateData extends Component {
     }
   }
 }
-
-export default withRouter(UpdateData);
