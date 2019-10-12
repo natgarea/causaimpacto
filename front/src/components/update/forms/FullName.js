@@ -5,14 +5,17 @@ export default class FullName extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            userInSession: props.userInSession,
+            userFirstname: props.firstname,
+            userLastname: props.surname
         }
     }
 
     handleChange = event => {
         const { name, value } = event.target;
-        this.setState( { [name] : value } );
-
+        this.setState( {
+            ...this.state, 
+            [name] : value
+        });
       };
 
     render() {
@@ -36,7 +39,7 @@ export default class FullName extends Component {
                 className="input"
                 name="userFirstname"
                 type="text"
-                // value={this.props.userInSession.userFirstname}
+                value={this.state.userFirstname}
                 placeholder="Nombre"
                 onChange={e => this.handleChange(e)}
                 />
@@ -49,7 +52,7 @@ export default class FullName extends Component {
                 className="input"
                 name="userSurname"
                 type="text"
-                // value={this.props.userInSession.userSurname}
+                value={this.state.userSurname}
                 placeholder="Apellidos"
                 onChange={e => this.handleChange(e)}
                 />

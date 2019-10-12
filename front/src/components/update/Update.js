@@ -9,10 +9,13 @@ export default class Update extends Component {
     this.updateService = new UpdateService();
   }
 
-  handleUpdateSubmit = updatedUserObj => {
-    this.setState({
-      loggedInUser: updatedUserObj
-    });
+  handleUpdateSubmit = updateFormValues => {
+    let updatedUser ={ ...this.props.userInSession, 
+      userFirstname: updateFormValues.userFirstname,
+      userSurname: updateFormValues.userSurname
+    }
+
+    this.updateUser(updatedUser);
   }
 
   updateUser(updatedUserObj) {
@@ -28,7 +31,6 @@ export default class Update extends Component {
               <h1 className="title">Actualiza tus datos</h1>
               <div>
                 <ul>
-                  <li>Este formulario está divido en secciones.</li>
                   <li>
                     Despliega cada sección haciendo click en la pestaña en la
                     esquina superior derecha.
@@ -39,7 +41,8 @@ export default class Update extends Component {
                 </ul>
               </div>
               <FullName
-                userInSession={this.props.userInSession}
+                firstname={this.props.userInSession.userFirstname}
+                surname={this.props.userInSession.userSurname}
                 handleUpdateSubmit={this.handleUpdateSubmit}
               />
             </div>

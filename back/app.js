@@ -53,8 +53,8 @@ require("./passport")(app);
 const authRouter = require('./routes/auth');
 app.use('/api/auth', authRouter);
 
-const updateRouter = require('./routes/update');
-app.use('/api/update', updateRouter);
+const userRouter = require('./routes/user');
+app.use('/api/user', userRouter);
 
 
 module.exports = app;
