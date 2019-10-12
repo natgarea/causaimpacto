@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class FullName extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            userInSession: props.userInSession,
+            userFirstname: props.firstname,
+            userLastname: props.surname,
+            openTab: true,
+            expand: faAngleDown,
+            cardClass: "card-content hide"
         }
     }
 
     handleChange = event => {
         const { name, value } = event.target;
-        this.setState( { [name] : value } );
-
+        this.setState( {
+            ...this.state, 
+            [name] : value
+        });
       };
+
+      toggleCardClass() {
+        if (!this.state.openTab) {
+            this.setState({
+                openTab: true,
+                expand: faAngleDown,
+                cardClass: "card-content hide"})
+        } else {
+            this.setState({
+                openTab: false,
+                expand: faAngleUp,
+                cardClass: "card-content"
+            })
+        }
+      }    
 
     render() {
         return (
@@ -22,11 +45,11 @@ export default class FullName extends Component {
         <p className="card-header-title">
         Nombre completo
         </p>
-        {/* <Link to="#" onClick={() => this.toggleCardClass()} className="card-header-icon" aria-label="more options"> */}
-        {/* {this.state.expand} */}
-        {/* </Link> */}
-    </header>
-    <div className="card-content">
+        <Link to="#" onClick={() => this.toggleCardClass()}>
+            <span class="icon is-medium has-margin-right-top"><FontAwesomeIcon icon={this.state.expand} aria-hidden="true"/></span>
+          </Link>
+        </header>
+        <div className={this.state.cardClass}>
     <div className="content">
         <form>
         <div className="field">
@@ -36,7 +59,7 @@ export default class FullName extends Component {
                 className="input"
                 name="userFirstname"
                 type="text"
-                // value={this.props.userInSession.userFirstname}
+                value={this.state.userFirstname}
                 placeholder="Nombre"
                 onChange={e => this.handleChange(e)}
                 />
@@ -49,7 +72,7 @@ export default class FullName extends Component {
                 className="input"
                 name="userSurname"
                 type="text"
-                // value={this.props.userInSession.userSurname}
+                value={this.state.userSurname}
                 placeholder="Apellidos"
                 onChange={e => this.handleChange(e)}
                 />

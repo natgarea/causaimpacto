@@ -11,19 +11,8 @@ export default class UpdateService {
 
   updateUser = updatedUserObj => {
     return this.service
-      .put("/update", updatedUserObj)
+      .put("/update/" + updatedUserObj._id, updatedUserObj)
       .then(response => response.data);
   };
 
-  // updateDonor = (username, userFirstname, userSurname, address) => {
-  //   return this.service
-  //     .put("/updateDonor", { username, userFirstname, userSurname, address })
-  //     .then(response => response.data);
-  // };
-
-  // updateOrganization = (username, orgName, orgDescription, orgContactPerson, orgTelephone, orgEmail, address, orgUrl, orgLicense, orgRegistrar) => {
-  //   return this.service
-  //     .put("/updateOrganization/", { username, orgName, orgDescription, orgContactPerson, orgTelephone, orgEmail, address, orgUrl, orgLicense, orgRegistrar })
-  //     .then(response => response.data);
-  // };
 }
