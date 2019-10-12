@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default class AuthService {
- // process.env.REACT_APP_BACKENDPORT
   constructor() {
     this.URL =  "http://localhost:5000/api/auth";
     this.service = axios.create({
@@ -10,9 +9,9 @@ export default class AuthService {
     });
   }
 
-  signup = (username, password) => {
+  signup = (type, username, email, password) => {
     return this.service
-      .post("/signup", { username, password })
+      .post("/signup", { type, username, email, password })
       .then(response => response.data);
   };
 

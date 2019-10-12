@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import FormButton from "../form/FormButton";
 import AuthService from "./AuthService";
-import { Tab, Row, Col, Nav } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
@@ -24,6 +25,7 @@ export default class Login extends Component {
         });
 
         this.props.getUser(response);
+        this.props.history.push('/home');
       })
       .catch(error => {
         this.setState({
@@ -41,57 +43,51 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div class="card">
-        <h3>Login</h3>
-        <Tab.Container defaultActiveKey="first">
-          <Row>
-            <Nav variant="pills" className="flex-column">
-              <Nav.Item>
-                <Nav.Link eventKey="first">Users</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="second">Organizations</Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Row>
-          <Row>
-            <Col sm={9}>
-              <Tab.Content>
-                <Tab.Pane eventKey="first">
-                  <form onSubmit={this.handleFormSubmit}>
-                    <fieldset>
-                      <label>Username:</label>
-                      <input
-                        type="text"
-                        name="username"
-                        value={this.state.username}
-                        onChange={e => this.handleChange(e)}
-                      />
-                    </fieldset>
+      <div className="columns is-centered">
+        <div className="column"></div>
+        <div className="column">
+          <h1 className="title">Log In</h1>
 
-                    <fieldset>
-                      <label>Password:</label>
-                      <input
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={e => this.handleChange(e)}
-                      />
-                    </fieldset>
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="field">
+              <label>Username:</label>
+              <div className="control">
+                <input
+                  type="text"
+                  name="username"
+                  title="username"
+                  placeholder="username"
+                  value={this.state.username}
+                  onChange={e => this.handleChange(e)}
+                  required
+                />
+              </div>
+            </div>
 
-                    <input type="submit" value="Login" />
-                  </form>
+            <div className="field">
+              <label>Password:</label>
+              <div className="control">
+                <input
+                  type="password"
+                  name="password"
+                  title="password"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={e => this.handleChange(e)}
+                  required
+                />
+              </div>
+            </div>
 
-                  <h1>{this.state.error ? "Error" : ""}</h1>
-                </Tab.Pane>
-                <Tab.Pane eventKey="second">
-                  <h1>Replace me</h1>
-                </Tab.Pane>
-              </Tab.Content>
-            </Col>
-          </Row>
-        </Tab.Container>
+            <FormButton children="Login" />
+          </form>
+
+          <h3>{this.state.error ? "Error" : ""}</h3>
+        </div>
+        <div className="column"></div>
       </div>
     );
   }
 }
+
+export default withRouter(Login);

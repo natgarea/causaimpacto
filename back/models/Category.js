@@ -6,7 +6,7 @@ const categorySchema = new Schema({
   pictures: String,
   description: String,
   organizations: [
-    { type: mongoose.Schema.Types.ObjectId, ref: 'Organization' }
+    { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   ]
 }, {
   timestamps: {

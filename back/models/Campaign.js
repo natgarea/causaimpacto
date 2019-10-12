@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const campaignSchema = new Schema({
-  organization: { type: mongoose.Schema.Types.ObjectId, ref: 'Organization' },
+  organization: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   title: String,
   description: String,
   fundraisingTarget: Number,
@@ -10,8 +10,8 @@ const campaignSchema = new Schema({
   totalDonations: Number,
   status: {
     type: String,
-    enum: ["Active", "Inactive"],
-    default: "Active"
+    enum: ["active", "inactive"],
+    default: "active"
   },
   deadline: Date,
   suggestedDonation: Number,
