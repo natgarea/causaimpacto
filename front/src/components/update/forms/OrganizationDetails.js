@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class OrganizationDetails extends Component {
   constructor(props) {
@@ -7,7 +10,10 @@ export default class OrganizationDetails extends Component {
       orgName: props.name,
       orgDescription: props.description,
       orgRegistrar: props.registrar,
-      orgLicense: props.license
+      orgLicense: props.license,
+      openTab: true,
+      expand: faAngleDown,
+      cardClass: "card-content hide"
     };
   }
 
@@ -19,16 +25,31 @@ export default class OrganizationDetails extends Component {
     });
   };
 
+  toggleCardClass() {
+    if (!this.state.openTab) {
+        this.setState({
+            openTab: true,
+            expand: faAngleDown,
+            cardClass: "card-content hide"})
+    } else {
+        this.setState({
+            openTab: false,
+            expand: faAngleUp,
+            cardClass: "card-content"
+        })
+    }
+  }
+
   render() {
     return (
       <div className="card has-margin-2">
         <header className="card-header">
           <p className="card-header-title">Datos de la organización</p>
-          <a href="#" className="card-header-icon" aria-label="more options">
-            <span className="icon">expandir</span>
-          </a>
+          <Link to="#" onClick={() => this.toggleCardClass()}>
+            <span class="icon is-medium has-margin-right-top"><FontAwesomeIcon icon={this.state.expand} aria-hidden="true"/></span>
+          </Link>
         </header>
-        <div className="card-content">
+        <div className={this.state.cardClass}>
           <div className="content">
               <form>
             <div className="field">

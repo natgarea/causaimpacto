@@ -43,6 +43,11 @@ select, option, button {
   display: none;
 }
 
+.has-margin-right-top {
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
 .has-margin-1 {
   margin: 10px 0;
 }
@@ -65,4 +70,28 @@ select, option, button {
 
 .has-margin-6 {
   margin: 60px 0;
+}
+
+.has-padding-1 {
+  padding: 10px;
+}
+
+.has-padding-2 {
+  padding: 20px;
+}
+
+.has-padding-3 {
+  padding: 30px;
+}
+
+.has-padding-4 {
+  padding: 40px;
+}
+
+.has-padding-5 {
+  padding: 50px;
+}
+
+.has-padding-6 {
+  padding: 60px;
 }

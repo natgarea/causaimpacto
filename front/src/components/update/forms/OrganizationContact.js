@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class OrganizationContact extends Component {
   constructor(props) {
@@ -7,7 +10,10 @@ export default class OrganizationContact extends Component {
       orgContactPerson: props.contactPerson,
       orgTelephone: props.telephone,
       orgEmail: props.email,
-      orgUrl: props.url
+      orgUrl: props.url,
+      openTab: true,
+      expand: faAngleDown,
+      cardClass: "card-content hide"
     };
   }
 
@@ -19,14 +25,31 @@ export default class OrganizationContact extends Component {
     });
   };
 
+  toggleCardClass() {
+    if (!this.state.openTab) {
+        this.setState({
+            openTab: true,
+            expand: faAngleDown,
+            cardClass: "card-content hide"})
+    } else {
+        this.setState({
+            openTab: false,
+            expand: faAngleUp,
+            cardClass: "card-content"
+        })
+    }
+  }
+
   render() {
     return (
       <div className="card has-margin-2">
         <header className="card-header">
           <p className="card-header-title">Datos de contacto</p>
+          <Link to="#" onClick={() => this.toggleCardClass()}>
+            <span class="icon is-medium has-margin-right-top"><FontAwesomeIcon icon={this.state.expand} aria-hidden="true"/></span>
+          </Link>
         </header>
-
-        <div className="card-content">
+        <div className={this.state.cardClass}>
           <div className="content">
             <form>
               <div className="field">

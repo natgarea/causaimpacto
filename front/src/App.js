@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
-
 import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
