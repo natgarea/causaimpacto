@@ -6,6 +6,7 @@ import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/auth/AuthService";
+import UserService from "./components/home/UserService";
 import Home from "./components/home/Home";
 import UpdateData from "./components/home/update/UpdateData";
 import UpdatePicture from "./components/home/update/UpdatePicture";
@@ -61,7 +62,7 @@ export default class App extends Component {
             <Route
               exact
               path="/home"
-              render={(props) => <Home {...props} userInSession={this.state.loggedInUser} />}
+              render={(props) => <Home userInSession={this.state.loggedInUser} />}
             />
             <Route
               exact
