@@ -3,7 +3,7 @@ import FormButton from "../form/FormButton";
 import AuthService from "./AuthService";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 class Login extends Component {
   constructor(props) {
@@ -48,9 +48,9 @@ class Login extends Component {
       <div className="columns is-centered">
         <div className="column"></div>
         <div className="column">
-          <div class="card">
-            <div class="card-content">
-              <div class="content align-items-center">
+          <div className="card">
+            <div className="card-content">
+              <div className="content align-items-center">
                 <h1 className="title">Log In</h1>
 
                 <form onSubmit={this.handleFormSubmit}>
@@ -67,7 +67,7 @@ class Login extends Component {
                         onChange={e => this.handleChange(e)}
                         required
                       />
-                      <span class="icon is-medium is-left">
+                      <span className="icon is-medium is-left">
                       <FontAwesomeIcon icon={faUser} aria-hidden="true"/>
                       </span>
                     </div>
@@ -86,7 +86,7 @@ class Login extends Component {
                         onChange={e => this.handleChange(e)}
                         required
                       />
-                      <span class="icon is-medium is-left">
+                      <span className="icon is-medium is-left">
                       <FontAwesomeIcon icon={faLock} aria-hidden="true"/>
                       </span>
                     </div>

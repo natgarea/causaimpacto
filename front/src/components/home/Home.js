@@ -35,37 +35,50 @@ export default class Home extends Component {
   toggleClass = () => this.setState({ notification: true });
 
   render() {
-      if (this.props.userInSession) {
-        if (this.state.loggedUser.type === "donor") {
-          return (
-            <div>
-              <Notification toggleClass={this.toggleClass} notification={this.state.notification} />
-              <div className="columns">
-                <ProfileSettings userData={this.state.loggedUser} />
-                <SuggestedOrg />
-              </div>
-              <div className="columns">
-                <DonationList />
-                <CauseList />
+    if (this.props.userInSession) {
+      if (this.state.loggedUser.type === "donor") {
+        return (
+          <div>
+            <Notification
+              toggleClass={this.toggleClass}
+              notification={this.state.notification}
+            />
+            <div className="columns">
+              <ProfileSettings userData={this.state.loggedUser} />
+              <SuggestedOrg />
+            </div>
+            <div className="columns">
+              <DonationList />
+              <div className="column">
+                <div className="card">
+                  <div className="card-content">
+                    <h3 className="title">¿Qué causas te interesan?</h3>
+                    { <CauseList/>}
+                  </div>
+                </div>
               </div>
             </div>
-          );
-        } else {
-          return (
-            <div>
-              <Notification toggleClass={this.toggleClass} notification={this.state.notification} />
-              <div className="columns">
-              <OrganizationSettings userData={this.state.loggedUser} />
-              </div>
-              <div className="columns">
-                <UserList />
-                <CampaignControls />
-              </div>
-            </div>
-          )
-        }
+          </div>
+        );
       } else {
-        return (<div></div>);
+        return (
+          <div>
+            <Notification
+              toggleClass={this.toggleClass}
+              notification={this.state.notification}
+            />
+            <div className="columns">
+              <OrganizationSettings userData={this.state.loggedUser} />
+            </div>
+            <div className="columns">
+              <UserList />
+              <CampaignControls />
+            </div>
+          </div>
+        );
       }
+    } else {
+      return <div></div>;
+    }
   }
 }

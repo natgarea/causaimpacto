@@ -48,6 +48,10 @@ select, option, button {
   margin-top: 5px;
 }
 
+.has-margin-right {
+  margin-right: 10px;
+}
+
 .has-margin-1 {
   margin: 10px 0;
 }

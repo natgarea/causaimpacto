@@ -53,9 +53,9 @@ class Signup extends Component {
       <div className="columns is-centered">
         <div className="column"></div>
         <div className="column">
-          <div class="card">
-            <div class="card-content">
-              <div class="content align-items-center">
+          <div className="card">
+            <div className="card-content">
+              <div className="content align-items-center">
                 <h1 className="title">Sign Up</h1>
                 <form onSubmit={this.handleFormSubmit}>
                   <div className="field">
@@ -63,7 +63,7 @@ class Signup extends Component {
                     <div className="control">
                       <div className="select">
                         <select
-                          class="select is-normal"
+                          className="select is-normal"
                           name="type"
                           value={this.state.type}
                           onChange={e => this.handleChange(e)}
@@ -87,7 +87,7 @@ class Signup extends Component {
                         value={this.state.username}
                         onChange={e => this.handleChange(e)}
                       />
-                      <span class="icon is-medium is-left">
+                      <span className="icon is-medium is-left">
                       <FontAwesomeIcon icon={faUser} aria-hidden="true"/>
                       </span>
                     </div>
@@ -103,7 +103,7 @@ class Signup extends Component {
                         value={this.state.email}
                         onChange={e => this.handleChange(e)}
                       />
-                      <span class="icon is-medium is-left">
+                      <span className="icon is-medium is-left">
                       <FontAwesomeIcon icon={faEnvelope} aria-hidden="true"/>
                       </span>
                     </div>
@@ -119,7 +119,7 @@ class Signup extends Component {
                         value={this.state.password}
                         onChange={e => this.handleChange(e)}
                       />
-                      <span class="icon is-medium is-left">
+                      <span className="icon is-medium is-left">
                       <FontAwesomeIcon icon={faLock} aria-hidden="true"/>
                       </span>
                     </div>
