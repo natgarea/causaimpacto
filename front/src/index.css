@@ -95,3 +95,10 @@ select, option, button {
 .has-padding-6 {
   padding: 60px;
 }
+
+.align-items-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

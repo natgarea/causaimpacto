@@ -4,11 +4,11 @@ export default class FormButton extends Component {
     constructor(props){
         super(props);
         this.state = {
-            buttonClass: "button is-link"
+            buttonClass: "button is-link is-fullwidth is-normal"
         }
     } 
     toggleClass() {
-        this.setState({ buttonClass: "button is-link is-loading" });
+        this.setState({ buttonClass: "button is-link is-fullwidth is-normal is-loading" });
     }
     render() {
         return (

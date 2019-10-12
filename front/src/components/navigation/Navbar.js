@@ -3,7 +3,6 @@ import AuthService from "../auth/AuthService";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import './Navbar.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Navbar extends Component {
   constructor(props) {
