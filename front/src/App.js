@@ -6,17 +6,15 @@ import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/auth/AuthService";
-import UserService from "./components/home/UserService";
 import Home from "./components/home/Home";
-import UpdateData from "./components/home/update/UpdateData";
-import UpdatePicture from "./components/home/update/UpdatePicture";
+import Update from "./components/update/Update";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = { loggedInUser: null, confimationCode: "" };
-    this.service = new AuthService();
+    this.authService = new AuthService();
 
     this.fetchUser();
   }
@@ -28,13 +26,13 @@ export default class App extends Component {
   };
 
   logout = () => {
-    this.service.logout().then(() => {
+    this.authService.logout().then(() => {
       this.setState({ loggedInUser: null });
     });
   };
 
   fetchUser() {
-    return this.service
+    return this.authService
       .loggedin()
       .then(response => {
         this.setState({
@@ -66,16 +64,9 @@ export default class App extends Component {
             />
             <Route
               exact
-              path="/home/updateData"
+              path="/update"
               render={() => (
-                <UpdateData userInSession={this.state.loggedInUser} getUser={(user) => this.getUser(user)} />
-              )}
-            />
-            <Route
-              exact
-              path="/home/updatePicture"
-              render={() => (
-                <UpdatePicture userInSession={this.state.loggedInUser} />
+                <Update userInSession={this.state.loggedInUser} />
               )}
             />
             <Route

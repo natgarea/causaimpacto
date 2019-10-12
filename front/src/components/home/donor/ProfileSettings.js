@@ -32,9 +32,7 @@ export default class ProfileSettings extends Component {
             </div>
           </div>
           <div className="card-content">
-          <Link to='/home/updateData' className="button is-link">Actualiza tus datos</Link>
-          <Link to="#" className="button is-link">Actualiza tu contraseña</Link>
-          <Link to="#" className="button is-link">Actualiza tu foto</Link>
+          <Link to='/update' className="button is-link">Actualiza tu perfil</Link>
           <Link to="#" className="button is-link">Desactiva tu cuenta</Link>
           </div>
         </div>

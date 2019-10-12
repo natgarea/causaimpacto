@@ -71,7 +71,7 @@ export default class Navbar extends Component {
                 </Link>
 
                 <div className="navbar-dropdown">
-                  <Link to="#" className="navbar-item">About</Link>
+                  <Link to="/update" className="navbar-item">Update your data</Link>
                   <Link to="#" className="navbar-item">Jobs</Link>
                   <Link to="#" className="navbar-item">Contact</Link>
                   <hr className="navbar-divider" />
