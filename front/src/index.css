@@ -28,7 +28,11 @@ select, option, button {
 }
 
 .txt-is-orange {
-  color: #48A9A6;
+  color: #E55934;
+}
+
+.txt-is-violet {
+  color: #2E1760;
 }
 
 .is-bold {

@@ -6,7 +6,7 @@ const User = require("../models/User");
 router.put("/update/:id", (req, res, next) => {
   const id = req.params.id;
   const data = req.body;
-
+  console.log(data)
   User.findByIdAndUpdate(id, data, { new: true })
     .then(data => {
       res.status(200).json(data);

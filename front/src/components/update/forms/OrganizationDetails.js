@@ -1,6 +1,24 @@
 import React, { Component } from "react";
 
 export default class OrganizationDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      orgName: props.name,
+      orgDescription: props.description,
+      orgRegistrar: props.registrar,
+      orgLicense: props.license
+    };
+  }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      ...this.state,
+      [name]: value
+    });
+  };
+
   render() {
     return (
       <div className="card has-margin-2">
@@ -20,7 +38,7 @@ export default class OrganizationDetails extends Component {
                   className="input"
                   type="text"
                   name="orgName"
-                  value={this.state.loggedInUser.orgName}
+                  value={this.state.orgName}
                   placeholder="Nombre"
                   onChange={e => this.handleChange(e)}
                 />
@@ -33,8 +51,8 @@ export default class OrganizationDetails extends Component {
                   className="textarea"
                   name="orgDescription"
                   onChange={e => this.handleChange(e)}
-                  value={this.state.loggedInUser.orgDescription}
-                  placeholder="Describa brevemente la misión, valores y objetivos de su organización."
+                  value={this.state.orgDescription}
+                  placeholder="Descripción breve de la misión, los valores y los objetivos de la organización."
                 ></textarea>
               </div>
             </div>
@@ -44,8 +62,8 @@ export default class OrganizationDetails extends Component {
                 <input
                   className="input"
                   type="text"
-                  name="orgName"
-                  value={this.state.loggedInUser.orgRegistrar}
+                  name="orgRegistrar"
+                  value={this.state.orgRegistrar}
                   placeholder="Lugar de registro de la asociación, fundación..."
                   onChange={e => this.handleChange(e)}
                 />
@@ -57,9 +75,9 @@ export default class OrganizationDetails extends Component {
                 <input
                   className="input"
                   type="text"
-                  name="orgName"
-                  value={this.state.loggedInUser.orgLicense}
-                  placeholder="Lugar de registro de la asociación, fundación..."
+                  name="orgLicense"
+                  value={this.state.orgLicense}
+                  placeholder="Número de registro"
                   onChange={e => this.handleChange(e)}
                 />
               </div>

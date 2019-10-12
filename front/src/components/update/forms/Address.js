@@ -1,6 +1,28 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Address extends Component {
+  constructor(props) {
+    super(props); 
+    this.state = {
+      line1: props.line1,
+      line2: props.line2,
+      city: props.city,
+      stateOrProvince: props.stateOrProvince,
+      postalCode: props.postalCode,
+      country: props.country
+    }
+  }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState( {
+        ...this.state, 
+        [name] : value
+    });
+    console.log(this.state)
+  };
+
   render() {
     return (
       <div className="card has-margin-2">
@@ -12,13 +34,6 @@ export default class Address extends Component {
         </header>
         <div className="card-content">
           <div className="content">
-            <p>
-              Los datos de esta sección
-              <span className="txt-is-orange is-bold">
-                NO serán visibles en tu perfil
-              </span>
-              .
-            </p>
             <form>
               <div className="field">
                 <label className="label">Línea 1:</label>
@@ -27,9 +42,9 @@ export default class Address extends Component {
                     className="input"
                     type="text"
                     name="line1"
-                    value={this.state.loggedInUser.address.line1}
+                    value={this.state.line1}
                     placeholder="Calle..."
-                    onChange={e => this.handleAddressChange(e)}
+                    onChange={e => this.handleChange(e)}
                   />
                 </div>
               </div>
@@ -40,9 +55,9 @@ export default class Address extends Component {
                     className="input"
                     type="text"
                     name="line2"
-                    value={this.state.loggedInUser.address.line2}
+                    value={this.state.line2}
                     placeholder="Piso/Escalera..."
-                    onChange={e => this.handleAddressChange(e)}
+                    onChange={e => this.handleChange(e)}
                   />
                 </div>
               </div>
@@ -54,8 +69,8 @@ export default class Address extends Component {
                     type="text"
                     name="city"
                     placeholder="Ciudad"
-                    value={this.state.loggedInUser.address.city}
-                    onChange={e => this.handleAddressChange(e)}
+                    value={this.state.city}
+                    onChange={e => this.handleChange(e)}
                   />
                 </div>
               </div>
@@ -67,8 +82,8 @@ export default class Address extends Component {
                     type="text"
                     name="stateOrProvince"
                     placeholder="Provincia"
-                    value={this.state.loggedInUser.address.stateOrProvince}
-                    onChange={e => this.handleAddressChange(e)}
+                    value={this.state.stateOrProvince}
+                    onChange={e => this.handleChange(e)}
                   />
                 </div>
               </div>
@@ -80,8 +95,8 @@ export default class Address extends Component {
                     type="text"
                     name="postalCode"
                     placeholder="Código Postal"
-                    value={this.state.loggedInUser.address.postalCode}
-                    onChange={e => this.handleAddressChange(e)}
+                    value={this.state.postalCode}
+                    onChange={e => this.handleChange(e)}
                   />
                 </div>
               </div>
@@ -93,8 +108,8 @@ export default class Address extends Component {
                     type="text"
                     name="country"
                     placeholder="País"
-                    value={this.state.loggedInUser.address.country}
-                    onChange={e => this.handleAddressChange(e)}
+                    value={this.state.country}
+                    onChange={e => this.handleChange(e)}
                   />
                 </div>
               </div>
