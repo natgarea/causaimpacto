@@ -12,7 +12,7 @@ export default class Search extends Component {
             <input className="input" type="text" placeholder="Búsqueda" />
           </div>
           <div className="control">
-            <Link to="#" className="button is-info"><span class="icon is-medium"><FontAwesomeIcon icon={faSearch} aria-hidden="true"/></span></Link>
+            <Link to="#" className="button is-info"><span className="icon is-medium"><FontAwesomeIcon icon={faSearch} aria-hidden="true"/></span></Link>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ const router = express.Router();
 const upload = require("../configs/cloudinary.config");
 const User = require("../models/User");
 
+
 router.put("/update/:id", (req, res, next) => {
   const id = req.params.id;
   const data = req.body;
@@ -13,5 +14,14 @@ router.put("/update/:id", (req, res, next) => {
     })
     .catch(err => console.log(err));
 });
+
+router.post('/upload', upload.single("imageUrl"), (req, res, next) => {
+   if (!req.file) {
+    next(new Error('No file uploaded!'));
+    return;
+  }
+  res.json({ secure_url: req.file.secure_url });
+})
+
 
 module.exports = router;

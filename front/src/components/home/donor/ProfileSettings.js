@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 export default class ProfileSettings extends Component {
   render() {
@@ -8,10 +10,7 @@ export default class ProfileSettings extends Component {
         <div className="card">
           <div className="card-content">
             <h2 className="title">
-              Perfil de{" "}
-              <span className="txt-is-blue">
-                {this.props.userData.username}
-              </span>
+              Tu perfil
             </h2>
           </div>
           <div className="card-content">
@@ -19,8 +18,8 @@ export default class ProfileSettings extends Component {
               <div className="media-left">
                 <figure className="image is-128x128">
                   <img
-                    className = "is-rounded"
-                    src="https://bulma.io/images/placeholders/128x128.png"
+                    className="is-rounded is-128x128"
+                    src={this.props.userData.image ? this.props.userData.image : "https://bulma.io/images/placeholders/128x128.png"}
                     alt={this.props.userData.userFirstname}
                   />
                 </figure>
@@ -32,8 +31,14 @@ export default class ProfileSettings extends Component {
             </div>
           </div>
           <div className="card-content">
-          <Link to='/update' className="button is-link">Actualiza tu perfil</Link>
+          <div className="buttons">
+          <Link to="#" className="button is-link">Perfil público</Link>
+          <Link to='/update' className="button is-link">
+          <span className="icon is-medium" aria-hidden="true">
+            <FontAwesomeIcon icon={faEdit} aria-hidden="true"/>
+            </span>Actualiza tu perfil</Link>
           <Link to="#" className="button is-link">Desactiva tu cuenta</Link>
+          </div>
           </div>
         </div>
       </div>

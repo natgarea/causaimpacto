@@ -4,18 +4,38 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
-import AuthService from "./components/auth/AuthService";
+import AuthService from "./services/AuthService";
 import Home from "./components/home/Home";
 import Update from "./components/update/Update";
+import CategoryService from "./services/CategoryService";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { loggedInUser: null, confimationCode: "" };
+    this.state = { 
+      loggedInUser: null,
+      confimationCode: "",
+      categories: []
+    };
     this.authService = new AuthService();
+    this.categoryService = new CategoryService();
 
     this.fetchUser();
+    this.getCategories();
+  }
+
+  getCategories () {
+    return this.categoryService.getCategories().then(response => {
+      this.setState({
+        categories: response
+      });
+    })
+    .catch(err => {
+      this.setState({
+        categories: false
+      });
+    });
   }
 
   getUser = userObj => {
@@ -59,7 +79,10 @@ export default class App extends Component {
             <Route
               exact
               path="/home"
-              render={(props) => <Home userInSession={this.state.loggedInUser} />}
+              render={(props) => <Home
+                userInSession={this.state.loggedInUser}
+                categoryList={this.state.categories}
+                />}
             />
             <Route
               exact

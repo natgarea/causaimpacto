@@ -56,5 +56,7 @@ app.use('/api/auth', authRouter);
 const userRouter = require('./routes/user');
 app.use('/api/user', userRouter);
 
+const categoryRouter = require('./routes/category');
+app.use('/api/category', categoryRouter);
 
 module.exports = app;

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import FormButton from "../form/FormButton";
-import AuthService from "./AuthService";
+import AuthService from "../../services/AuthService";
 import { withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 class Login extends Component {
   constructor(props) {
@@ -25,7 +27,7 @@ class Login extends Component {
         });
 
         this.props.getUser(response);
-        this.props.history.push('/home');
+        this.props.history.push("/home");
       })
       .catch(error => {
         this.setState({
@@ -46,43 +48,57 @@ class Login extends Component {
       <div className="columns is-centered">
         <div className="column"></div>
         <div className="column">
-          <h1 className="title">Log In</h1>
+          <div className="card">
+            <div className="card-content">
+              <div className="content align-items-center">
+                <h1 className="title">Log In</h1>
 
-          <form onSubmit={this.handleFormSubmit}>
-            <div className="field">
-              <label>Username:</label>
-              <div className="control">
-                <input
-                  type="text"
-                  name="username"
-                  title="username"
-                  placeholder="username"
-                  value={this.state.username}
-                  onChange={e => this.handleChange(e)}
-                  required
-                />
-              </div>
+                <form onSubmit={this.handleFormSubmit}>
+                  <div className="field">
+                    <label>Username:</label>
+                    <div className="control has-icons-left">
+                      <input
+                        className="input is-normal"
+                        type="text"
+                        name="username"
+                        title="username"
+                        placeholder="username"
+                        value={this.state.username}
+                        onChange={e => this.handleChange(e)}
+                        required
+                      />
+                      <span className="icon is-medium is-left">
+                      <FontAwesomeIcon icon={faUser} aria-hidden="true"/>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <label>Password:</label>
+                    <div className="control has-icons-left">
+                      <input
+                        className="input is-normal"
+                        type="password"
+                        name="password"
+                        title="password"
+                        placeholder="password"
+                        value={this.state.password}
+                        onChange={e => this.handleChange(e)}
+                        required
+                      />
+                      <span className="icon is-medium is-left">
+                      <FontAwesomeIcon icon={faLock} aria-hidden="true"/>
+                      </span>
+                    </div>
+                  </div>
+
+                  <FormButton children="Login" />
+                </form>
+
+                <h3>{this.state.error ? "Error" : ""}</h3>
+                </div>
             </div>
-
-            <div className="field">
-              <label>Password:</label>
-              <div className="control">
-                <input
-                  type="password"
-                  name="password"
-                  title="password"
-                  placeholder="password"
-                  value={this.state.password}
-                  onChange={e => this.handleChange(e)}
-                  required
-                />
-              </div>
-            </div>
-
-            <FormButton children="Login" />
-          </form>
-
-          <h3>{this.state.error ? "Error" : ""}</h3>
+          </div>
         </div>
         <div className="column"></div>
       </div>

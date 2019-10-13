@@ -17,7 +17,7 @@ export default class OrganizationSettings extends Component {
                 <figure className="image is-128x128">
                   <img
                     className="is-rounded"
-                    src={this.props.userData.orgLogo}
+                    src={this.props.userData.image}
                     alt={this.props.userData.orgName}
                   />
                 </figure>

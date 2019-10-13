@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import AuthService from "../auth/AuthService";
+import AuthService from "../../services/AuthService";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import './Navbar.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -62,19 +61,19 @@ export default class Navbar extends Component {
               </div>
               <div className="navbar-item has-dropdown is-hoverable">
                 <Link to="#" className="navbar-link">
-                <figure className="image is-24x24">
+                <figure className="image is-24x24 has-margin-right">
                   <img
-                    className = "is-rounded nav-img"
-                    src="https://bulma.io/images/placeholders/24x24.png"
+                    className = "is-rounded"
+                    src={this.state.loggedInUser.image ? this.state.loggedInUser.image : "https://bulma.io/images/placeholders/24x24.png"}
                     alt={this.state.loggedInUser.username}
                   />
                 </figure> {this.state.loggedInUser.username}
                 </Link>
 
                 <div className="navbar-dropdown">
-                  <Link to="/update" className="navbar-item">Update your data</Link>
-                  <Link to="#" className="navbar-item">Jobs</Link>
-                  <Link to="#" className="navbar-item">Contact</Link>
+                  <Link to="/home" className="navbar-item">Home</Link>
+                  <Link to="/update" className="navbar-item">Mis datos</Link>
+                  <Link to="/profile" className="navbar-item">Mi perfil</Link>
                   <hr className="navbar-divider" />
                   <Link to="#" className="navbar-item" onClick={this.handleLogout}>
                     Log out

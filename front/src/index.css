@@ -48,6 +48,10 @@ select, option, button {
   margin-top: 5px;
 }
 
+.has-margin-right {
+  margin-right: 10px;
+}
+
 .has-margin-1 {
   margin: 10px 0;
 }
@@ -94,4 +98,22 @@ select, option, button {
 
 .has-padding-6 {
   padding: 60px;
+}
+
+.align-items-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+}
+
+.profile-pic {
+  height: 128px;
+  width: 128px;
 }
