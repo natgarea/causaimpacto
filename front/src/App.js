@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
@@ -68,7 +68,6 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Redirect to="/home" />
 
         <div className="App">
           <Navbar
