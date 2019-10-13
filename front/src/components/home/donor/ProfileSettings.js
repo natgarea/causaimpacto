@@ -36,7 +36,7 @@ export default class ProfileSettings extends Component {
           <Link to='/update' className="button is-link">
           <span className="icon is-medium" aria-hidden="true">
             <FontAwesomeIcon icon={faEdit} aria-hidden="true"/>
-            </span>Actualiza tu perfil</Link>
+            </span> <span>Actualiza tu perfil</span></Link>
           <Link to="#" className="button is-link">Desactiva tu cuenta</Link>
           </div>
           </div>
