@@ -3,14 +3,14 @@ import Address from "./forms/Address";
 import FullName from "./forms/FullName";
 import OrganizationContact from "./forms/OrganizationContact";
 import OrganizationDetails from "./forms/OrganizationDetails";
-import UpdateService from "../../services/UpdateService";
+import UserService from "../../services/UserService";
 import Image from "./forms/Image";
 
 export default class Update extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.updateService = new UpdateService();
+    this.userService = new UserService();
   }
 
   handleAddressSubmit = updateFormValues => {
@@ -66,7 +66,7 @@ export default class Update extends Component {
   };
 
   updateUser(updatedUserObj) {
-    return this.updateService
+    return this.userService
       .updateUser(updatedUserObj)
       .then()
       .catch();

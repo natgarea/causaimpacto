@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
@@ -8,6 +8,7 @@ import AuthService from "./services/AuthService";
 import Home from "./components/home/Home";
 import Update from "./components/update/Update";
 import CategoryService from "./services/CategoryService";
+import Profile from "./components/profile/Profile";
 
 export default class App extends Component {
   constructor(props) {
@@ -68,7 +69,6 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Redirect to="/home" />
 
         <div className="App">
           <Navbar
@@ -89,6 +89,13 @@ export default class App extends Component {
               path="/update"
               render={() => (
                 <Update userInSession={this.state.loggedInUser} />
+              )}
+            />
+            <Route
+              exact
+              path="/profile/:id"
+              render={({match}) => (
+                <Profile userInSession={this.state.loggedInUser} match={match} />
               )}
             />
             <Route
