@@ -18,8 +18,8 @@ export default class ProfileSettings extends Component {
               <div className="media-left">
                 <figure className="image is-128x128">
                   <img
-                    className = "is-rounded"
-                    src="https://bulma.io/images/placeholders/128x128.png"
+                    className="is-rounded is-128x128"
+                    src={this.props.userData.image ? this.props.userData.image : "https://bulma.io/images/placeholders/128x128.png"}
                     alt={this.props.userData.userFirstname}
                   />
                 </figure>

@@ -88,7 +88,7 @@ export default class Home extends Component {
                           key={i}
                           id={category._id}
                           name={category.name}
-                          image={category.pictures}
+                          image={category.image}
                           userData={this.state.loggedUser}
                           toggleInterest={this.toggleInterest}
                         ></Category>

@@ -64,7 +64,7 @@ export default class Navbar extends Component {
                 <figure className="image is-24x24 has-margin-right">
                   <img
                     className = "is-rounded"
-                    src="https://bulma.io/images/placeholders/24x24.png"
+                    src={this.state.loggedInUser.image ? this.state.loggedInUser.image : "https://bulma.io/images/placeholders/24x24.png"}
                     alt={this.state.loggedInUser.username}
                   />
                 </figure> {this.state.loggedInUser.username}

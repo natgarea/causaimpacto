@@ -15,4 +15,9 @@ export default class UpdateService {
       .then(response => response.data);
   };
 
+  handleUpload (theFile) {
+    return this.service.post('/upload', theFile)
+      .then(res => res.data)
+  }
+
 }

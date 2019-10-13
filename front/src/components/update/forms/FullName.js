@@ -46,7 +46,7 @@ export default class FullName extends Component {
         Nombre completo
         </p>
         <Link to="#" onClick={() => this.toggleCardClass()}>
-            <span class="icon is-medium has-margin-right-top"><FontAwesomeIcon icon={this.state.expand} aria-hidden="true"/></span>
+            <span className="icon is-medium has-margin-right-top"><FontAwesomeIcon icon={this.state.expand} aria-hidden="true"/></span>
           </Link>
         </header>
         <div className={this.state.cardClass}>

@@ -3,7 +3,7 @@ const Schema   = mongoose.Schema;
 
 const categorySchema = new Schema({
   name: String,
-  pictures: String,
+  image: String,
   description: String,
   organizations: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'User' }

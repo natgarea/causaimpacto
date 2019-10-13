@@ -112,3 +112,8 @@ select, option, button {
   flex-wrap: wrap;
   width: 200px;
 }
+
+.profile-pic {
+  height: 128px;
+  width: 128px;
+}
