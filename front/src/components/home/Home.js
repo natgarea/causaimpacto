@@ -53,7 +53,15 @@ export default class Home extends Component {
                 <div className="card">
                   <div className="card-content">
                     <h3 className="title">¿Qué causas te interesan?</h3>
-                    { <CauseList/>}
+                    <div>
+                      {this.props.categoryList.map((category, i) => (
+                        <CauseList
+                          key={i}
+                          name={category.name}
+                          image={category.pictures}
+                        ></CauseList>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

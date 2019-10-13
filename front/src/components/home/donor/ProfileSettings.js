@@ -32,8 +32,9 @@ export default class ProfileSettings extends Component {
           </div>
           <div className="card-content">
           <div className="buttons">
-          <Link to='/update' className="button is-link has-icons-left">
-            <span className="icon">
+          <Link to="#" className="button is-link">Perfil público</Link>
+          <Link to='/update' className="button is-link">
+          <span className="icon is-medium" aria-hidden="true">
             <FontAwesomeIcon icon={faEdit} aria-hidden="true"/>
             </span>Actualiza tu perfil</Link>
           <Link to="#" className="button is-link">Desactiva tu cuenta</Link>

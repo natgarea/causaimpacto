@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormButton from "../form/FormButton";
-import AuthService from "./AuthService";
+import AuthService from "../../services/AuthService";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';

@@ -3,7 +3,7 @@ import Address from "./forms/Address";
 import FullName from "./forms/FullName";
 import OrganizationContact from "./forms/OrganizationContact";
 import OrganizationDetails from "./forms/OrganizationDetails";
-import UpdateService from "./UpdateService";
+import UpdateService from "../../services/UpdateService";
 
 export default class Update extends Component {
   constructor(props){
