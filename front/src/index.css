@@ -106,3 +106,9 @@ select, option, button {
   justify-content: center;
   align-items: center;
 }
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+}

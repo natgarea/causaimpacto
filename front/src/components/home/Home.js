@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import ProfileSettings from "./donor/ProfileSettings";
 import SuggestedOrg from "./donor/SuggestedOrg";
 import DonationList from "./donor/DonationList";
-import CauseList from "./donor/CauseList";
+import Category from "./donor/Category";
 import Notification from "../notification/Notification";
 import OrganizationSettings from "./organization/OrganizationSettings";
 import CampaignControls from "./organization/CampaignControls";
 import UserList from "./organization/UserList";
+import UpdateService from "../../services/UpdateService";
+
 
 export default class Home extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ export default class Home extends Component {
       notification: null,
       prueba: ""
     };
+    this.updateService = new UpdateService();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -33,6 +36,32 @@ export default class Home extends Component {
   }
 
   toggleClass = () => this.setState({ notification: true });
+
+  toggleInterest = id => {
+    let interests = this.state.loggedUser.userInterests;
+    
+    if (interests.includes(id)) {
+      interests.splice(interests.indexOf(id),1)
+    } else {
+      interests.push(id)
+    }
+
+    let updatedUser = {
+      ...this.state.loggedUser,
+      userInterests: interests
+    }
+
+    this.setState({
+      ...this.state,
+      loggedUser: updatedUser
+    })
+
+    this.updateUser(updatedUser)
+  }
+
+  updateUser(updatedUserObj) {
+    return this.updateService.updateUser(updatedUserObj).then().catch();
+  }
 
   render() {
     if (this.props.userInSession) {
@@ -53,13 +82,16 @@ export default class Home extends Component {
                 <div className="card">
                   <div className="card-content">
                     <h3 className="title">¿Qué causas te interesan?</h3>
-                    <div>
+                    <div className="category">
                       {this.props.categoryList.map((category, i) => (
-                        <CauseList
+                        <Category
                           key={i}
+                          id={category._id}
                           name={category.name}
                           image={category.pictures}
-                        ></CauseList>
+                          userData={this.state.loggedUser}
+                          toggleInterest={this.toggleInterest}
+                        ></Category>
                       ))}
                     </div>
                   </div>
