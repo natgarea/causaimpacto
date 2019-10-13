@@ -7,7 +7,7 @@ import Notification from "../notification/Notification";
 import OrganizationSettings from "./organization/OrganizationSettings";
 import CampaignControls from "./organization/CampaignControls";
 import UserList from "./organization/UserList";
-import UpdateService from "../../services/UpdateService";
+import UserService from "../../services/UserService";
 
 
 export default class Home extends Component {
@@ -18,7 +18,7 @@ export default class Home extends Component {
       notification: null,
       prueba: ""
     };
-    this.updateService = new UpdateService();
+    this.userService = new UserService();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -60,7 +60,7 @@ export default class Home extends Component {
   }
 
   updateUser(updatedUserObj) {
-    return this.updateService.updateUser(updatedUserObj).then().catch();
+    return this.userService.updateUser(updatedUserObj).then().catch();
   }
 
   render() {

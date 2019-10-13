@@ -8,6 +8,7 @@ import AuthService from "./services/AuthService";
 import Home from "./components/home/Home";
 import Update from "./components/update/Update";
 import CategoryService from "./services/CategoryService";
+import Profile from "./components/profile/Profile";
 
 export default class App extends Component {
   constructor(props) {
@@ -88,6 +89,13 @@ export default class App extends Component {
               path="/update"
               render={() => (
                 <Update userInSession={this.state.loggedInUser} />
+              )}
+            />
+            <Route
+              exact
+              path="/profile/:id"
+              render={({match}) => (
+                <Profile userInSession={this.state.loggedInUser} match={match} />
               )}
             />
             <Route

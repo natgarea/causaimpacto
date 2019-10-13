@@ -6,7 +6,7 @@ import {
   faAngleUp,
   faUpload
 } from "@fortawesome/free-solid-svg-icons";
-import UpdateService from "../../../services/UpdateService";
+import UserService from "../../../services/UserService";
 
 export default class Image extends Component {
   constructor(props) {
@@ -16,14 +16,14 @@ export default class Image extends Component {
       expand: faAngleDown,
       cardClass: "card-content hide"
     };
-    this.updateService = new UpdateService();
+    this.userService = new UserService();
   }
 
   handleUpload = e => {
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
 
-    this.updateService
+    this.userService
       .handleUpload(uploadData)
       .then(response => {
         this.setState({ ...this.state, imageUrl: response.secure_url });
