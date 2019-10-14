@@ -1,17 +1,17 @@
 require("dotenv").config();
 
-const bodyParser    = require("body-parser");
-const cookieParser  = require("cookie-parser");
-const express       = require("express");
-const favicon       = require("serve-favicon");
-const mongoose      = require("mongoose");
-const logger        = require("morgan");
-const path          = require("path");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const express = require("express");
+const favicon = require("serve-favicon");
+const mongoose = require("mongoose");
+const logger = require("morgan");
+const path = require("path");
 
-const session       = require("express-session");
-const MongoStore    = require("connect-mongo")(session);
-const flash         = require("connect-flash");
-const cors          = require("cors");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const flash = require("connect-flash");
+const cors = require("cors");
 
 require("./configs/db.config");
 
@@ -50,17 +50,17 @@ app.use(
 app.use(flash());
 require("./passport")(app);
 
-const authRouter = require('./routes/auth');
-app.use('/api/auth', authRouter);
+const authRouter = require("./routes/auth");
+app.use("/api/auth", authRouter);
 
-const userRouter = require('./routes/user');
-app.use('/api/user', userRouter);
+const userRouter = require("./routes/user");
+app.use("/api/user", userRouter);
 
-const categoryRouter = require('./routes/category');
-app.use('/api/category', categoryRouter);
+const categoryRouter = require("./routes/category");
+app.use("/api/category", categoryRouter);
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.sendFile(__dirname + "/public/index.html");
- });
+});
 
 module.exports = app;
