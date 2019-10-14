@@ -25,7 +25,6 @@ export default class Address extends Component {
         ...this.state, 
         [name] : value
     });
-    console.log(this.state)
   };
 
   toggleCardClass() {

@@ -10,7 +10,7 @@ import Update from "./components/update/Update";
 import CategoryService from "./services/CategoryService";
 import Profile from "./components/profile/Profile";
 import Donate from "./components/donate/Donate";
-
+import UserService from "./services/UserService";
 
 export default class App extends Component {
   constructor(props) {
@@ -19,13 +19,16 @@ export default class App extends Component {
     this.state = { 
       loggedInUser: null,
       confimationCode: "",
-      categories: []
+      categories: [],
+      randomOrg: {}
     };
     this.authService = new AuthService();
     this.categoryService = new CategoryService();
+    this.userService = new UserService();
 
     this.fetchUser();
     this.getCategories();
+    this.getRandomOrg();
   }
 
   getCategories () {
@@ -37,6 +40,20 @@ export default class App extends Component {
     .catch(err => {
       this.setState({
         categories: false
+      });
+    });
+  }
+
+  getRandomOrg () {
+    return this.userService.getOrg().then(response => {
+      let randomOrg = response[Math.floor(Math.random() * response.length)]
+      this.setState({
+        randomOrg: randomOrg
+      });
+    })
+    .catch(err => {
+      this.setState({
+        randomOrg: false
       });
     });
   }
@@ -84,6 +101,7 @@ export default class App extends Component {
               render={(props) => <Home
                 userInSession={this.state.loggedInUser}
                 categoryList={this.state.categories}
+                randomOrg={this.state.randomOrg}
                 />}
             />
             <Route

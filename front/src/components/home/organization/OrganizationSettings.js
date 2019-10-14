@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faEdit, faUserSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default class OrganizationSettings extends Component {
   render() {
@@ -31,12 +33,17 @@ export default class OrganizationSettings extends Component {
             </div>
           </div>
           <div className="card-content">
-            {/* <Link to="/update" className="button is-link">
-              Actualiza tu perfil
-            </Link>
-            <Link to="#" className="button is-link">
-              Desactiva tu cuenta
-            </Link> */}
+          <div className="buttons">
+          <Link to="#" className="button is-link"><span className="icon is-medium" aria-hidden="true">
+            <FontAwesomeIcon icon={faUser} aria-hidden="true"/>
+            </span> <span>Perfil público</span></Link>
+          <Link to='/update' className="button is-link">
+          <span className="icon is-medium" aria-hidden="true">
+            <FontAwesomeIcon icon={faEdit} aria-hidden="true"/>
+            </span> <span>Actualiza tu perfil</span></Link>
+          <Link to="#" className="button is-danger"><span className="icon is-medium" aria-hidden="true"><FontAwesomeIcon icon={faUserSlash} aria-hidden="true"/>
+            </span> <span>Desactiva tu cuenta</span></Link>
+          </div>
           </div>
         </div>
       </div>

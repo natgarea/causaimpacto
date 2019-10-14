@@ -119,7 +119,12 @@ select, option, button {
   width: 200px;
 }
 
-.profile-pic {
-  height: 128px;
-  width: 128px;
+.profile-donations {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-interests {
+  display: flex;
+  flex-direction: column;
 }

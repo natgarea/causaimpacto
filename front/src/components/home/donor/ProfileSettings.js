@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEdit, faUserSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default class ProfileSettings extends Component {
   render() {
@@ -18,26 +18,33 @@ export default class ProfileSettings extends Component {
               <div className="media-left">
                 <figure className="image is-128x128">
                   <img
-                    className="is-rounded is-128x128"
+                    className="is-rounded"
                     src={this.props.userData.image ? this.props.userData.image : "https://bulma.io/images/placeholders/128x128.png"}
                     alt={this.props.userData.userFirstname}
                   />
                 </figure>
               </div>
               <div className="media-content">
-                <p className="title is-4">{this.props.userData.userFirstname}</p>
-                <p className="subtitle is-6">@{this.props.userData.username}</p>
+                {this.props.userData.userFirstname && this.props.userData.userSurname ? 
+                  <div><p className="title is-4">{this.props.userData.userFirstname} {this.props.userData.userSurname}</p>
+                  <p className="subtitle is-6">@{this.props.userData.username}</p>
+                  </div> :
+                  <p className="title is-4">@{this.props.userData.username}</p>
+              }
               </div>
             </div>
           </div>
           <div className="card-content">
           <div className="buttons">
-          <Link to="#" className="button is-link">Perfil público</Link>
+          <Link to="#" className="button is-link"><span className="icon is-medium" aria-hidden="true">
+            <FontAwesomeIcon icon={faUser} aria-hidden="true"/>
+            </span> <span>Perfil público</span></Link>
           <Link to='/update' className="button is-link">
           <span className="icon is-medium" aria-hidden="true">
             <FontAwesomeIcon icon={faEdit} aria-hidden="true"/>
             </span> <span>Actualiza tu perfil</span></Link>
-          <Link to="#" className="button is-link">Desactiva tu cuenta</Link>
+          <Link to="#" className="button is-danger"><span className="icon is-medium" aria-hidden="true"><FontAwesomeIcon icon={faUserSlash} aria-hidden="true"/>
+            </span> <span>Desactiva tu cuenta</span></Link>
           </div>
           </div>
         </div>
