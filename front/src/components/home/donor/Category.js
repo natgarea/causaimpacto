@@ -39,14 +39,14 @@ export default class Category extends Component {
   render() {
     
     return (
-      <div className="card">
-        <div className="card-image align-items-center">
+      <div className="column category is-5">
+        <div className="align-items-center">
           <figure className="image is-96x96">
             <img src={this.props.image} alt={this.props.name} />
           </figure>
         </div>
-        <div className="card-content">
-          <div className="content align-items-center">
+        
+          <div className="align-items-center">
             <p className="title is-4">{this.props.name}</p>
 
             <button id={this.props.id} className={this.state.buttonClass} onClick={() => this.toggleButtonClass()}>
@@ -56,7 +56,7 @@ export default class Category extends Component {
             </button>
           </div>
         </div>
-      </div>
+      
     );
   }
 }

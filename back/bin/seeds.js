@@ -106,16 +106,11 @@ Category.deleteMany()
     },
     {
       // "_id": 17,
-      "name": "Protección de animales",
-      "image": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category17_hqk5ak.png"
-    },
-    {
-      // "_id": 18,
       "name": "Salud",
       "image": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category18_tijlzh.png"
     },
     {
-      // "_id": 19,
+      // "_id": 18,
       "name": "Sexualidades / Diversidad sexual",
       "image": "https://res.cloudinary.com/dbklyksys/image/upload/v1570619747/causaImpacto/categories/category19_szfi1m.png"
     }
