@@ -65,8 +65,8 @@ router.post("/signup", (req, res, next) => {
           from: "causa impacto",
           to: email,
           subject: "Verificación de cuenta",
-          text: `Por favor, accede al siguiente enlace para verificar tu cuenta: http://localhost:5000/api/auth/confirm/${token}`,
-          html: `<a href="http://localhost:5000/api/auth/confirm/${token}">Haz click para verificar tu cuenta</a>`
+          text: `Por favor, accede al siguiente enlace para verificar tu cuenta: ${process.env.API_URL}/api/auth/confirm/${token}`,
+          html: `<a href="${process.env.API_URL}api/auth/confirm/${token}">Haz click para verificar tu cuenta</a>`
         });
 
         login(req, user)
