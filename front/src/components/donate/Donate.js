@@ -4,7 +4,7 @@ import PayPalButton from "./PayPalButton";
 
 
 const CLIENT = {
-    sandbox: process.env.PAYPAL_CLIENT_ID
+    sandbox: process.env.REACT_APP_PAYPAL_CLIENT_ID
 };
 const ENV = "sandbox";
 

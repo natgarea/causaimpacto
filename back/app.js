@@ -59,4 +59,8 @@ app.use('/api/user', userRouter);
 const categoryRouter = require('./routes/category');
 app.use('/api/category', categoryRouter);
 
+app.use((req, res, next) => {
+  res.sendFile(__dirname + "/public/index.html");
+ });
+
 module.exports = app;
