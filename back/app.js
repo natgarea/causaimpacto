@@ -63,6 +63,9 @@ app.use("/api/user", userRouter);
 const categoryRouter = require("./routes/category");
 app.use("/api/category", categoryRouter);
 
+const donationRouter = require("./routes/donation");
+app.use("/api/donation", donationRouter);
+
 app.use((req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
