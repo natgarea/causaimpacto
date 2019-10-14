@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class CategoryService {
   constructor() {
-    this.URL =  API_URL + "/api/category";
+    this.URL =  process.env.API_URL + "/api/category";
     this.service = axios.create({
       baseURL: this.URL,
       withCredentials: true

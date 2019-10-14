@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class UserService {
   constructor() {
-    this.URL = API_URL + "/api/user";
+    this.URL = process.env.API_URL + "/api/user";
     this.service = axios.create({
       baseURL: this.URL,
       withCredentials: true
