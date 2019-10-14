@@ -9,7 +9,6 @@ import CampaignControls from "./organization/CampaignControls";
 import UserList from "./organization/UserList";
 import UserService from "../../services/UserService";
 
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -39,28 +38,31 @@ export default class Home extends Component {
 
   toggleInterest = id => {
     let interests = this.state.loggedUser.userInterests;
-    
+
     if (interests.includes(id)) {
-      interests.splice(interests.indexOf(id),1)
+      interests.splice(interests.indexOf(id), 1);
     } else {
-      interests.push(id)
+      interests.push(id);
     }
 
     let updatedUser = {
       ...this.state.loggedUser,
       userInterests: interests
-    }
+    };
 
     this.setState({
       ...this.state,
       loggedUser: updatedUser
-    })
+    });
 
-    this.updateUser(updatedUser)
-  }
+    this.updateUser(updatedUser);
+  };
 
   updateUser(updatedUserObj) {
-    return this.userService.updateUser(updatedUserObj).then().catch();
+    return this.userService
+      .updateUser(updatedUserObj)
+      .then()
+      .catch();
   }
 
   render() {

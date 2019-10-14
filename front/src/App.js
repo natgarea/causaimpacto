@@ -11,6 +11,7 @@ import CategoryService from "./services/CategoryService";
 import Profile from "./components/profile/Profile";
 import Donate from "./components/donate/Donate";
 
+
 export default class App extends Component {
   constructor(props) {
     super(props);
