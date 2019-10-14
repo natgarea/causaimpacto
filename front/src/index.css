@@ -107,9 +107,15 @@ select, option, button {
   align-items: center;
 }
 
-.category {
+.categories {
   display: flex;
   flex-wrap: wrap;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  text-align:center;
   width: 200px;
 }
 

@@ -8,7 +8,8 @@ import OrganizationSettings from "./organization/OrganizationSettings";
 import CampaignControls from "./organization/CampaignControls";
 import UserList from "./organization/UserList";
 import UserService from "../../services/UserService";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default class Home extends Component {
   constructor(props) {
@@ -16,7 +17,9 @@ export default class Home extends Component {
     this.state = {
       loggedUser: this.props.userInSession,
       notification: null,
-      prueba: ""
+      prueba: "",
+      category: [],
+      index: 0
     };
     this.userService = new UserService();
   }
@@ -29,7 +32,8 @@ export default class Home extends Component {
         : (notification = false);
       return (
         (state.loggedUser = props.userInSession),
-        (state.notification = notification)
+        (state.notification = notification),
+        (state.category = props.categoryList)
       );
     }
     return null;
@@ -39,33 +43,47 @@ export default class Home extends Component {
 
   toggleInterest = id => {
     let interests = this.state.loggedUser.userInterests;
-    
+
     if (interests.includes(id)) {
-      interests.splice(interests.indexOf(id),1)
+      interests.splice(interests.indexOf(id), 1);
     } else {
-      interests.push(id)
+      interests.push(id);
     }
 
     let updatedUser = {
       ...this.state.loggedUser,
       userInterests: interests
-    }
+    };
 
     this.setState({
       ...this.state,
       loggedUser: updatedUser
-    })
+    });
 
-    this.updateUser(updatedUser)
-  }
+    this.updateUser(updatedUser);
+  };
 
   updateUser(updatedUserObj) {
-    return this.userService.updateUser(updatedUserObj).then().catch();
+    return this.userService
+      .updateUser(updatedUserObj)
+      .then()
+      .catch();
+  }
+
+  handleCarousel(event) {
+    if (!!event) {
+      if(this.state.index >= 16) this.setState({ ...this.state, index: 0 }); 
+      else this.setState({ ...this.state, index: this.state.index + 2 });
+    } else {
+      if(this.state.index <= 0) this.setState({ ...this.state, index: 16 });
+      else this.setState({ ...this.state, index: this.state.index - 2 });
+    }
   }
 
   render() {
+    let { index, category } = this.state;
     if (this.props.userInSession) {
-      if (this.state.loggedUser.type === "donor") {
+      if (this.state.loggedUser.type === "donor" && !!category[0]) {
         return (
           <div>
             <Notification
@@ -82,17 +100,37 @@ export default class Home extends Component {
                 <div className="card">
                   <div className="card-content">
                     <h3 className="title">¿Qué causas te interesan?</h3>
-                    <div className="category">
-                      {this.props.categoryList.map((category, i) => (
-                        <Category
-                          key={i}
-                          id={category._id}
-                          name={category.name}
-                          image={category.image}
-                          userData={this.state.loggedUser}
-                          toggleInterest={this.toggleInterest}
-                        ></Category>
-                      ))}
+                    <div
+                      className="columns categories"
+                    >
+                      <div className="column is-1"><button className="button is-primary" onClick={() => this.handleCarousel(false)}>
+                      <span className="icon is-large">
+                <FontAwesomeIcon icon={faArrowLeft} aria-hidden="true" size="2x" />
+              </span>
+                      </button></div>
+                      
+                      <Category
+                        key={index}
+                        id={category[index]._id}
+                        name={category[index].name}
+                        image={category[index].image}
+                        userData={this.state.loggedUser}
+                        toggleInterest={this.toggleInterest}
+                      ></Category>
+                      <Category
+                        key={index + 1}
+                        id={category[index + 1]._id}
+                        name={category[index + 1].name}
+                        image={category[index + 1].image}
+                        userData={this.state.loggedUser}
+                        toggleInterest={this.toggleInterest}
+                      ></Category>
+                      
+                      <div className="column is-1"><button className="button is-primary" onClick={() => this.handleCarousel(true)}>
+                      <span className="icon is-large">
+                <FontAwesomeIcon icon={faArrowRight} aria-hidden="true" size="2x" />
+              </span>
+                      </button></div>
                     </div>
                   </div>
                 </div>

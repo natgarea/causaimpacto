@@ -53,6 +53,7 @@ export default class Navbar extends Component {
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
               <Link to="#" className="navbar-item">Inicio</Link>
+              <Link to="/profile/5da354c4c3e59516a751bd9b" className="navbar-item">Donar</Link>
             </div>
 
             <div className="navbar-end">

@@ -9,6 +9,8 @@ import Home from "./components/home/Home";
 import Update from "./components/update/Update";
 import CategoryService from "./services/CategoryService";
 import Profile from "./components/profile/Profile";
+import Donate from "./components/donate/Donate";
+
 
 export default class App extends Component {
   constructor(props) {
@@ -96,6 +98,13 @@ export default class App extends Component {
               path="/profile/:id"
               render={({match}) => (
                 <Profile userInSession={this.state.loggedInUser} match={match} />
+              )}
+            />
+            <Route
+              exact
+              path="/donate/o/:id"
+              render={({match}) => (
+                <Donate userInSession={this.state.loggedInUser} match={match} />
               )}
             />
             <Route
