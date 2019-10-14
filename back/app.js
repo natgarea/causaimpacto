@@ -23,7 +23,7 @@ const debug = require("debug")(
 const app = express();
 
 // Middleware Setup
-var whitelist = ["http://localhost:3000"];
+var whitelist = ["http://localhost:3000","https://causa-impacto.herokuapp.com"];
 var corsOptions = {
   origin: function(origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -32,6 +32,10 @@ var corsOptions = {
   credentials: true
 };
 app.use(cors(corsOptions));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
