@@ -9,8 +9,8 @@ export default class UserService {
     });
   }
 
-  getUser = id => {
-    return this.service.get("/" + id).then(response => response.data);
+  getOrg = () => {
+    return this.service.get("/").then(response => response.data);
   };
 
   updateUser = updatedUserObj => {
@@ -22,4 +22,9 @@ export default class UserService {
   handleUpload(theFile) {
     return this.service.post("/upload", theFile).then(res => res.data);
   }
+
+  getUser = id => {
+    return this.service.get("/" + id).then(response => response.data);
+  };
+
 }

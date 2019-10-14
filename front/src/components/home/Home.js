@@ -92,7 +92,9 @@ export default class Home extends Component {
             />
             <div className="columns">
               <ProfileSettings userData={this.state.loggedUser} />
-              <SuggestedOrg />
+              <SuggestedOrg
+              randomOrg={this.props.randomOrg}
+              />
             </div>
             <div className="columns">
               <DonationList />
