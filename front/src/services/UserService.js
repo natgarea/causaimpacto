@@ -15,7 +15,7 @@ export default class UserService {
 
   updateUser = updatedUserObj => {
     return this.service
-      .put("/update/" + updatedUserObj._id, updatedUserObj)
+      .put(`/update/${updatedUserObj._id}`, updatedUserObj)
       .then(response => response.data);
   };
 

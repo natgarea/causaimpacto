@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProfileSettings from "./donor/ProfileSettings";
 import SuggestedOrg from "./donor/SuggestedOrg";
-import DonationList from "./donor/DonationList";
+// import DonationList from "./donor/DonationList";
 import Category from "./donor/Category";
 import Notification from "../notification/Notification";
 import OrganizationSettings from "./organization/OrganizationSettings";

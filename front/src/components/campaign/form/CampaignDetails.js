@@ -95,7 +95,7 @@ export default class CampaignDetails extends Component {
                   name="description"
                   onChange={e => this.handleChange(e)}
                   value={this.state.description}
-                  placeholder="Descripción breve de la misión, los valores y los objetivos de la organización."
+                  placeholder="Descripción de la campaña."
                 ></textarea>
               </div>
             </div>

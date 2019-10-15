@@ -12,12 +12,13 @@ import Profile from "./components/profile/Profile";
 import Donate from "./components/donate/Donate";
 import UserService from "./services/UserService";
 import EditCampaign from "./components/campaign/EditCampaign";
+import SuccessfulDonation from "./components/donate/SuccessfulDonation";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       loggedInUser: null,
       confimationCode: "",
       categories: [],
@@ -32,33 +33,35 @@ export default class App extends Component {
     this.getRandomOrg();
   }
 
-  
-
-  getCategories () {
-    return this.categoryService.getCategories().then(response => {
-      this.setState({
-        categories: response
+  getCategories() {
+    return this.categoryService
+      .getCategories()
+      .then(response => {
+        this.setState({
+          categories: response
+        });
+      })
+      .catch(err => {
+        this.setState({
+          categories: false
+        });
       });
-    })
-    .catch(err => {
-      this.setState({
-        categories: false
-      });
-    });
   }
 
-  getRandomOrg () {
-    return this.userService.getOrg().then(response => {
-      let randomOrg = response[Math.floor(Math.random() * response.length)]
-      this.setState({
-        randomOrg: randomOrg
+  getRandomOrg() {
+    return this.userService
+      .getOrg()
+      .then(response => {
+        let randomOrg = response[Math.floor(Math.random() * response.length)];
+        this.setState({
+          randomOrg: randomOrg
+        });
+      })
+      .catch(err => {
+        this.setState({
+          randomOrg: false
+        });
       });
-    })
-    .catch(err => {
-      this.setState({
-        randomOrg: false
-      });
-    });
   }
 
   getUser = userObj => {
@@ -91,50 +94,12 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-
         <div className="App">
           <Navbar
             userInSession={this.state.loggedInUser}
             logout={this.logout}
           />
           <Switch>
-            <Route
-              exact
-              path="/home"
-              render={(props) => <Home
-                userInSession={this.state.loggedInUser}
-                categoryList={this.state.categories}
-                randomOrg={this.state.randomOrg}
-                />}
-            />
-            <Route
-              exact
-              path="/update"
-              render={() => (
-                <Update userInSession={this.state.loggedInUser} />
-              )}
-            />
-             <Route
-              exact
-              path="/campaign/edit/:id"
-              render={({match}) => (
-                <EditCampaign userInSession={this.state.loggedInUser} match={match} />
-              )}
-            />
-            <Route
-              exact
-              path="/profile/:id"
-              render={({match}) => (
-                <Profile userInSession={this.state.loggedInUser} match={match} />
-              )}
-            />
-            <Route
-              exact
-              path="/donate/o/:id"
-              render={({match}) => (
-                <Donate userInSession={this.state.loggedInUser} match={match} />
-              )}
-            />
             <Route
               exact
               path="/signup"
@@ -144,6 +109,59 @@ export default class App extends Component {
               exact
               path="/login"
               render={() => <Login getUser={this.getUser} />}
+            />
+            <Route
+              exact
+              path="/home"
+              render={props => (
+                <Home
+                  userInSession={this.state.loggedInUser}
+                  categoryList={this.state.categories}
+                  randomOrg={this.state.randomOrg}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/profile/:id"
+              render={({ match }) => (
+                <Profile
+                  userInSession={this.state.loggedInUser}
+                  match={match}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/update"
+              render={() => <Update userInSession={this.state.loggedInUser} />}
+            />
+            <Route
+              exact
+              path="/campaign/edit/:id"
+              render={({ match }) => (
+                <EditCampaign
+                  userInSession={this.state.loggedInUser}
+                  match={match}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/donate/o/:id"
+              render={({ match }) => (
+                <Donate userInSession={this.state.loggedInUser} match={match} />
+              )}
+            />
+            <Route
+              exact
+              path="/donate/success/:id"
+              render={({ match }) => (
+                <SuccessfulDonation
+                  userInSession={this.state.loggedInUser}
+                  match={match}
+                />
+              )}
             />
           </Switch>
         </div>
