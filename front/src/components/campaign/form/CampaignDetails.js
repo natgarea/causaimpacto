@@ -33,7 +33,6 @@ export default class CampaignDetails extends Component {
           fundraisingTarget: response.fundraisingTarget,
           suggestedDonation: response.suggestedDonation
         });
-        console.log(this.state)
       });
     }
 

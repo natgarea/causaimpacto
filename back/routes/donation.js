@@ -44,15 +44,15 @@ router.post("/o/:donorId/:orgId", (req, res, next) => {
 router.put("/comment/:donationId", (req, res, next) => {
   const donationId = req.params.donationId;
   const comment = req.body.comment;
-  console.log(comment);
   SingleDonation.findByIdAndUpdate(
     donationId,
     { $set: { comment: comment } },
     { new: true }
-  ).then(data => {
-    console.log(data);
-    res.status(200).json(data);
-  }).catch(err => console.log(err))
+  )
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

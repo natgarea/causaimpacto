@@ -48,7 +48,6 @@ class Donate extends Component {
         contact: this.state.contact
       }
       this.service.addOrgDonation(donation).then(response => {
-        console.log(response);
         this.props.history.push(`/donate/success/${response._id}`)
       })
       

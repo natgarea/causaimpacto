@@ -20,7 +20,6 @@ export default class CampaignControls extends Component {
     return this.campaignService
       .getOrgCampaigns(userId)
       .then(response => {
-        console.log(response);
         this.setState({
           ...this.state,
           campaigns: response
@@ -35,7 +34,6 @@ export default class CampaignControls extends Component {
   }
 
   render() {
-    console.log(this.state.campaigns);
     return (
       <div className="column">
         <div className="card">

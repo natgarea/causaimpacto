@@ -24,7 +24,15 @@ export default class UserService {
   }
 
   getUser = id => {
-    return this.service.get("/" + id).then(response => response.data);
+    return this.service.get(`/${id}`).then(response => response.data);
+  };
+
+  getOrgDonationsById = id => {
+    return this.service.get(`/o/donations/${id}`).then(response => response.data);
+  };
+
+  getCampaignsDonationsById = id => {
+    return this.service.get(`/c/donations/${id}`).then(response => response.data);
   };
 
 }

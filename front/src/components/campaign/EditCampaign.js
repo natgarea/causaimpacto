@@ -41,7 +41,6 @@ export default class EditCampaign extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <div className="columns is-centered">

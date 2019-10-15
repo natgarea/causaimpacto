@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProfileSettings from "./donor/ProfileSettings";
 import SuggestedOrg from "./donor/SuggestedOrg";
-// import DonationList from "./donor/DonationList";
+import DonationList from "./donor/DonationList";
 import Category from "./donor/Category";
 import Notification from "../notification/Notification";
 import OrganizationSettings from "./organization/OrganizationSettings";
@@ -72,13 +72,21 @@ export default class Home extends Component {
 
   handleCarousel(event) {
     if (!!event) {
-      if(this.state.index >= 16) this.setState({ ...this.state, index: 0 }); 
+      if (this.state.index >= 16) this.setState({ ...this.state, index: 0 });
       else this.setState({ ...this.state, index: this.state.index + 2 });
     } else {
-      if(this.state.index <= 0) this.setState({ ...this.state, index: 16 });
+      if (this.state.index <= 0) this.setState({ ...this.state, index: 16 });
       else this.setState({ ...this.state, index: this.state.index - 2 });
     }
   }
+  //this.props.userInSession
+  getUserDonations(user) {
+    let orgDonationDetails = this.userService.getOrgDonationsById(user._id);
+    let campaignDonationDetails = this.userService.getCampaignsDonationsById(user._id);
+    //necesito sacar los nombres de org y los titulos de campaña, las cantidades de donaciones y las fechas
+  }
+
+
 
   render() {
     let { index, category } = this.state;
@@ -92,46 +100,39 @@ export default class Home extends Component {
             />
             <div className="columns">
               <ProfileSettings userData={this.state.loggedUser} />
-              <SuggestedOrg
-              randomOrg={this.props.randomOrg}
-              />
+              <SuggestedOrg randomOrg={this.props.randomOrg} />
             </div>
             <div className="columns">
-            <div className="column is-one-third">
-        <div className="card">
-          <div className="card-content">
-            <h3 className="title">Tus donaciones</h3>
-              {/* <ul>
-            {this.state.loggedUser.userDonations.map((donation, i) => (
-                <DonationList
-                key={i}
-                org={}
-                amount={this.state.donation.amountDonated}
-                ></DonationList>)}
-                </ul>
-                <ul>
-                {this.state.loggedUser.userDonations.map((donation, i) => (
-                  <DonationList
-                  key={i}
-                  campaign={}
-                  ></DonationList>)}
-                </ul> */}
-          </div>
-        </div>
-      </div>
+              <div className="column is-one-third">
+                <div className="card">
+                  <div className="card-content">
+                    <h3 className="title">Tus donaciones</h3>
+                    <ul>
+                      <DonationList donations={this.state.loggedUser.userDonations} />
+                    </ul>
+                  </div>
+                </div>
+              </div>
               <div className="column">
                 <div className="card">
                   <div className="card-content">
                     <h3 className="title">¿Qué causas te interesan?</h3>
-                    <div
-                      className="columns categories"
-                    >
-                      <div className="column is-1"><button className="button is-primary" onClick={() => this.handleCarousel(false)}>
-                      <span className="icon is-large">
-                <FontAwesomeIcon icon={faArrowLeft} aria-hidden="true" size="2x" />
-              </span>
-                      </button></div>
-                      
+                    <div className="columns categories">
+                      <div className="column is-1">
+                        <button
+                          className="button is-primary"
+                          onClick={() => this.handleCarousel(false)}
+                        >
+                          <span className="icon is-large">
+                            <FontAwesomeIcon
+                              icon={faArrowLeft}
+                              aria-hidden="true"
+                              size="2x"
+                            />
+                          </span>
+                        </button>
+                      </div>
+
                       <Category
                         key={index}
                         id={category[index]._id}
@@ -148,12 +149,21 @@ export default class Home extends Component {
                         userData={this.state.loggedUser}
                         toggleInterest={this.toggleInterest}
                       ></Category>
-                      
-                      <div className="column is-1"><button className="button is-primary" onClick={() => this.handleCarousel(true)}>
-                      <span className="icon is-large">
-                <FontAwesomeIcon icon={faArrowRight} aria-hidden="true" size="2x" />
-              </span>
-                      </button></div>
+
+                      <div className="column is-1">
+                        <button
+                          className="button is-primary"
+                          onClick={() => this.handleCarousel(true)}
+                        >
+                          <span className="icon is-large">
+                            <FontAwesomeIcon
+                              icon={faArrowRight}
+                              aria-hidden="true"
+                              size="2x"
+                            />
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

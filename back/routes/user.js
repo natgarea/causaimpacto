@@ -3,16 +3,38 @@ const router = express.Router();
 const upload = require("../configs/cloudinary.config");
 const User = require("../models/User");
 
-
-
+// Get user type "organization"
 router.get("/", (req, res, next) => {
-  User.find({ type : "organization" })
+  User.find({ type: "organization" })
     .then(data => {
       res.status(200).json(data);
     })
     .catch(err => console.log(err));
 });
 
+// Get user donations to organizations
+router.get("/o/donations/:id", (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id)
+  .populate({path: "userDonations", populate: { path: "org"}})
+  .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => console.log(err));
+});
+
+// Get user donations to campaigns
+router.get("/c/donations/:id", (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id)
+  .populate({path: "userDonations", populate: { path: "campaign"}})
+  .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => console.log(err));
+});
+
+// Update user by id
 router.put("/update/:id", (req, res, next) => {
   const id = req.params.id;
   const data = req.body;
@@ -23,20 +45,23 @@ router.put("/update/:id", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-router.post('/upload', upload.single("imageUrl"), (req, res, next) => {
-   if (!req.file) {
-    next(new Error('No file uploaded!'));
+// Upload file to Cloudinary, receive response with URL
+router.post("/upload", upload.single("imageUrl"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
     return;
   }
   res.json({ secure_url: req.file.secure_url });
-})
+});
 
+// Get user by id
 router.get("/:id", (req, res, next) => {
   const id = req.params.id;
-  User.findById(id).then(data => {
-    res.status(200).json(data);
-  })
-  .catch(err => console.log(err));
-})
+  User.findById(id)
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;

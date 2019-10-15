@@ -26,7 +26,7 @@ export default class SuggestedOrg extends Component {
                   {this.props.randomOrg.orgName}
                 </h5>
                 <p>{this.props.randomOrg.orgDescription}</p>
-                <Link to="#" className="button is-primary is-fullwidth has-margin-2">Ver campañas actuales</Link>
+                <Link to={`/profile/${this.props.randomOrg._id}`} className="button is-primary is-fullwidth has-margin-2">Ver campañas actuales</Link>
               </div>
             </div>
           </div>
