@@ -22,7 +22,7 @@ router.post("/o/:donorId/:orgId", (req, res, next) => {
                 console.log(orgId)
                 User.findByIdAndUpdate(orgId, {
                     $push: { orgDonations: newDonation._id  }
-                }, {new: true}).then(() => console.log("Lo ha encontrao\'"))
+                }, {new: true}).then(() => {})
             })
 
     }).then(res.status(200).json(newDonation))
