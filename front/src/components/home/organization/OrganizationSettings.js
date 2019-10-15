@@ -9,8 +9,8 @@ export default class OrganizationSettings extends Component {
       <div className="column">
         <div className="card">
           <div className="card-content">
-            <h2 className="title txt-is-blue">
-                {this.props.userData.orgName}
+            <h2 className="title">
+                Tu cuenta
             </h2>
           </div>
           <div className="card-content">
@@ -18,7 +18,6 @@ export default class OrganizationSettings extends Component {
               <div className="media-left">
                 <figure className="image is-128x128">
                   <img
-                    className="is-rounded"
                     src={this.props.userData.image}
                     alt={this.props.userData.orgName}
                   />
@@ -26,9 +25,8 @@ export default class OrganizationSettings extends Component {
               </div>
               <div className="media-content">
                 <p className="title is-4">
-                  {this.props.userData.userFirstname}
+                  {this.props.userData.orgName}
                 </p>
-                <p className="subtitle is-6">@{this.props.userData.username}</p>
               </div>
             </div>
           </div>

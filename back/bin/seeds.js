@@ -614,7 +614,12 @@ let users = [
     status: "active",
     orgUrl: "https://www.msf.es/",
     orgCategories: ["5d9e2121e8afda188b34b1b2", "5d9e2121e8afda188b34b1c2"],
-    orgDonations: ["5da591206480c70da3e1904d"]
+    orgDonations: ["5da591206480c70da3e1904d"],
+    orgCampaigns: [
+      "5da58e1256ccb50d06cb3446",
+      "5da58e1256ccb50d06cb3447",
+      "5da58e1256ccb50d06cb3448"
+    ]
   },
   {
     _id: "5da576bb27efb808bfc82506",
@@ -642,12 +647,7 @@ let users = [
     orgUrl: "https://www.manosunidas.org/",
     orgCategories: [
       "5da576bb27efb808bfc82509",
-      "5da576bb27efb808bfc82518"],
-    orgCampaigns: [
-      "5da58e1256ccb50d06cb3446",
-      "5da58e1256ccb50d06cb3447",
-      "5da58e1256ccb50d06cb3448"
-    ]
+      "5da576bb27efb808bfc82518"]
   },
   {
     _id: "5da576bb27efb808bfc82507",
@@ -713,7 +713,7 @@ let campaigns = [
       "https://res.cloudinary.com/dbklyksys/image/upload/v1571128914/causaImpacto/campaigns/sarampion_campaign_yhnelt.jpg",
     fundraisingTarget: 6000,
     status: "active",
-    deadline: "2020-01-01",
+    deadline: new Date("2020-01-01"),
     suggestedDonation: 10,
     "singleDonations": ["5da591206480c70da3e1904f", "5da591206480c70da3e1904c"] // Rellenar
   },
@@ -727,7 +727,7 @@ let campaigns = [
       "https://res.cloudinary.com/dbklyksys/image/upload/v1571131098/causaImpacto/campaigns/desplazados_campaign_ilg9xx.jpg",
     fundraisingTarget: 150000,
     status: "active",
-    deadline: "2020-01-01",
+    deadline: new Date("2020-01-01"),
     suggestedDonation: 10
     // "singleDonations": [""] // Rellenar
   },
@@ -741,7 +741,7 @@ let campaigns = [
       "https://res.cloudinary.com/dbklyksys/image/upload/v1571131015/causaImpacto/campaigns/desnutricion_campaign_ylnnri.jpg",
     fundraisingTarget: 10000,
     status: "active",
-    deadline: "2020-01-01",
+    deadline: new Date("2020-01-01"),
     suggestedDonation: 10
     // "singleDonations": [""] // Rellenar
   }

@@ -26,11 +26,13 @@ export default class FullName extends Component {
       toggleCardClass() {
         if (!this.state.openTab) {
             this.setState({
+                ...this.state,
                 openTab: true,
                 expand: faAngleDown,
                 cardClass: "card-content hide"})
         } else {
             this.setState({
+                ...this.state,
                 openTab: false,
                 expand: faAngleUp,
                 cardClass: "card-content"
@@ -70,9 +72,9 @@ export default class FullName extends Component {
             <div className="control">
                 <input
                 className="input"
-                name="userSurname"
+                name="userLastname"
                 type="text"
-                value={this.state.userSurname}
+                value={this.state.userLastname}
                 placeholder="Apellidos"
                 onChange={e => this.handleChange(e)}
                 />

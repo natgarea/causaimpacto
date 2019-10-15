@@ -35,67 +35,68 @@ export default class Donate extends Component {
   };
 
   render() {
-    const onSuccess = payment => {
+    return (<div></div>) }
+  //   const onSuccess = payment => {
       
-    }
+  //   }
     
-    console.log("Successful payment!", payment);
-    const onError = error =>
-      console.log("Erroneous payment OR failed to load script!", error);
-    const onCancel = data => console.log("Cancelled payment!", data);
-    return (
-      <div>
-        <form>
-          <div className="field">
-            <label className="label">Cantidad:</label>
-            <div className="control">
-              <input
-                name="donation"
-                className="input is-large"
-                type="text"
-                placeholder="Text input"
-                value={this.state.donation}
-                onChange={e => this.handleChange(e)}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                name="anonymous"
-                checked={this.state.anonymous}
-                onChange={e => this.handleCheckboxChange(e)}
-              />
-              <span>Donar de forma anónima.</span>
-            </label>
-          </div>
-          <div className="field">
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                name="contact"
-                checked={this.state.contact}
-                onChange={e => this.handleCheckboxChange(e)}
-              />
-              <span>Quiero que la organización me pueda contactar.</span>
-            </label>
-          </div>
-          <PayPalButton
-            client={CLIENT}
-            env={ENV}
-            commit={true}
-            currency={"EUR"}
-            total={this.state.donation}
-            onSuccess={onSuccess}
-            onError={onError}
-            onCancel={onCancel}
-          />
-          {/* <Link to="#" className="button is-primary is-large">
-            Donar
-          </Link> */}
-        </form>
-      </div>
-    );
-  }
+  //   console.log("Successful payment!", payment);
+  //   const onError = error =>
+  //     console.log("Erroneous payment OR failed to load script!", error);
+  //   const onCancel = data => console.log("Cancelled payment!", data);
+  //   return (
+  //     <div>
+  //       <form>
+  //         <div className="field">
+  //           <label className="label">Cantidad:</label>
+  //           <div className="control">
+  //             <input
+  //               name="donation"
+  //               className="input is-large"
+  //               type="text"
+  //               placeholder="Text input"
+  //               value={this.state.donation}
+  //               onChange={e => this.handleChange(e)}
+  //             />
+  //           </div>
+  //         </div>
+  //         <div className="field">
+  //           <label className="checkbox">
+  //             <input
+  //               type="checkbox"
+  //               name="anonymous"
+  //               checked={this.state.anonymous}
+  //               onChange={e => this.handleCheckboxChange(e)}
+  //             />
+  //             <span>Donar de forma anónima.</span>
+  //           </label>
+  //         </div>
+  //         <div className="field">
+  //           <label className="checkbox">
+  //             <input
+  //               type="checkbox"
+  //               name="contact"
+  //               checked={this.state.contact}
+  //               onChange={e => this.handleCheckboxChange(e)}
+  //             />
+  //             <span>Quiero que la organización me pueda contactar.</span>
+  //           </label>
+  //         </div>
+  //         <PayPalButton
+  //           client={CLIENT}
+  //           env={ENV}
+  //           commit={true}
+  //           currency={"EUR"}
+  //           total={this.state.donation}
+  //           onSuccess={onSuccess}
+  //           onError={onError}
+  //           onCancel={onCancel}
+  //         />
+  //         {/* <Link to="#" className="button is-primary is-large">
+  //           Donar
+  //         </Link> */}
+  //       </form>
+  //     </div>
+  //   );
+  // }
 }

@@ -11,6 +11,7 @@ import CategoryService from "./services/CategoryService";
 import Profile from "./components/profile/Profile";
 import Donate from "./components/donate/Donate";
 import UserService from "./services/UserService";
+import EditCampaign from "./components/campaign/EditCampaign";
 
 export default class App extends Component {
   constructor(props) {
@@ -30,6 +31,8 @@ export default class App extends Component {
     this.getCategories();
     this.getRandomOrg();
   }
+
+  
 
   getCategories () {
     return this.categoryService.getCategories().then(response => {
@@ -109,6 +112,13 @@ export default class App extends Component {
               path="/update"
               render={() => (
                 <Update userInSession={this.state.loggedInUser} />
+              )}
+            />
+             <Route
+              exact
+              path="/campaign/edit/:id"
+              render={({match}) => (
+                <EditCampaign userInSession={this.state.loggedInUser} match={match} />
               )}
             />
             <Route

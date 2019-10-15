@@ -97,7 +97,28 @@ export default class Home extends Component {
               />
             </div>
             <div className="columns">
-              <DonationList />
+            <div className="column is-one-third">
+        <div className="card">
+          <div className="card-content">
+            <h3 className="title">Tus donaciones</h3>
+              {/* <ul>
+            {this.state.loggedUser.userDonations.map((donation, i) => (
+                <DonationList
+                key={i}
+                org={}
+                amount={this.state.donation.amountDonated}
+                ></DonationList>)}
+                </ul>
+                <ul>
+                {this.state.loggedUser.userDonations.map((donation, i) => (
+                  <DonationList
+                  key={i}
+                  campaign={}
+                  ></DonationList>)}
+                </ul> */}
+          </div>
+        </div>
+      </div>
               <div className="column">
                 <div className="card">
                   <div className="card-content">
@@ -152,7 +173,7 @@ export default class Home extends Component {
             </div>
             <div className="columns">
               <UserList />
-              <CampaignControls />
+              <CampaignControls userData={this.state.loggedUser} />
             </div>
           </div>
         );
