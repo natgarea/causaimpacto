@@ -85,7 +85,6 @@ export default class Profile extends Component {
   }
 
   render() {
-    console.log(this.state);
     if (!this.state.user) {
       return <div></div>;
     } else {

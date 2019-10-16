@@ -44,7 +44,7 @@ class Donate extends Component {
         user: this.props.userInSession._id,
         org: this.props.match.params.id,
         anonymous: this.state.anonymous,
-        amount: this.state.donation,
+        donation: this.state.donation,
         contact: this.state.contact
       }
       this.service.addOrgDonation(donation).then(response => {
@@ -65,7 +65,7 @@ class Donate extends Component {
               <input
                 name="donation"
                 className="input is-large"
-                type="text"
+                type="number"
                 placeholder="Text input"
                 value={this.state.donation}
                 onChange={e => this.handleChange(e)}
