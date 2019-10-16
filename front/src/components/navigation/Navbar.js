@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import AuthService from "../../services/AuthService";
 import { Link } from "react-router-dom";
 import Search from "./Search";
-import './Navbar.css';
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -52,8 +51,7 @@ export default class Navbar extends Component {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <Link to="#" className="navbar-item">Inicio</Link>
-              <Link to="/profile/5da354c4c3e59516a751bd9b" className="navbar-item">Donar</Link>
+              <Link to="/" className="navbar-item">Inicio</Link>
             </div>
 
             <div className="navbar-end">
@@ -117,7 +115,7 @@ export default class Navbar extends Component {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <Link to="#" className="navbar-item">Inicio</Link>
+              <Link to="/" className="navbar-item">Inicio</Link>
 
   
             </div>

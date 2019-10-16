@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const SingleDonation = require("../models/SingleDonation");
 const User = require("../models/User");
+const Campaign = require("../models/Campaign");
 
 router.get("/", (req, res, next) => {
   const id = req.user._id;
@@ -52,6 +53,45 @@ router.post("/o/:donorId/:orgId", (req, res, next) => {
             orgId,
             {
               $push: { orgDonations: newDonation._id }
+            },
+            { new: true }
+          ).then(() => {});
+        });
+      })
+      .then(res.status(200).json(newDonation));
+  });
+});
+
+router.post("/c/:donorId/:campaignId", (req, res, next) => {
+  const donorId = req.params.donorId;
+  const campaignId = req.params.campaignId;
+  const { anonymous, donation, contact } = req.body;
+  User.findById(donorId).then(donor => {
+    const newDonation = new SingleDonation({
+      user: donorId,
+      anonymousDonation: anonymous,
+      amountDonated: donation,
+      contactConsent: contact,
+      campaign: campaignId
+    });
+    newDonation
+      .save()
+      .then(() => {
+        User.findByIdAndUpdate(
+          donorId,
+          {
+            $push: { userDonations: newDonation._id },
+            $set: {
+              userAmountDonated:
+                newDonation.amountDonated + donor.userAmountDonated
+            }
+          },
+          { new: true }
+        ).then(() => {
+          Campaign.findByIdAndUpdate(
+            campaignId,
+            {
+              $push: { singleDonations: newDonation._id }
             },
             { new: true }
           ).then(() => {});

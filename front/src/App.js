@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/navigation/Navbar";
 import Signup from "./components/auth/Signup";
@@ -9,7 +8,8 @@ import Home from "./components/home/Home";
 import Update from "./components/update/Update";
 import CategoryService from "./services/CategoryService";
 import Profile from "./components/profile/Profile";
-import Donate from "./components/donate/Donate";
+import DonateOrg from "./components/donate/DonateOrg";
+import DonateCampaign from "./components/donate/DonateCampaign";
 import UserService from "./services/UserService";
 import EditCampaign from "./components/campaign/EditCampaign";
 import SuccessfulDonation from "./components/donate/SuccessfulDonation";
@@ -151,7 +151,17 @@ export default class App extends Component {
                 exact
                 path="/donate/o/:id"
                 render={({ match }) => (
-                  <Donate
+                  <DonateOrg
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/donate/c/:id"
+                render={({ match }) => (
+                  <DonateCampaign
                     userInSession={this.state.loggedInUser}
                     match={match}
                   />

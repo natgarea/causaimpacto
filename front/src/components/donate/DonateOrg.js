@@ -10,7 +10,7 @@ const CLIENT = {
 };
 const ENV = "sandbox";
 
-class Donate extends Component {
+class DonateOrg extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -113,4 +113,4 @@ class Donate extends Component {
   }
 }
 
-export default withRouter(Donate);
+export default withRouter(DonateOrg);

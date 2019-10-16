@@ -17,6 +17,14 @@ export default class DonationService {
       .then(res => res.data);
   }
 
+  addCampaignDonation(donation) {
+    let donorId = donation.user;
+    let campaignId = donation.campaign;
+    return this.service
+      .post(`/c/${donorId}/${campaignId}`, donation)
+      .then(res => res.data);
+  }
+
   addComment(donationId, comment) {
     return this.service.put(`/comment/${donationId}`, { comment: comment }).then(res => res.data);
   }
