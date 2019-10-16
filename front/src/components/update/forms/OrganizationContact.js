@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 export default class OrganizationContact extends Component {
   constructor(props) {
@@ -27,16 +27,19 @@ export default class OrganizationContact extends Component {
 
   toggleCardClass() {
     if (!this.state.openTab) {
-        this.setState({
-            openTab: true,
-            expand: faAngleDown,
-            cardClass: "card-content hide"})
+      this.setState({
+        ...this.state,
+        openTab: true,
+        expand: faAngleDown,
+        cardClass: "card-content hide"
+      });
     } else {
-        this.setState({
-            openTab: false,
-            expand: faAngleUp,
-            cardClass: "card-content"
-        })
+      this.setState({
+        ...this.state,
+        openTab: false,
+        expand: faAngleUp,
+        cardClass: "card-content"
+      });
     }
   }
 
@@ -46,7 +49,9 @@ export default class OrganizationContact extends Component {
         <header className="card-header">
           <p className="card-header-title">Datos de contacto</p>
           <Link to="#" onClick={() => this.toggleCardClass()}>
-            <span className="icon is-medium has-margin-right-top"><FontAwesomeIcon icon={this.state.expand} aria-hidden="true"/></span>
+            <span className="icon is-medium has-margin-right-top">
+              <FontAwesomeIcon icon={this.state.expand} aria-hidden="true" />
+            </span>
           </Link>
         </header>
         <div className={this.state.cardClass}>
@@ -67,7 +72,8 @@ export default class OrganizationContact extends Component {
 
                 <span className="help">
                   <p>
-                    Este campo <span className="txt-is-violet is-bold">NO</span> será visible públicamente.{" "}
+                    Este campo <span className="txt-is-violet is-bold">NO</span>{" "}
+                    será visible públicamente.{" "}
                     <span className="txt-is-orange is-bold">causa</span>
                     <span className="txt-is-blue is-bold">justa</span> lo
                     utilizará solo para verificar datos.

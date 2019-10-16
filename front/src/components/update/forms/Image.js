@@ -36,12 +36,14 @@ export default class Image extends Component {
   toggleCardClass() {
     if (!this.state.openTab) {
       this.setState({
+        ...this.state,
         openTab: true,
         expand: faAngleDown,
         cardClass: "card-content hide"
       });
     } else {
       this.setState({
+        ...this.state,
         openTab: false,
         expand: faAngleUp,
         cardClass: "card-content"

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 export default class Address extends Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
       line1: props.line1,
       line2: props.line2,
@@ -16,29 +16,32 @@ export default class Address extends Component {
       openTab: true,
       expand: faAngleDown,
       cardClass: "card-content hide"
-    }
+    };
   }
 
   handleChange = event => {
     const { name, value } = event.target;
-    this.setState( {
-        ...this.state, 
-        [name] : value
+    this.setState({
+      ...this.state,
+      [name]: value
     });
   };
 
   toggleCardClass() {
     if (!this.state.openTab) {
-        this.setState({
-            openTab: true,
-            expand: faAngleDown,
-            cardClass: "card-content hide"})
+      this.setState({
+        ...this.state,
+        openTab: true,
+        expand: faAngleDown,
+        cardClass: "card-content hide"
+      });
     } else {
-        this.setState({
-            openTab: false,
-            expand: faAngleUp,
-            cardClass: "card-content"
-        })
+      this.setState({
+        ...this.state,
+        openTab: false,
+        expand: faAngleUp,
+        cardClass: "card-content"
+      });
     }
   }
 
@@ -48,7 +51,9 @@ export default class Address extends Component {
         <header className="card-header">
           <p className="card-header-title">Dirección</p>
           <Link to="#" onClick={() => this.toggleCardClass()}>
-            <span className="icon is-medium has-margin-right-top"><FontAwesomeIcon icon={this.state.expand} aria-hidden="true"/></span>
+            <span className="icon is-medium has-margin-right-top">
+              <FontAwesomeIcon icon={this.state.expand} aria-hidden="true" />
+            </span>
           </Link>
         </header>
         <div className={this.state.cardClass}>

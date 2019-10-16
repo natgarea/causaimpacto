@@ -19,7 +19,8 @@ export default class Home extends Component {
       notification: null,
       prueba: "",
       category: [],
-      index: 0
+      index: 0,
+      donations: []
     };
     this.userService = new UserService();
   }
@@ -83,6 +84,8 @@ export default class Home extends Component {
   getUserDonations(user) {
     let orgDonationDetails = this.userService.getOrgDonationsById(user._id);
     let campaignDonationDetails = this.userService.getCampaignsDonationsById(user._id);
+    console.log(orgDonationDetails)
+
     //necesito sacar los nombres de org y los titulos de campaña, las cantidades de donaciones y las fechas
   }
 
