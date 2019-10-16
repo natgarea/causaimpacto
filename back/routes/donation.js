@@ -3,6 +3,15 @@ const router = express.Router();
 const SingleDonation = require("../models/SingleDonation");
 const User = require("../models/User");
 
+router.get("/", (req, res, next) => {
+  const id = req.user._id;
+  SingleDonation.find({ org: id }).populate("user")
+  .then(data => {
+    res.status(200).json(data);
+  })
+  .catch(err => console.log(err));
+});
+
 router.post("/o/:donorId/:orgId", (req, res, next) => {
   const donorId = req.params.donorId;
   const orgId = req.params.orgId;

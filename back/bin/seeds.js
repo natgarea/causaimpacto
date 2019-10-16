@@ -793,7 +793,7 @@ singleDonations = [
     anonymousDonation: true,
     amountDonated: 30,
     comment: "Excelente organización.",
-    contactConsent: false
+    contactConsent: true
   },
   {
     //Hecha

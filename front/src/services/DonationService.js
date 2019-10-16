@@ -20,4 +20,8 @@ export default class DonationService {
   addComment(donationId, comment) {
     return this.service.put(`/comment/${donationId}`, { comment: comment }).then(res => res.data);
   }
+
+  getDonors() {
+    return this.service.get("/").then(res => res.data);
+  }
 }

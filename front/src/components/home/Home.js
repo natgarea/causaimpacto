@@ -8,9 +8,9 @@ import OrganizationSettings from "./organization/OrganizationSettings";
 import CampaignControls from "./organization/CampaignControls";
 import UserList from "./organization/UserList";
 import UserService from "../../services/UserService";
+import DonationService from "../../services/DonationService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-
 
 export default class Home extends Component {
   constructor(props) {
@@ -21,25 +21,42 @@ export default class Home extends Component {
       prueba: "",
       category: [],
       index: 0,
-      donations: []
+      donations: [],
+      donors: []
     };
     this.userService = new UserService();
+    this.donationService = new DonationService();
   }
 
   componentDidMount() {
+    this.getUserDonations()
+    this.getDonors()
+  }
+
+  getDonors() {
+    return this.donationService.getDonors().then(resp => {
+      let userList = resp.filter(user => user.contactConsent).map(donation => donation.user);  
+      this.setState({
+        ...this.state,
+        donors: userList
+      });
+    })
+  }
+
+  getUserDonations() {
     let organizations = this.userService
       .getOrgDonationsById()
       .then(resp => resp.userDonations.filter(uD => uD.org));
     let campaigns = this.userService
       .getCampaignDonationsById()
       .then(resp => resp.userDonations.filter(uD => uD.campaign));
-    Promise.all([organizations, campaigns])
+    return Promise.all([organizations, campaigns])
       .then(data => {
         let Donations = [];
         let allDonations = Donations.concat(...data);
-        allDonations.sort(function(a,b){
+        allDonations.sort(function(a, b) {
           return new Date(b.created_at) - new Date(a.created_at);
-        })
+        });
         this.setState({
           ...this.state,
           donations: allDonations
@@ -105,7 +122,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(this.state.donations)
     let { index, category } = this.state;
     if (this.props.userInSession) {
       if (this.state.loggedUser.type === "donor" && !!category[0]) {
@@ -201,7 +217,9 @@ export default class Home extends Component {
               <OrganizationSettings userData={this.state.loggedUser} />
             </div>
             <div className="columns">
-              <UserList />
+            {Array.isArray(this.state.donors) ? (
+                        <UserList donors={this.state.donors} />
+                      ) : null}
               <CampaignControls userData={this.state.loggedUser} />
             </div>
           </div>
