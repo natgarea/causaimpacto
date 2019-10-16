@@ -2,26 +2,31 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserService from "../../services/UserService";
 import DonationService from "../../services/DonationService";
+import CampaignService from "../../services/CampaignService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDonate, faGlobe, faEnvelope, faPhoneSquareAlt } from "@fortawesome/free-solid-svg-icons";
-import Comments from "./comments/Comments";
+import Comment from "./organization/Comment";
+import CampaignBlurb from "./organization/CampaignBlurb";
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.userService = new UserService();
     this.donationService = new DonationService();
+    this.campaignService = new CampaignService();
     this.state = {
       profile: {},
       type: "", //user.type
       user: {},
-      comments: []
+      comments: [],
+      campaigns: []
     };
   }
 
   componentDidMount() {
     this.getProfileUser();
     this.getOrgDonations();
+    this.getOrgCampaigns();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -32,6 +37,23 @@ export default class Profile extends Component {
       );
     }
     return null;
+  }
+
+  getOrgCampaigns() {
+    return this.campaignService
+      .getOrgCampaigns(this.props.match.params.id)
+      .then(response => {
+        this.setState({
+          ...this.state,
+          campaigns: response
+        });
+      })
+      .catch(err => {
+        this.setState({
+          ...this.state,
+          campaigns: false
+        });
+      });
   }
 
   getOrgDonations() {
@@ -95,7 +117,7 @@ export default class Profile extends Component {
                   </div>
                 </div>
               </div>
-              <div class="column">
+              <div className="column">
               <div
                 className={
                   (this.state.type === "donor") !== "donor" ? "column" : "hide"
@@ -129,9 +151,23 @@ export default class Profile extends Component {
             </div>
         {/* salto a la siguiente sección */}
         <div className="has-margin-5">
+          <h3 className="title">Campañas activas</h3>
+          <div className="columns align-items-center-row">
+          {this.state.campaigns.map((campaign, i) => (
+            <CampaignBlurb
+            key={i}
+            title={campaign.title}
+            image={campaign.pictures[0]}
+            />
+        ))}
+        </div>
+        </div>
+        
+        {/* salto a la siguiente sección */}
+        <div className="has-margin-5">
           <h3 className="title">Comentarios de los usuarios</h3>
           {this.state.comments.map((comment, i) => (
-            <Comments
+            <Comment
             key={i}
             anonymous={comment.anonymousDonation}
             comment={comment.comment}
