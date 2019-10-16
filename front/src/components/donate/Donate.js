@@ -49,7 +49,7 @@ class Donate extends Component {
       }
       this.service.addOrgDonation(donation).then(response => {
         this.props.history.push(`/donate/success/${response._id}`)
-      })
+      }).then(data => console.log(data))
       
       console.log("Successful payment!", payment);
     }

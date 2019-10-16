@@ -13,8 +13,8 @@ router.get("/", (req, res, next) => {
 });
 
 // Get user donations to organizations
-router.get("/o/donations/:id", (req, res, next) => {
-  const id = req.params.id;
+router.get("/o/donations", (req, res, next) => {
+  const id = req.user._id;
   User.findById(id)
   .populate({path: "userDonations", populate: { path: "org"}})
   .then(data => {
@@ -24,8 +24,8 @@ router.get("/o/donations/:id", (req, res, next) => {
 });
 
 // Get user donations to campaigns
-router.get("/c/donations/:id", (req, res, next) => {
-  const id = req.params.id;
+router.get("/c/donations", (req, res, next) => {
+  const id = req.user._id;
   User.findById(id)
   .populate({path: "userDonations", populate: { path: "campaign"}})
   .then(data => {

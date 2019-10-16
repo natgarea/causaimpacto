@@ -27,12 +27,12 @@ export default class UserService {
     return this.service.get(`/${id}`).then(response => response.data);
   };
 
-  getOrgDonationsById = id => {
-    return this.service.get(`/o/donations/${id}`).then(response => response.data);
+  getOrgDonationsById = () => {
+    return this.service.get("/o/donations").then(response => response.data);
   };
 
-  getCampaignsDonationsById = id => {
-    return this.service.get(`/c/donations/${id}`).then(response => response.data);
+  getCampaignDonationsById = () => {
+    return this.service.get("/c/donations").then(response => response.data);
   };
 
 }

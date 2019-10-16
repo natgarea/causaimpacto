@@ -11,6 +11,7 @@ import UserService from "../../services/UserService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,28 @@ export default class Home extends Component {
       donations: []
     };
     this.userService = new UserService();
+  }
+
+  componentDidMount() {
+    let organizations = this.userService
+      .getOrgDonationsById()
+      .then(resp => resp.userDonations.filter(uD => uD.org));
+    let campaigns = this.userService
+      .getCampaignDonationsById()
+      .then(resp => resp.userDonations.filter(uD => uD.campaign));
+    Promise.all([organizations, campaigns])
+      .then(data => {
+        let Donations = [];
+        let allDonations = Donations.concat(...data);
+        allDonations.sort(function(a,b){
+          return new Date(b.created_at) - new Date(a.created_at);
+        })
+        this.setState({
+          ...this.state,
+          donations: allDonations
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -80,18 +103,9 @@ export default class Home extends Component {
       else this.setState({ ...this.state, index: this.state.index - 2 });
     }
   }
-  //this.props.userInSession
-  getUserDonations(user) {
-    let orgDonationDetails = this.userService.getOrgDonationsById(user._id);
-    let campaignDonationDetails = this.userService.getCampaignsDonationsById(user._id);
-    console.log(orgDonationDetails)
-
-    //necesito sacar los nombres de org y los titulos de campaña, las cantidades de donaciones y las fechas
-  }
-
-
 
   render() {
+    console.log(this.state.donations)
     let { index, category } = this.state;
     if (this.props.userInSession) {
       if (this.state.loggedUser.type === "donor" && !!category[0]) {
@@ -111,7 +125,9 @@ export default class Home extends Component {
                   <div className="card-content">
                     <h3 className="title">Tus donaciones</h3>
                     <ul>
-                      <DonationList donations={this.state.loggedUser.userDonations} />
+                      {Array.isArray(this.state.donations) ? (
+                        <DonationList donations={this.state.donations} />
+                      ) : null}
                     </ul>
                   </div>
                 </div>
