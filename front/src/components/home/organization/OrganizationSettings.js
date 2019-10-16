@@ -32,7 +32,7 @@ export default class OrganizationSettings extends Component {
           </div>
           <div className="card-content">
           <div className="buttons">
-          <Link to="#" className="button is-link"><span className="icon is-medium" aria-hidden="true">
+          <Link to={`/profile/${this.props.userData._id}`} className="button is-link"><span className="icon is-medium" aria-hidden="true">
             <FontAwesomeIcon icon={faUser} aria-hidden="true"/>
             </span> <span>Perfil público</span></Link>
           <Link to='/update' className="button is-link">

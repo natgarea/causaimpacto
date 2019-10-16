@@ -14,17 +14,37 @@ export default class Profile extends Component {
   }
 
   render() {
+    console.log(this.state.profile.orgName)
     if (this.state.profile.type === "donor") {
       return <div></div>;
     } else {
       return (
-        <div className={this.props.userInSession.type === "donor" ? "" : "hide"}>
-          <Link to={"/donate/o/" + this.props.match.params.id} className="button is-large is-primary">
+        <div className="card">
+          <div className="card-content columns">
+            <div className="column">
+              <div className="media">
+                <div className="media-left">
+                  <figure className="image is-480x480">
+                    <img
+                      src="https://bulma.io/images/placeholders/96x96.png"
+                      alt="Placeholder image"
+                    />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <p className="title is-4">{this.state.profile.orgName}</p>
+                </div>
+              </div>
+            </div>
+            <div className={this.props.userInSession.type === "donor" ? "" : "hide"}>
+            <Link to={"/donate/o/" + this.props.match.params.id} className="button is-large is-primary">
             <span className="icon is-medium" aria-hidden="true">
               <FontAwesomeIcon icon={faDonate} aria-hidden="true" />
             </span>
             <span>Donar</span>
           </Link>
+            </div>
+          </div>
         </div>
       );
     }

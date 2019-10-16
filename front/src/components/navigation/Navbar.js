@@ -73,8 +73,8 @@ export default class Navbar extends Component {
 
                 <div className="navbar-dropdown">
                   <Link to="/home" className="navbar-item">Home</Link>
+                  <Link to={`/profile/${this.state.loggedInUser._id}`} className="navbar-item">Mi perfil</Link>
                   <Link to="/update" className="navbar-item">Mis datos</Link>
-                  <Link to="/profile" className="navbar-item">Mi perfil</Link>
                   <hr className="navbar-divider" />
                   <Link to="#" className="navbar-item" onClick={this.handleLogout}>
                     Log out

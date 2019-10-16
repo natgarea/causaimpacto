@@ -62,7 +62,6 @@ export default class CampaignDetails extends Component {
         }
       }
     render() {
-      console.log(moment(this.state.deadline).format("DD MM YYYY"))
         return (
             <div className="card has-margin-2">
         <header className="card-header">
