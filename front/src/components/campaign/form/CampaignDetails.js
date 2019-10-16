@@ -11,7 +11,7 @@ export default class CampaignDetails extends Component {
         this.state = {
           title: "",
           description: "",
-          deadline: new Date('2020-12-31T00:00:00'),
+          deadline: "",
           status: "",
           fundraisingTarget: 0,
           suggestedDonation: 0,
@@ -24,11 +24,12 @@ export default class CampaignDetails extends Component {
 
     componentDidMount() {
       this.campaignService.getCampaign(this.props.id).then(response => {
+       
         this.setState({
           ...this.state,
           title: response.title,
           description: response.description,
-          deadline: response.deadline,
+          deadline: moment(response.deadline).format("YYYY-MM-DD"),
           status: response.status,
           fundraisingTarget: response.fundraisingTarget,
           suggestedDonation: response.suggestedDonation
@@ -61,7 +62,7 @@ export default class CampaignDetails extends Component {
         }
       }
     render() {
-      console.log(this.state.deadline)
+      console.log(moment(this.state.deadline).format("DD MM YYYY"))
         return (
             <div className="card has-margin-2">
         <header className="card-header">
@@ -105,8 +106,8 @@ export default class CampaignDetails extends Component {
                   className="input"
                   type="date"
                   name="deadline"
-                  value={moment(this.state.deadline).format()}
-                  placeholder="2020-01-01T00:00:00.000Z"
+                  value={this.state.deadline}
+                  placeholder=""
                   onChange={e => this.handleChange(e)}
                 />
               </div>

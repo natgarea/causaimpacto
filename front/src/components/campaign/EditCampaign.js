@@ -14,7 +14,7 @@ export default class EditCampaign extends Component {
   let updatedCampaign = {
       ...this.props.campaignInSession,
       title: updateFormValues.title,
-      description: updateFormValues.description,
+       description: updateFormValues.description,
       fundraisingTarget: updateFormValues.fundraisingTarget,
       status: updateFormValues.status,
       deadline: updateFormValues.deadline,
