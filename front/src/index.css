@@ -155,7 +155,3 @@ select, option, button {
   height: 450px;
   text-align: center;
 }
-
-.final {
-  align-self: flex-end;
-}

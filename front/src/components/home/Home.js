@@ -45,11 +45,9 @@ export default class Home extends Component {
 
   getUserDonations() {
     let organizations = this.userService
-      .getOrgDonationsById()
-      .then(resp => resp.userDonations.filter(uD => uD.org));
+      .getOrgDonationsById();
     let campaigns = this.userService
-      .getCampaignDonationsById()
-      .then(resp => resp.userDonations.filter(uD => uD.campaign));
+      .getCampaignDonationsById();
     return Promise.all([organizations, campaigns])
       .then(data => {
         let Donations = [];
@@ -57,6 +55,7 @@ export default class Home extends Component {
         allDonations.sort(function(a, b) {
           return new Date(b.created_at) - new Date(a.created_at);
         });
+        console.log(`Found ${allDonations.length} for profile`)
         this.setState({
           ...this.state,
           donations: allDonations

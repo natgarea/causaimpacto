@@ -18,9 +18,9 @@ router.get("/o/donations", (req, res, next) => {
   User.findById(id)
   .populate({path: "userDonations", populate: { path: "org"}})
   .then(data => {
-      res.status(200).json(data);
-    })
-    .catch(err => console.log(err));
+    res.status(200).json(data.userDonations.filter(uD => uD.org));
+  })
+  .catch(err => console.log(err));
 });
 
 // Get user donations to campaigns
@@ -29,9 +29,9 @@ router.get("/c/donations", (req, res, next) => {
   User.findById(id)
   .populate({path: "userDonations", populate: { path: "campaign"}})
   .then(data => {
-      res.status(200).json(data);
-    })
-    .catch(err => console.log(err));
+    res.status(200).json(data.userDonations.filter(uD => uD.campaign));
+  })
+  .catch(err => console.log(err));
 });
 
 // Update user by id

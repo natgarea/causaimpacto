@@ -28,10 +28,11 @@ router.post("/o/:donorId/:orgId", (req, res, next) => {
   const { anonymous, donation, contact } = req.body;
   User.findById(donorId).then(donor => {
     const newDonation = new SingleDonation({
-      user: donor._id,
+      user: donorId,
       anonymousDonation: anonymous,
       amountDonated: donation,
-      contactConsent: contact
+      contactConsent: contact,
+      org: orgId
     });
     newDonation
       .save()
