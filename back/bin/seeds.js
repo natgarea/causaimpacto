@@ -250,7 +250,7 @@ let users = [
     image:
       "https://res.cloudinary.com/dbklyksys/image/upload/v1570642339/causaImpacto/orgLogo/org1_w6snqj.jpg",
     orgDescription:
-      "Adoptaunabuelo.com es un programa de voluntariado de compañía para la tercera edad que facilita el contacto entre voluntarios y residencias a través de nuestra web. El objetivo principal es que el abuelo pueda compartir tiempo con un voluntario, sintiéndose escuchado, acompañado y querido. La iniciativa nace de la propia experiencia del emprendedor como voluntario de residencias. Tras conocer a Bernardo de 86 años, viudo y sin descendencia, decidió adoptarlo y le sirvió de inspiración para llevar a cabo este proyecto. Objetivos generales del proyecto 1) Implicación social de la población en la problemática de las personas mayores que padecen soledad. 2) Fomentar la relación intergeneracional con el objetivo del aprendizaje horizontal entre ambas partes a través del respeto y el amor. 3) Sensibilizar de la problemática actual que sufren las personas mayores que padecen soledad. 4) Formación, capacitación y acompañamiento a los voluntarios, personas mayores y residencias a lo largo del programa. Principales Acciones 1) Formación y seguimiento de los voluntarios y centros residenciales. 2) Establecimiento de convenios con las residencias de mayores participantes en el programa. 3) Reuniones de coordinación con los jóvenes y las residencias de mayores para evaluar la marcha del proyecto. 4) Reuniones internas entre los coordinadores del programa. 5) Fiesta final con todos los integrantes del voluntariado.",
+      "Adoptaunabuelo.com es un programa de voluntariado de compañía para la tercera edad que facilita el contacto entre voluntarios y residencias a través de nuestra web.",   
     orgContactPerson: "Admin",
     orgEmail: "info@adoptaunabuelo.org",
     address: {
@@ -790,7 +790,7 @@ singleDonations = [
     _id: "5da591206480c70da3e1904d",
     user: "5da576bb27efb808bfc824f6",
     org: "5da576bb27efb808bfc82505",
-    anonymousDonation: true,
+    anonymousDonation: false,
     amountDonated: 30,
     comment: "Excelente organización.",
     contactConsent: true

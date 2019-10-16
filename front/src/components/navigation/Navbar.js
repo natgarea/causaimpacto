@@ -28,7 +28,7 @@ export default class Navbar extends Component {
           aria-label="main navigation"
         >
           <div className="navbar-brand">
-            <Link className="navbar-item" to="https://bulma.io">
+            <Link className="navbar-item" to="/">
               <img
                 alt="causa impacto logo"
                 src="/images/logo.png"
@@ -93,7 +93,7 @@ export default class Navbar extends Component {
           aria-label="main navigation"
         >
           <div className="navbar-brand">
-            <Link className="navbar-item" to="https://bulma.io">
+            <Link className="navbar-item" to="/">
               <img
                 alt="causa impacto logo"
                 src="/images/logo.png"
@@ -119,17 +119,7 @@ export default class Navbar extends Component {
             <div className="navbar-start">
               <Link to="#" className="navbar-item">Inicio</Link>
 
-              <div className="navbar-item has-dropdown is-hoverable">
-                <Link to="#" className="navbar-link">More</Link>
-
-                <div className="navbar-dropdown">
-                  <Link to="#" className="navbar-item">About</Link>
-                  <Link to="#" className="navbar-item">Jobs</Link>
-                  <Link to="#" className="navbar-item">Contact</Link>
-                  <hr className="navbar-divider" />
-                  <Link to="#" className="navbar-item">Report an issue</Link>
-                </div>
-              </div>
+  
             </div>
 
             <div className="navbar-end">

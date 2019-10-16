@@ -12,6 +12,16 @@ router.get("/", (req, res, next) => {
   .catch(err => console.log(err));
 });
 
+router.get("/:idOrg", (req, res, next) => {
+  const id = req.params.idOrg;
+  SingleDonation.find({ org: id }).populate("user")
+  .then(data => {
+    res.status(200).json(data);
+  })
+  .catch(err => console.log(err));
+});
+
+
 router.post("/o/:donorId/:orgId", (req, res, next) => {
   const donorId = req.params.donorId;
   const orgId = req.params.orgId;

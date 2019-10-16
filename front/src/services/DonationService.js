@@ -24,4 +24,8 @@ export default class DonationService {
   getDonors() {
     return this.service.get("/").then(res => res.data);
   }
+
+  getOrgDonations(idOrg) {
+    return this.service.get(`/${idOrg}`).then(res => res.data);
+  }
 }
