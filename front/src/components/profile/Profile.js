@@ -209,7 +209,7 @@ export default class Profile extends Component {
                       key={i}
                       id={campaign._id}
                       title={campaign.title}
-                      image={campaign.pictures[0]}
+                      image={campaign.image}
                     />
                   ))}
                 </div>

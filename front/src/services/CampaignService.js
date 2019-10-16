@@ -27,10 +27,14 @@ export default class CampaignService {
     .then(response => response.data)
   };
 
-  updateCampaign = CampaignObj => {
+  updateCampaign = (campaignId, CampaignObj) => {
     return this.service
-    .put(`/update/${CampaignObj._id}`, CampaignObj)
+    .put(`/update/${campaignId}`, CampaignObj)
     .then(response => response.data);
-};
+  };
+
+  handleUpload(theFile) {
+    return this.service.post("/upload", theFile).then(res => res.data);
+  }
 
 }

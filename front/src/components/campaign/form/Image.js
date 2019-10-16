@@ -21,12 +21,12 @@ export default class Image extends Component {
 
   handleUpload = e => {
     const uploadData = new FormData();
-    uploadData.append("pictures", e.target.files[0]);
+    uploadData.append("imageUrl", e.target.files[0]);
 
     this.campaignService
       .handleUpload(uploadData)
       .then(response => {
-        this.setState({ ...this.state, pictures: response.secure_url });
+        this.setState({ ...this.state, imageUrl: response.secure_url });
       })
       .catch(err => {
         console.log("Error while uploading the file: ", err);
@@ -77,16 +77,16 @@ export default class Image extends Component {
                 </span>
               </label>
             </div>
-            <div className={this.state.pictures ? "has-margin-1" : "hide"}>
+            <div className={this.state.imageUrl ? "has-margin-1" : "hide"}>
               {" "}
               <figure className="image is-128x128">
-                <img src={this.state.pictures} alt="Imagen subida" />
+                <img src={this.state.imageUrl} alt="Imagen subida" />
               </figure>
               <p>Si estás satisfecho con la imagen, pulsa "Actualizar".</p>
             </div>
             <button
               className="button is-link"
-              onClick={() => this.props.handleUpdateSubmit(this.state.pictures)}
+              onClick={() => this.props.handleUpdateSubmit(this.state.imageUrl)}
               type="submit"
             >
               Actualizar

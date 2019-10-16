@@ -6,7 +6,7 @@ const campaignSchema = new Schema({
   title: String,
   description: String,
   fundraisingTarget: Number,
-  pictures: Array,
+  image: String,
   totalDonations: Number,
   status: {
     type: String,

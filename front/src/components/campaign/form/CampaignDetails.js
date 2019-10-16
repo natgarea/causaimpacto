@@ -15,9 +15,9 @@ export default class CampaignDetails extends Component {
           status: "",
           fundraisingTarget: 0,
           suggestedDonation: 0,
-            openTab: true,
-            expand: faAngleDown,
-            cardClass: "card-content hide"
+          openTab: true,
+          expand: faAngleDown,
+          cardClass: "card-content hide"
         }
         this.campaignService = new CampaignService();
     }
@@ -61,6 +61,20 @@ export default class CampaignDetails extends Component {
             })
         }
       }
+
+      handleCampaignDetailsSubmit = () => {
+        let updatedCampaign = {
+            title: this.state.title,
+            description: this.state.description,
+            fundraisingTarget: this.state.fundraisingTarget,
+            status: this.state.status,
+            deadline: this.state.deadline,
+            suggestedDonation: this.state.suggestedDonation
+        };
+      
+        this.campaignService.updateCampaign(this.props.id, updatedCampaign)
+      };
+
     render() {
         return (
             <div className="card has-margin-2">
@@ -117,7 +131,7 @@ export default class CampaignDetails extends Component {
                       <div className="select">
                         <select
                           className="select is-normal"
-                          name="type"
+                          name="status"
                           value={this.state.status}
                           onChange={e => this.handleChange(e)}
                         >
@@ -134,8 +148,8 @@ export default class CampaignDetails extends Component {
               <div className="control">
                 <input
                   className="input"
-                  type="text"
-                  name="fundaraisingTarget"
+                  type="number"
+                  name="fundraisingTarget"
                   value={this.state.fundraisingTarget}
                   placeholder="Cantidad en EUR"
                   onChange={e => this.handleChange(e)}
@@ -147,15 +161,15 @@ export default class CampaignDetails extends Component {
               <div className="control">
                 <input
                   className="input"
-                  type="text"
-                  name="suggestedDonations"
+                  type="number"
+                  name="suggestedDonation"
                   value={this.state.suggestedDonation}
                   placeholder="Cantidad en EUR"
                   onChange={e => this.handleChange(e)}
                 />
               </div>
             </div>
-            <button className="button is-link" onClick={() => this.props.handleUpdateSubmit(this.state)} type="submit">Actualizar</button>
+            <button className="button is-link" onClick={() => this.handleCampaignDetailsSubmit()} type="submit">Actualizar</button>
             </form>
           </div>
         </div>

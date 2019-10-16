@@ -10,35 +10,27 @@ export default class EditCampaign extends Component {
     this.campaignService = new CampaignService();
   }
 
-  handleCampaignDetailsSubmit = updateFormValues => {
-  let updatedCampaign = {
-      ...this.props.campaignInSession,
-      title: updateFormValues.title,
-       description: updateFormValues.description,
-      fundraisingTarget: updateFormValues.fundraisingTarget,
-      status: updateFormValues.status,
-      deadline: updateFormValues.deadline,
-      suggestedDonation: updateFormValues.suggestedDonation
-  };
-
-  this.updateCampaign(updatedCampaign);
-  };
+  componentDidMount() {
+    console.log(this.props.match.params.id)
+    this.campaignService.getCampaign(this.props.match.params.id).then(response => {
+     
+      this.setState({
+        ...this.state,
+        campaign: response
+      });
+    });
+  }
 
   handleImageSubmit = imageUrl => {
     let updatedCampaign = {
       ...this.state.campaign,
-      pictures: imageUrl
+      image: imageUrl
     };
 
-    this.updateCampaign(updatedCampaign);
-  };
+    console.log()
 
-  updateCampaign(updatedCampaignObj) {
-    return this.campaignService
-      .updateCampaign(updatedCampaignObj)
-      .then()
-      .catch();
-  }
+    this.campaignService.updateCampaign(this.props.match.params.id, updatedCampaign);
+  };
 
   render() {
     return (
@@ -59,7 +51,6 @@ export default class EditCampaign extends Component {
             />
             <CampaignDetails
               id={this.props.match.params.id}
-              handleUpdateSubmit={this.handleCampaignDetailsSubmit}
             />
           </div>
         </div>
