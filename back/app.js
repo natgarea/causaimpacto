@@ -69,6 +69,8 @@ app.use("/api/donation", donationRouter);
 const campaignRouter = require("./routes/campaign");
 app.use("/api/campaign", campaignRouter);
 
+const searchRouter = require("./routes/search");
+app.use("/api/search", searchRouter);
 
 app.use((req, res) => {
   res.sendFile(__dirname + "/public/index.html");
