@@ -116,11 +116,8 @@ export default class App extends Component {
               <Route
                 exact
                 path="/profile/:id"
-                render={({ match }) => (
-                  <Profile
-                    userInSession={this.state.loggedInUser}
-                    match={match}
-                  />
+                render={({ ...props }) => (
+                  <Profile {...props} userInSession={this.state.loggedInUser} />
                 )}
               />
               <Route
