@@ -144,3 +144,18 @@ select, option, button {
   height: auto;
   width: 180px;
 }
+
+.campaign-blurb-columns {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.blurb {
+  height: 450px;
+  text-align: center;
+}
+
+.final {
+  align-self: flex-end;
+}

@@ -15,7 +15,7 @@ export default class Comment extends Component {
                     alt="Anónimo"
                   />
                 ) : (
-                  <img src={this.props.firstname} />
+                  <img src={this.props.image} alt={this.props.firstname} />
                 )}
               </figure>
             </div>
