@@ -13,6 +13,7 @@ import Donate from "./components/donate/Donate";
 import UserService from "./services/UserService";
 import EditCampaign from "./components/campaign/EditCampaign";
 import SuccessfulDonation from "./components/donate/SuccessfulDonation";
+import Campaign from "./components/campaign/Campaign";
 
 export default class App extends Component {
   constructor(props) {
@@ -92,80 +93,153 @@ export default class App extends Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <div className="App">
-          <Navbar
-            userInSession={this.state.loggedInUser}
-            logout={this.logout}
-          />
-          <Switch>
-            <Route
-              exact
-              path="/signup"
-              render={() => <Signup getUser={this.getUser} />}
+    if (this.state.loggedInUser) {
+      return (
+        <React.Fragment>
+          <div className="App">
+            <Navbar
+              userInSession={this.state.loggedInUser}
+              logout={this.logout}
             />
-            <Route
-              exact
-              path="/login"
-              render={() => <Login getUser={this.getUser} />}
-            />
-            <Route
-              exact
-              path="/home"
-              render={props => (
-                <Home
-                  userInSession={this.state.loggedInUser}
-                  categoryList={this.state.categories}
-                  randomOrg={this.state.randomOrg}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/profile/:id"
-              render={({ match }) => (
-                <Profile
-                  userInSession={this.state.loggedInUser}
-                  match={match}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/update"
-              render={() => <Update userInSession={this.state.loggedInUser} />}
-            />
-            <Route
-              exact
-              path="/campaign/edit/:id"
-              render={({ match }) => (
-                <EditCampaign
-                  userInSession={this.state.loggedInUser}
-                  match={match}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/donate/o/:id"
-              render={({ match }) => (
-                <Donate userInSession={this.state.loggedInUser} match={match} />
-              )}
-            />
-            <Route
-              exact
-              path="/donate/success/:id"
-              render={({ match }) => (
-                <SuccessfulDonation
-                  userInSession={this.state.loggedInUser}
-                  match={match}
-                />
-              )}
-            />
-          </Switch>
-        </div>
-      </React.Fragment>
-    );
+            <Switch>
+              <Route
+                exact
+                path="/home"
+                render={props => (
+                  <Home
+                    userInSession={this.state.loggedInUser}
+                    categoryList={this.state.categories}
+                    randomOrg={this.state.randomOrg}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/profile/:id"
+                render={({ match }) => (
+                  <Profile
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/update"
+                render={() => (
+                  <Update userInSession={this.state.loggedInUser} />
+                )}
+              />
+              <Route
+                exact
+                path="/campaign/:id"
+                render={({ match }) => (
+                  <Campaign
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/campaign/edit/:id"
+                render={({ match }) => (
+                  <EditCampaign
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/donate/o/:id"
+                render={({ match }) => (
+                  <Donate
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/donate/success/:id"
+                render={({ match }) => (
+                  <SuccessfulDonation
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+            </Switch>
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="App">
+            <Navbar />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                // render={() => <Signup getUser={this.getUser} />}
+              />
+              <Route
+                exact
+                path="/home"
+                render={props => (
+                  <Home
+                    userInSession={this.state.loggedInUser}
+                    categoryList={this.state.categories}
+                    randomOrg={this.state.randomOrg}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/signup"
+                render={() => <Signup getUser={this.getUser} />}
+              />
+              <Route
+                exact
+                path="/login"
+                render={() => <Login getUser={this.getUser} />}
+              />
+              <Route
+                exact
+                path="/profile/:id"
+                render={({ match }) => (
+                  <Profile
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/campaign/:id"
+                render={({ match }) => (
+                  <Campaign
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/campaign/:id"
+                render={({ match }) => (
+                  <Campaign
+                    userInSession={this.state.loggedInUser}
+                    match={match}
+                  />
+                )}
+              />
+            </Switch>
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 }
