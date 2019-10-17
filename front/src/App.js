@@ -107,6 +107,14 @@ class App extends Component {
             <Switch>
               <Route
                 exact
+                path="/navbar"
+                render={props => (<Navbar
+                  userInSession={this.state.loggedInUser}
+                  logout={this.logout}
+                />)}
+                />
+              <Route
+                exact
                 path="/"
                 render={props => (
                   <Main
