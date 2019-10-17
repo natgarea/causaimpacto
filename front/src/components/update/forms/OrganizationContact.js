@@ -75,7 +75,7 @@ export default class OrganizationContact extends Component {
                     Este campo <span className="txt-is-violet is-bold">NO</span>{" "}
                     será visible públicamente.{" "}
                     <span className="txt-is-orange is-bold">causa</span>
-                    <span className="txt-is-blue is-bold">justa</span> lo
+                    <span className="txt-is-blue is-bold">impacto</span> lo
                     utilizará solo para verificar datos.
                   </p>
                 </span>

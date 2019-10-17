@@ -13,4 +13,8 @@ export default class CategoryService {
     return this.service.get("/").then(response => response.data);
   };
 
+  getCategoryById = categoryId => {
+    return this.service.get(`/${categoryId}`).then(response => response.data);
+  };
+
 }

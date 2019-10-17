@@ -48,7 +48,14 @@ export default class Main extends Component {
     console.log(this.state.results);
     return (
       <React.Fragment>
-        <div className="main-search has-margin-2">
+        <div className="align-items-center">
+        <div className="align-items-center main-text">
+        <img src="./images/logo.png" alt="logo" />
+        <p className="has-margin-3"><h3 className="title is-3">¿Alguna vez has querido ayudar a otros pero no sabías cómo?</h3> <span className="txt-is-orange is-bold">causa</span>
+          <span className="txt-is-blue is-bold">impacto</span> pretende conectar a personas como tú con organizaciones que ayudan a individuos en situaciones difíciles o de emergencia, para que dispongan del personal y material necesario para actuar.</p>
+          <p>Comienza a buscar organizaciones y campañas de tu interés:</p>
+        </div>
+        <div className="main-search">
           <div className="field has-addons">
             <div className="control">
               <div className="dropdown is-active">
@@ -85,8 +92,12 @@ export default class Main extends Component {
           </div>
         </div>
 
-        <div className="main-category has-margin-4">
-          <h3 className="title">Busca por categoría</h3>
+        <div className="main-category has-margin-4 categories">
+          <h3 className="title is-4">Busca por categoría</h3>
+        <div className="categories">
+          {this.props.categoryList.map((category,i) => 
+          (<div className="category-main column is-one-fifth" key={i}><Link to={`/category/${category._id}`}><img src={category.image} className="category-img has-margin-1" alt={category.name}/> <h5 className="title is-6">{category.name}</h5></Link></div>))}
+        </div></div>
         </div>
       </React.Fragment>
     );

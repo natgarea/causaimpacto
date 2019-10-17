@@ -15,6 +15,7 @@ import EditCampaign from "./components/campaign/EditCampaign";
 import SuccessfulDonation from "./components/donate/SuccessfulDonation";
 import Campaign from "./components/campaign/Campaign";
 import Main from "./components/Main";
+import Category from "./components/category/Category";
 import { withRouter } from "react-router-dom";
 
 class App extends Component {
@@ -108,11 +109,13 @@ class App extends Component {
               <Route
                 exact
                 path="/navbar"
-                render={props => (<Navbar
-                  userInSession={this.state.loggedInUser}
-                  logout={this.logout}
-                />)}
-                />
+                render={props => (
+                  <Navbar
+                    userInSession={this.state.loggedInUser}
+                    logout={this.logout}
+                  />
+                )}
+              />
               <Route
                 exact
                 path="/"
@@ -121,6 +124,13 @@ class App extends Component {
                     userInSession={this.state.loggedInUser}
                     categoryList={this.state.categories}
                   />
+                )}
+              />
+              <Route
+                exact
+                path="/category/:id"
+                render={props => (
+                  <Category { ...props } userInSession={this.state.loggedInUser} />
                 )}
               />
               <Route
@@ -137,7 +147,7 @@ class App extends Component {
               <Route
                 exact
                 path="/profile/:id"
-                render={({ ...props }) => (
+                render={(props) => (
                   <Profile {...props} userInSession={this.state.loggedInUser} />
                 )}
               />
@@ -216,6 +226,13 @@ class App extends Component {
                     userInSession={this.state.loggedInUser}
                     categoryList={this.state.categories}
                   />
+                )}
+              />
+              <Route
+                exact
+                path="/category/:id"
+                render={({ ...props }) => (
+                  <Category { ...props } userInSession={this.state.loggedInUser} />
                 )}
               />
               <Route

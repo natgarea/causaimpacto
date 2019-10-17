@@ -34,6 +34,16 @@ router.get("/c/donations", (req, res, next) => {
   .catch(err => console.log(err));
 });
 
+// Get organization by category
+router.get("/category/:categoryId", (req, res, next) => {
+  const id = req.params.categoryId;
+  User.find({orgCategories: id})
+  .then(data => {
+    res.status(200).json(data);
+  })
+  .catch(err => console.log(err));
+})
+
 // Update user by id
 router.put("/update/:id", (req, res, next) => {
   const id = req.params.id;

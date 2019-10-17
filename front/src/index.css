@@ -120,10 +120,24 @@ select, option, button {
 .category {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align:center;
   width: 200px;
 }
 
+.category-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+  width: 100px;
+}
+
+.category-img {
+  width: 50px;
+}
 .profile-donations {
   display: flex;
   flex-direction: column;
@@ -197,4 +211,9 @@ select, option, button {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.main-text {
+  width: 500px;
+  text-align: center;
 }
