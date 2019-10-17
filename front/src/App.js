@@ -15,8 +15,9 @@ import EditCampaign from "./components/campaign/EditCampaign";
 import SuccessfulDonation from "./components/donate/SuccessfulDonation";
 import Campaign from "./components/campaign/Campaign";
 import Main from "./components/Main";
+import { withRouter } from "react-router-dom";
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -75,6 +76,7 @@ export default class App extends Component {
   logout = () => {
     this.authService.logout().then(() => {
       this.setState({ loggedInUser: null });
+      this.props.history.push("/")
     });
   };
 
@@ -141,10 +143,9 @@ export default class App extends Component {
               <Route
                 exact
                 path="/campaign/:id"
-                render={({ match }) => (
+                render={() => (
                   <Campaign
                     userInSession={this.state.loggedInUser}
-                    match={match}
                   />
                 )}
               />
@@ -271,3 +272,5 @@ export default class App extends Component {
     }
   }
 }
+
+export default withRouter(App);

@@ -40,10 +40,6 @@ export default class Main extends Component {
       ...this.state,
       [name]: value
     }, () => this.handleSubmit(this.state.searchTerm));
-    // if (this.state.searchTerm.length >= 3) {
-      
-    // }
-    
   };
 
   render() {
@@ -66,7 +62,7 @@ export default class Main extends Component {
               </div>
               {this.state.results.length > 0 && 
               <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
+                <div class="dropdown-content d-main">
                   {this.state.results.map((result, i) => (
                   <Link to={result.uri} class="dropdown-item">
                     {result.title}

@@ -86,7 +86,7 @@ export default class Profile extends Component {
 
   render() {
     if (!this.state.user) {
-      return <div></div>;
+      return <div>Ves el perfil pero te pide que te loguees para donar si es un perfil de org</div>;
     } else {
       if (
         this.state.type === "organization" &&

@@ -165,6 +165,7 @@ let users = [
     password: bcrypt.hashSync("alicia", bcrypt.genSaltSync(bcryptSalt)),
     userFirstname: "Alicia",
     userSurname: "Pérez",
+    userAmountDonated: 280,
     image:
       "https://res.cloudinary.com/dbklyksys/image/upload/v1571127558/causaImpacto/alicia_profile_c1lpro.png",
     address: {
@@ -191,6 +192,7 @@ let users = [
     password: bcrypt.hashSync("roberto", bcrypt.genSaltSync(bcryptSalt)),
     userFirstname: "Roberto",
     userSurname: "García",
+    userAmountDonated: 90,
     image:
       "https://res.cloudinary.com/dbklyksys/image/upload/v1571127558/causaImpacto/roberto_profile_u4hskg.png",
     address: {

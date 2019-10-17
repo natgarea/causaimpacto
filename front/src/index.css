@@ -165,8 +165,24 @@ select, option, button {
   overflow: auto;
 }
 
+.d-main {
+  width: 500px;
+}
+
+.dc-nav {
+  width: 190px;
+  max-height: 13em;
+}
+
+.di-nav {
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .main-search {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 150px;
 }
