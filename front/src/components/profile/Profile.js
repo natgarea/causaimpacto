@@ -10,7 +10,7 @@ import {
   faEnvelope,
   faPhoneSquareAlt
 } from "@fortawesome/free-solid-svg-icons";
-import Comment from "./organization/Comment";
+import Comment from "../comment/Comment";
 import CampaignBlurb from "./organization/CampaignBlurb";
 
 export default class Profile extends Component {

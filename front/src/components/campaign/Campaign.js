@@ -5,6 +5,7 @@ import { faDonate } from "@fortawesome/free-solid-svg-icons";
 import UserService from "../../services/UserService";
 import DonationService from "../../services/DonationService";
 import CampaignService from "../../services/CampaignService";
+import Comment from "../comment/Comment";
 
 export default class Campaign extends Component {
   constructor(props) {
@@ -69,14 +70,19 @@ export default class Campaign extends Component {
                 <div className="media-content columns">
                   <div className="column">
                     <h1 className="title is-2">{this.state.campaign.title}</h1>
-                    <img className="campaing-main-image" src={this.state.campaign.image} alt={this.state.campaign.title}/>
+                    <img className="campaign-main-img" src={this.state.campaign.image} alt={this.state.campaign.title}/>
                   </div>
                     <div className="column">
-                      <p>Objetivo de recaudación: {this.state.campaign.fundraisingTarget}</p>
-                      <p>Recaudación actual: {this.state.campaign.totalDonations}</p>
+                      <ul>
+                      <li><span className="title is-5">Objetivo de recaudación:</span> <span className="title is-5 txt-is-orange">{this.state.campaign.fundraisingTarget}€</span></li>
+                      <li><span className="title is-5">Recaudación actual:</span> <span className="title is-5 txt-is-blue">{this.state.campaign.totalDonations}€</span></li>
+                      </ul>
+
+                      <h3 className="title is-5 has-margin-2">Descripición de la campaña:</h3>
+                      {this.state.campaign.description}
                       <Link
                         to={`/donate/c/${this.props.match.params.id}`}
-                        className="button is-large is-primary is-fullwidth"
+                        className="button is-large is-primary is-fullwidth has-margin-2"
                       >
                         <span className="icon is-medium" aria-hidden="true">
                           <FontAwesomeIcon icon={faDonate} aria-hidden="true" />
@@ -87,6 +93,27 @@ export default class Campaign extends Component {
                   </div>
                 </div>
               </div>
+              <div className="has-margin-5">
+              <h3 className="title">Comentarios de los usuarios</h3>
+              {this.state.comments.length > 0 ? (
+                <div>
+                  {this.state.comments.map((comment, i) => (
+                    <Comment
+                      key={i}
+                      anonymous={comment.anonymousDonation}
+                      comment={comment.comment}
+                      firstname={comment.user.userFirstname}
+                      surname={comment.user.userSurname}
+                      image={comment.user.image}
+                      amount={comment.amountDonated}
+                      date={comment.created_at}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p>No hay comentarios.</p>
+              )}
+            </div>
           </React.Fragment>
         );
       }
