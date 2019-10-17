@@ -191,3 +191,10 @@ select, option, button {
   width: 550px;
   border-radius: 25px;
 }
+
+.donation-comments {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}

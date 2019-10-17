@@ -222,7 +222,7 @@ export default class Profile extends Component {
             <div className="has-margin-5">
               <h3 className="title">Comentarios de los usuarios</h3>
               {this.state.comments.length > 0 ? (
-                <div>
+                <div className="donation-comments">
                   {this.state.comments.map((comment, i) => (
                     <Comment
                       key={i}
