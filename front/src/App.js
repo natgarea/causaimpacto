@@ -16,6 +16,7 @@ import SuccessfulDonation from "./components/donate/SuccessfulDonation";
 import Campaign from "./components/campaign/Campaign";
 import Main from "./components/Main";
 import Category from "./components/category/Category";
+import AddCampaign from "./components/campaign/AddCampaign";
 import { withRouter } from "react-router-dom";
 
 class App extends Component {
@@ -130,7 +131,10 @@ class App extends Component {
                 exact
                 path="/category/:id"
                 render={props => (
-                  <Category { ...props } userInSession={this.state.loggedInUser} />
+                  <Category
+                    {...props}
+                    userInSession={this.state.loggedInUser}
+                  />
                 )}
               />
               <Route
@@ -147,7 +151,7 @@ class App extends Component {
               <Route
                 exact
                 path="/profile/:id"
-                render={(props) => (
+                render={props => (
                   <Profile {...props} userInSession={this.state.loggedInUser} />
                 )}
               />
@@ -158,16 +162,18 @@ class App extends Component {
                   <Update userInSession={this.state.loggedInUser} />
                 )}
               />
+
               <Route
                 exact
-                path="/campaign/:id"
+                path="/addcampaign"
                 render={props => (
-                  <Campaign
+                  <AddCampaign
                     {...props}
                     userInSession={this.state.loggedInUser}
                   />
                 )}
               />
+
               <Route
                 exact
                 path="/campaign/edit/:id"
@@ -175,6 +181,16 @@ class App extends Component {
                   <EditCampaign
                     userInSession={this.state.loggedInUser}
                     match={match}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/campaign/:id"
+                render={props => (
+                  <Campaign
+                    {...props}
+                    userInSession={this.state.loggedInUser}
                   />
                 )}
               />
@@ -232,7 +248,10 @@ class App extends Component {
                 exact
                 path="/category/:id"
                 render={({ ...props }) => (
-                  <Category { ...props } userInSession={this.state.loggedInUser} />
+                  <Category
+                    {...props}
+                    userInSession={this.state.loggedInUser}
+                  />
                 )}
               />
               <Route
@@ -266,16 +285,6 @@ class App extends Component {
                 path="/profile/:id"
                 render={({ match }) => (
                   <Profile
-                    userInSession={this.state.loggedInUser}
-                    match={match}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/campaign/:id"
-                render={({ match }) => (
-                  <Campaign
                     userInSession={this.state.loggedInUser}
                     match={match}
                   />

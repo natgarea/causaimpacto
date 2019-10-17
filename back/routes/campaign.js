@@ -12,14 +12,7 @@ router.get("/o/:id", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-router.get("/:id", (req, res, next) => {
-  const id = req.params.id;
-  Campaign.findById(id)
-    .then(data => {
-      res.status(200).json(data);
-    })
-    .catch(err => console.log(err));
-});
+
 
 router.put("/update/:id", (req, res, next) => {
   const id = req.params.id;
@@ -39,10 +32,33 @@ router.post("/upload", upload.single("imageUrl"), (req, res, next) => {
   res.json({ secure_url: req.file.secure_url });
 });
 
-// router.post("/", (req, res, next) => {
-//     //falta que ponga que datos le paso, igual que en signup
-//     return this.service.post("/", {}) //AQUI }).then(response => response.data);
-//   });
+router.post("/add", (req, res, next) => {
+  const { title, description, deadline, status, fundraisingTarget, suggestedDonations, organization } = req.body;
+  const newCampaign = new Campaign({
+    title,
+    description,
+    deadline,
+    status,
+    fundraisingTarget,
+    suggestedDonations,
+    organization,
+    totalDonations: 0
+  });
+  newCampaign
+  .save()
+  .then(data => {
+    res.status(200).json(data);
+  })
+  .catch(err => console.log(err));
+  });
 
+router.get("/:id", (req, res, next) => {
+  const id = req.params.id;
+  Campaign.findById(id)
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;

@@ -9,11 +9,11 @@ export default class CampaignService {
     });
   }
 
-  // addCampaign = CampaignObj => {
-  //   return this.service
-  //   .post("/", CampaignObj)
-  //   .then(response => response.data);
-  // };
+  addCampaign = (title, description, deadline, status, fundraisingTarget, suggestedDonations, organization) => {
+    return this.service
+    .post("/add", {title, description, deadline, status, fundraisingTarget, suggestedDonations, organization})
+    .then(response => response.data);
+  };
 
   getOrgCampaigns = UserObjId => {
     return this.service
