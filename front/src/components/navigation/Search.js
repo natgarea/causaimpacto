@@ -58,10 +58,10 @@ export default class Search extends Component {
               />
             </div>
             {this.state.results.length > 0 && 
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content dc-nav">
+            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+              <div className="dropdown-content dc-nav">
                 {this.state.results.map((result, i) => (
-                <Link key={i} to={result.uri} class="dropdown-item di-nav">
+                <Link key={i} to={result.uri} className="dropdown-item di-nav">
                   {result.title}
   </Link>))}
               </div>

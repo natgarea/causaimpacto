@@ -18,8 +18,7 @@ export default class UserList extends Component {
     let donors = [];
     for ( var key in obj )
     donors.push(obj[key]);
-  
-    console.log(obj)
+
     return (
       <div className="column is-one-third">
         <div className="card">
