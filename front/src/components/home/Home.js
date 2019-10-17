@@ -130,80 +130,80 @@ export default class Home extends Component {
               notification={this.state.notification}
             />
             <div className="columns">
+            <div className="column is-one-third">
               <ProfileSettings userData={this.state.loggedUser} />
-              <SuggestedOrg randomOrg={this.props.randomOrg} />
-            </div>
-            <div className="columns">
-              <div className="column is-one-third">
-                <div className="card">
-                  <div className="card-content">
-                    <h3 className="title">Tus donaciones</h3>
-                    <ul>
-                      {Array.isArray(this.state.donations) ? (
-                        <DonationList donations={this.state.donations} />
-                      ) : null}
-                    </ul>
-                  </div>
+              <div className="card">
+                <div className="card-content">
+                  <h3 className="title">Tus donaciones</h3>
+                  <ul>
+                    {Array.isArray(this.state.donations) ? (
+                      <DonationList donations={this.state.donations} />
+                    ) : null}
+                  </ul>
                 </div>
               </div>
-              <div className="column">
-                <div className="card">
-                  <div className="card-content">
-                    <h3 className="title">¿Qué causas te interesan?</h3>
-                    <div className="columns categories">
-                      <div className="column is-1">
-                        <button
-                          className="button is-primary"
-                          onClick={() => this.handleCarousel(false)}
-                        >
-                          <span className="icon is-large">
-                            <FontAwesomeIcon
-                              icon={faArrowLeft}
-                              aria-hidden="true"
-                              size="2x"
-                            />
-                          </span>
-                        </button>
-                      </div>
-
-                      <Category
-                        key={index}
-                        id={category[index]._id}
-                        name={category[index].name}
-                        image={category[index].image}
-                        userData={this.state.loggedUser}
-                        toggleInterest={this.toggleInterest}
-                      ></Category>
-                      <Category
-                        key={index + 1}
-                        id={category[index + 1]._id}
-                        name={category[index + 1].name}
-                        image={category[index + 1].image}
-                        userData={this.state.loggedUser}
-                        toggleInterest={this.toggleInterest}
-                      ></Category>
-
-                      <div className="column is-1">
-                        <button
-                          className="button is-primary"
-                          onClick={() => this.handleCarousel(true)}
-                        >
-                          <span className="icon is-large">
-                            <FontAwesomeIcon
-                              icon={faArrowRight}
-                              aria-hidden="true"
-                              size="2x"
-                            />
-                          </span>
-                        </button>
-                      </div>
+            </div>
+            <div className="column">
+              <SuggestedOrg randomOrg={this.props.randomOrg} />
+        
+              <div className="card">
+                <div className="card-content">
+                  <h3 className="title">¿Qué causas te interesan?</h3>
+                  <div className="columns categories">
+                    <div className="column is-1">
+                      <button
+                        className="button is-primary"
+                        onClick={() => this.handleCarousel(false)}
+                      >
+                        <span className="icon is-large">
+                          <FontAwesomeIcon
+                            icon={faArrowLeft}
+                            aria-hidden="true"
+                            size="2x"
+                          />
+                        </span>
+                      </button>
+                    </div>
+        
+                    <Category
+                      key={index}
+                      id={category[index]._id}
+                      name={category[index].name}
+                      image={category[index].image}
+                      userData={this.state.loggedUser}
+                      toggleInterest={this.toggleInterest}
+                    ></Category>
+                    <Category
+                      key={index + 1}
+                      id={category[index + 1]._id}
+                      name={category[index + 1].name}
+                      image={category[index + 1].image}
+                      userData={this.state.loggedUser}
+                      toggleInterest={this.toggleInterest}
+                    ></Category>
+        
+                    <div className="column is-1">
+                      <button
+                        className="button is-primary"
+                        onClick={() => this.handleCarousel(true)}
+                      >
+                        <span className="icon is-large">
+                          <FontAwesomeIcon
+                            icon={faArrowRight}
+                            aria-hidden="true"
+                            size="2x"
+                          />
+                        </span>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          </div>
         );
+        
       } else {
         return (
           <div>

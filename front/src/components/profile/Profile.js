@@ -562,7 +562,7 @@ export default class Profile extends Component {
               <div className="has-margin-5">
                 <h3 className="title">Campañas activas</h3>
                 {this.state.campaigns.length > 0 ? (
-                  <div className="columns campaign-blurb-columns">
+                  <div className="campaign-blurb-columns">
                     {this.state.campaigns.map((campaign, i) => (
                       <CampaignBlurb
                         key={i}

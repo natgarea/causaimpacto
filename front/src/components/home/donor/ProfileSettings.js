@@ -6,8 +6,7 @@ import { faUser, faEdit, faUserSlash } from '@fortawesome/free-solid-svg-icons';
 export default class ProfileSettings extends Component {
   render() {
     return (
-      <div className="column is-one-third">
-        <div className="card">
+        <div className="card has-margin-2">
           <div className="card-content">
             <h2 className="title">
               Tu perfil
@@ -48,7 +47,6 @@ export default class ProfileSettings extends Component {
           </div>
           </div>
         </div>
-      </div>
     );
   }
 }

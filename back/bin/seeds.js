@@ -715,7 +715,7 @@ let campaigns = [
     description:
       "El sarampión es una enfermedad viral altamente contagiosa y una de las principales causas de muerte en niños pequeños. No existe un tratamiento específico: los pacientes son aislados y reciben tratamiento para la carencia de vitamina A, la deshidratación y otros síntomas y complicaciones. La mayoría de los afectados se recuperan, pero entre el 3 y el 20% no lo consiguen. Existe una vacuna segura y económica que reduce drásticamente el número de casos y muertes, pero sigue estando poco disponible en países con sistemas sanitarios débiles, por lo que siguen produciéndose brotes de gran magnitud. Cuando hay un brote, nuestros equipos vacunan a todos los niños de la región afectada para evitar una epidemia. En 2017, vacunamos a 2.095.000 personas en respuesta a brotes epidémicos. Con 6000€ dispondremos de las vacunas y el material médico necesario para inmunizar a 3.200 niños contra el sarampión y evitar que un brote se convierta en una epidemia. ",
     image:
-      "https://res.cloudinary.com/dbklyksys/image/upload/v1571128914/causaImpacto/campaigns/sarampion_campaign_yhnelt.jpg",
+      "https://res.cloudinary.com/dbklyksys/image/upload/v1571334389/causaImpacto/campaigns/vacunacion_fhspqp.png",
     fundraisingTarget: 6000,
     status: "active",
     deadline: new Date("2020-01-01"),
@@ -730,7 +730,7 @@ let campaigns = [
       "La prioridad de MSF es la atención médica, pero en emergencias nuestros equipos suelen distribuir artículos de primera necesidad esenciales para la salud y la supervivencia, como ropa de abrigo, mantas, material de refugio, productos de limpieza e higiene personal, utensilios de cocina y combustible. Muchos de estos artículos se distribuyen en kits. El de cocina, por ejemplo, contiene un hornillo, ollas, platos, vasos, cubiertos y un bidón para agua; el de higiene incluye jabón corporal, champú, cepillos de dientes, dentífrico y jabón detergente. Además, cuando las personas atendidas han quedado al raso, sin refugio, y los materiales necesarios no están disponibles localmente, MSF distribuye tiendas o lonas de plástico para que cada familia tenga un techo. En climas fríos, se reparten tiendas más gruesas o se buscan estructuras más permanentes. Con 150000€ podremos enviar de forma inmediata kits de primera necesidad para más de 4.100 personas: víctimas de desastres naturales, refugiados, etc. ",
       totalDonations: 0,
       image:
-      "https://res.cloudinary.com/dbklyksys/image/upload/v1571131098/causaImpacto/campaigns/desplazados_campaign_ilg9xx.jpg",
+      "https://res.cloudinary.com/dbklyksys/image/upload/v1571334390/causaImpacto/campaigns/desplazados_ywdagh.png",
     fundraisingTarget: 150000,
     status: "active",
     deadline: new Date("2020-01-01"),
@@ -744,7 +744,7 @@ let campaigns = [
     description:
       "La prioridad de MSF es la atención médica, pero en emergencias nuestros equipos suelen distribuir artículos de primera necesidad esenciales para la salud y la supervivencia, como ropa de abrigo, mantas, material de refugio, productos de limpieza e higiene personal, utensilios de cocina y combustible. Muchos de estos artículos se distribuyen en kits. El de cocina, por ejemplo, contiene un hornillo, ollas, platos, vasos, cubiertos y un bidón para agua; el de higiene incluye jabón corporal, champú, cepillos de dientes, dentífrico y jabón detergente. Además, cuando las personas atendidas han quedado al raso, sin refugio, y los materiales necesarios no están disponibles localmente, MSF distribuye tiendas o lonas de plástico para que cada familia tenga un techo. En climas fríos, se reparten tiendas más gruesas o se buscan estructuras más permanentes. Con 150000€ podremos enviar de forma inmediata kits de primera necesidad para más de 4.100 personas: víctimas de desastres naturales, refugiados, etc. ",
     image:
-      "https://res.cloudinary.com/dbklyksys/image/upload/v1571131015/causaImpacto/campaigns/desnutricion_campaign_ylnnri.jpg",
+      "https://res.cloudinary.com/dbklyksys/image/upload/v1571334390/causaImpacto/campaigns/desnutricion_wurmj5.png",
     fundraisingTarget: 10000,
     status: "active",
     totalDonations: 0,

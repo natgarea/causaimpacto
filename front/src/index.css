@@ -72,6 +72,11 @@ select, option, button {
   margin: 50px 0;
 }
 
+.has-margin-5 .content figure{
+  margin-left:0;
+  margin-right: 0;
+}
+
 .has-margin-6 {
   margin: 60px 0;
 }
@@ -162,12 +167,24 @@ select, option, button {
 .campaign-blurb-columns {
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .blurb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   height: 450px;
   text-align: center;
+}
+
+.blurb-image {
+  object-fit: contain;
+  height: 200px;
+  width: 210px;
+  border-radius: 20px;
 }
 
 .search-input {
@@ -211,6 +228,12 @@ select, option, button {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.comments {
+  width: 500px;
+  height: 210px;
+  margin: 10px;
 }
 
 .main-text {
