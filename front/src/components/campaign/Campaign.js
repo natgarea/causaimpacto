@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDonate } from "@fortawesome/free-solid-svg-icons";
+import { faDonate, faUser } from "@fortawesome/free-solid-svg-icons";
 import UserService from "../../services/UserService";
 import DonationService from "../../services/DonationService";
 import CampaignService from "../../services/CampaignService";
@@ -57,13 +57,104 @@ export default class Campaign extends Component {
       });
   }
   render() {
-    console.log(this.state.comments)
-    if (!this.state.user) {
-      return <div>Ves la campaña pero te pide que te loguees para donar</div>;
+    if (Object.entries(this.state.user).length === 0 && this.state.user.constructor === Object) {
+      return (<React.Fragment>
+      <div className="card">
+        <div className="card-content">
+          <div className="media-content columns">
+            <div className="column">
+              <h1 className="title is-2">{this.state.campaign.title}</h1>
+              <img className="campaign-main-img" src={this.state.campaign.image} alt={this.state.campaign.title}/>
+            </div>
+              <div className="column">
+                <ul>
+                <li><span className="title is-5">Objetivo de recaudación:</span> <span className="title is-5 txt-is-orange">{this.state.campaign.fundraisingTarget}€</span></li>
+                <li><span className="title is-5">Recaudación actual:</span> <span className="title is-5 txt-is-blue">{this.state.campaign.totalDonations}€</span></li>
+                </ul>
+
+                <h3 className="title is-5 has-margin-2">Descripición de la campaña:</h3>
+                {this.state.campaign.description}
+                <Link
+                        to={`/signup`}
+                        className="button is-large is-primary is-fullwidth has-margin-2"
+                      >
+                        <span className="icon is-medium" aria-hidden="true">
+                          <FontAwesomeIcon icon={faUser} aria-hidden="true" />
+                        </span>
+                        <span>Regístrate para donar</span>
+                      </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="has-margin-5">
+        <h3 className="title">Comentarios de los usuarios</h3>
+        {this.state.comments.length > 0 ? (
+          <div className="donation-comments">
+            {this.state.comments.map((comment, i) => (
+              <Comment
+                key={i}
+                anonymous={comment.anonymousDonation}
+                comment={comment.comment}
+                firstname={comment.user.userFirstname}
+                surname={comment.user.userSurname}
+                image={comment.user.image}
+                amount={comment.amountDonated}
+                date={comment.created_at}
+              />
+            ))}
+          </div>
+        ) : (
+          <p>No hay comentarios.</p>
+        )}
+      </div>
+    </React.Fragment>);
     } else {
       if (this.state.type === "organization") {
-        return <div>Ves la campaña sin botón de donar</div>;
-      } else {
+        return (
+          <React.Fragment>
+            <div className="card">
+              <div className="card-content">
+                <div className="media-content columns">
+                  <div className="column">
+                    <h1 className="title is-2">{this.state.campaign.title}</h1>
+                    <img className="campaign-main-img" src={this.state.campaign.image} alt={this.state.campaign.title}/>
+                  </div>
+                    <div className="column">
+                      <ul>
+                      <li><span className="title is-5">Objetivo de recaudación:</span> <span className="title is-5 txt-is-orange">{this.state.campaign.fundraisingTarget}€</span></li>
+                      <li><span className="title is-5">Recaudación actual:</span> <span className="title is-5 txt-is-blue">{this.state.campaign.totalDonations}€</span></li>
+                      </ul>
+
+                      <h3 className="title is-5 has-margin-2">Descripición de la campaña:</h3>
+                      {this.state.campaign.description}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="has-margin-5">
+              <h3 className="title">Comentarios de los usuarios</h3>
+              {this.state.comments.length > 0 ? (
+                <div className="donation-comments">
+                  {this.state.comments.map((comment, i) => (
+                    <Comment
+                      key={i}
+                      anonymous={comment.anonymousDonation}
+                      comment={comment.comment}
+                      firstname={comment.user.userFirstname}
+                      surname={comment.user.userSurname}
+                      image={comment.user.image}
+                      amount={comment.amountDonated}
+                      date={comment.created_at}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p>No hay comentarios.</p>
+              )}
+            </div>
+          </React.Fragment>
+        )} else {
         return (
           <React.Fragment>
             <div className="card">

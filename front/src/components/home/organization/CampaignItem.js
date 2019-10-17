@@ -17,10 +17,10 @@ export default class CampaignItem extends Component {
     return (
       <li className="has-margin-2">
         <h4 className="title is-4">
-          <span className="icon is-medium">
+        <Link to={`/campaign/${this.props.campaign._id}`}><span className="icon is-medium">
             <FontAwesomeIcon icon={faFlag} size="xs" aria-hidden="true" />
           </span>
-          <span>{this.props.campaign.title}</span>
+          <span>{this.props.campaign.title}</span></Link>
         </h4>
         <div className="buttons">
           <Link
