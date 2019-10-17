@@ -46,8 +46,8 @@ export default class Search extends Component {
       <div>
       <div className="field has-addons">
         <div className="control">
-          <div class="dropdown is-active">
-            <div class="dropdown-trigger">
+          <div className="dropdown is-active">
+            <div className="dropdown-trigger">
               <input
                 className="input"
                 type="text"

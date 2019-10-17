@@ -76,7 +76,7 @@ class App extends Component {
   logout = () => {
     this.authService.logout().then(() => {
       this.setState({ loggedInUser: null });
-      this.props.history.push("/")
+      this.props.history.push("/");
     });
   };
 
@@ -105,7 +105,7 @@ class App extends Component {
               logout={this.logout}
             />
             <Switch>
-            <Route
+              <Route
                 exact
                 path="/"
                 render={props => (
@@ -143,8 +143,9 @@ class App extends Component {
               <Route
                 exact
                 path="/campaign/:id"
-                render={() => (
+                render={props => (
                   <Campaign
+                    {...props}
                     userInSession={this.state.loggedInUser}
                   />
                 )}
@@ -199,7 +200,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Switch>
-            <Route
+              <Route
                 exact
                 path="/"
                 render={props => (

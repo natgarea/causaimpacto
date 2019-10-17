@@ -165,7 +165,7 @@ export default class Profile extends Component {
                               />
                             </span>
                           </span>{" "}
-                          <a to={this.state.profile.orgUrl}>
+                          <a href={this.state.profile.orgUrl}>
                             {this.state.profile.orgUrl}
                           </a>
                         </li>
@@ -178,7 +178,7 @@ export default class Profile extends Component {
                               aria-hidden="true"
                             />
                           </span>{" "}
-                          <a to={`mailto:${this.state.profile.orgEmail}`}>
+                          <a href={`mailto:${this.state.profile.orgEmail}`}>
                             {this.state.profile.orgEmail}
                           </a>
                         </li>

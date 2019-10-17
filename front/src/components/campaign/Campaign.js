@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDonate } from "@fortawesome/free-solid-svg-icons";
+import UserService from "../../services/UserService";
+import DonationService from "../../services/DonationService";
+import CampaignService from "../../services/CampaignService";
 
 export default class Campaign extends Component {
   constructor(props) {
@@ -41,7 +44,7 @@ export default class Campaign extends Component {
 
   getCampaignDonations() {
     this.donationService
-      .getOrgDonations(this.props.match.params.id)
+      .getCampaignDonations(this.props.match.params.id)
       .then(response => {
         let comments = response
           .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -54,13 +57,17 @@ export default class Campaign extends Component {
   }
   render() {
     if (!this.state.user) {
-      return <div></div>;
+      return <div>Ves la campaña pero te pide que te loguees para donar</div>;
     } else {
+      if (
+        this.state.type === "organization") {
+          return <div>Ves la campaña sin botón de donar</div>
+        } else {
       return (
         <React.Fragment>
           <div>
             <Link
-              to={"/donate/c/" + this.props.match.params.id}
+              to={`/donate/c/${this.props.match.params.id}`}
               className="button is-large is-primary is-fullwidth"
             >
               <span className="icon is-medium" aria-hidden="true">
@@ -71,6 +78,7 @@ export default class Campaign extends Component {
           </div>
         </React.Fragment>
       );
+        }
     }
   }
 }
