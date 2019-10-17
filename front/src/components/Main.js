@@ -49,8 +49,8 @@ export default class Main extends Component {
       <div className="main-search has-margin-2">
         <div className="field has-addons">
           <div className="control">
-            <div class="dropdown is-active">
-              <div class="dropdown-trigger">
+            <div className="dropdown is-active">
+              <div className="dropdown-trigger">
                 <input
                   className="input search-input"
                   type="text"
@@ -61,10 +61,10 @@ export default class Main extends Component {
                 />
               </div>
               {this.state.results.length > 0 && 
-              <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content d-main">
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className="dropdown-content d-main">
                   {this.state.results.map((result, i) => (
-                  <Link to={result.uri} class="dropdown-item">
+                  <Link to={result.uri} className="dropdown-item">
                     {result.title}
     </Link>))}
                 </div>

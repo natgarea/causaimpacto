@@ -180,7 +180,8 @@ let users = [
       "5da591206480c70da3e1904b",
       "5da591206480c70da3e1904c",
       "5da591206480c70da3e1904d"
-    ]
+    ],
+    userInterests: ["5da576bb27efb808bfc82509","5da576bb27efb808bfc8250b","5da576bb27efb808bfc82518"]
   },
   {
     _id: "5da576bb27efb808bfc824f7",
@@ -207,7 +208,8 @@ let users = [
       "5da591206480c70da3e1904e",
       "5da591206480c70da3e1904f",
       "5da591206480c70da3e19050"
-    ]
+    ],
+    userInterests: ["5da576bb27efb808bfc8250f","5da576bb27efb808bfc82518"]
   },
   {
     _id: "5da576bb27efb808bfc824f8",
