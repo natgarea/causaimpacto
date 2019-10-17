@@ -13,7 +13,7 @@ router.get("/", (req, res, next) => {
   .catch(err => console.log(err));
 });
 
-router.get("/:idOrg", (req, res, next) => {
+router.get("/o/:idOrg", (req, res, next) => {
   const id = req.params.idOrg;
   SingleDonation.find({ org: id }).populate("user")
   .then(data => {
@@ -22,7 +22,7 @@ router.get("/:idOrg", (req, res, next) => {
   .catch(err => console.log(err));
 });
 
-router.get("/:idCampaign", (req, res, next) => {
+router.get("/c/:idCampaign", (req, res, next) => {
   const id = req.params.idCampaign;
   SingleDonation.find({ campaign: id }).populate("user")
   .then(data => {

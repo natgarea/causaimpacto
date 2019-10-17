@@ -55,7 +55,6 @@ export default class Home extends Component {
         allDonations.sort(function(a, b) {
           return new Date(b.created_at) - new Date(a.created_at);
         });
-        console.log(`Found ${allDonations.length} for profile`)
         this.setState({
           ...this.state,
           donations: allDonations

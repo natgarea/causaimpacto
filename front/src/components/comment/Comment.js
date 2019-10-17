@@ -4,7 +4,7 @@ import moment from "moment";
 export default class Comment extends Component {
   render() {
     return (
-      <div className="card column is-half">
+      <div className="card column is-two-fifths">
         <div className="card-content">
           <div className="media">
             <div className="media-left">

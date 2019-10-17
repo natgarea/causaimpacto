@@ -34,10 +34,10 @@ export default class DonationService {
   }
 
   getOrgDonations(idOrg) {
-    return this.service.get(`/${idOrg}`).then(res => res.data);
+    return this.service.get(`/o/${idOrg}`).then(res => res.data);
   }
 
   getCampaignDonations(idCampaign) {
-    return this.service.get(`/${idCampaign}`).then(res => res.data);
+    return this.service.get(`/c/${idCampaign}`).then(res => res.data);
   }
 }

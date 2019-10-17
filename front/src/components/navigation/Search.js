@@ -61,7 +61,7 @@ export default class Search extends Component {
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
               <div class="dropdown-content dc-nav">
                 {this.state.results.map((result, i) => (
-                <Link to={result.uri} class="dropdown-item di-nav">
+                <Link key={i} to={result.uri} class="dropdown-item di-nav">
                   {result.title}
   </Link>))}
               </div>

@@ -16,7 +16,7 @@ export default class CampaignBlurb extends Component {
     
 
   </div>
-  <Link to={`/campaign/${this.props.id}`} class="button is-primary is-medium is-fullwidth final">Ver campaña</Link>
+  <Link to={`/campaign/${this.props.id}`} className="button is-primary is-medium is-fullwidth final">Ver campaña</Link>
   </div>);
   }
 }

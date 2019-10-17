@@ -44,8 +44,8 @@ export default class Campaign extends Component {
   }
 
   getCampaignDonations() {
-    this.donationService
-      .getCampaignDonations(this.props.match.params.id)
+    console.log("se ha llamado getCampaignDonations()")
+    this.donationService.getCampaignDonations(this.props.match.params.id)
       .then(response => {
         let comments = response
           .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -57,6 +57,7 @@ export default class Campaign extends Component {
       });
   }
   render() {
+    console.log(this.state.comments)
     if (!this.state.user) {
       return <div>Ves la campaña pero te pide que te loguees para donar</div>;
     } else {
