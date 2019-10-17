@@ -155,3 +155,12 @@ select, option, button {
   height: 450px;
   text-align: center;
 }
+
+.search-input {
+  width: 500px;
+}
+
+.dropdown-content {
+  max-height: 13em;
+  overflow: auto;
+}

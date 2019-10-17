@@ -7,7 +7,8 @@ export default class Search extends Component {
   render() {
     return (
       <div>
-        <div className="field has-addons">
+        <form>
+        <div className="field">
           <div className="control">
             <input className="input" type="text" placeholder="Búsqueda" />
           </div>
@@ -15,6 +16,7 @@ export default class Search extends Component {
             <Link to="#" className="button is-info"><span className="icon is-medium"><FontAwesomeIcon icon={faSearch} aria-hidden="true"/></span></Link>
           </div>
         </div>
+        </form>
       </div>
     );
   }
