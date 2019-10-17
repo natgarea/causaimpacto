@@ -24,7 +24,7 @@ export default class Campaign extends Component {
     this.getCampaignDonations();
   }
   getCampaign() {
-    this.userService.getUser(this.props.match.params.id).then(campaign =>
+    this.campaignService.getCampaign(this.props.match.params.id).then(campaign =>
       this.setState({
         ...this.state,
         campaign: campaign
@@ -59,26 +59,37 @@ export default class Campaign extends Component {
     if (!this.state.user) {
       return <div>Ves la campaña pero te pide que te loguees para donar</div>;
     } else {
-      if (
-        this.state.type === "organization") {
-          return <div>Ves la campaña sin botón de donar</div>
-        } else {
-      return (
-        <React.Fragment>
-          <div>
-            <Link
-              to={`/donate/c/${this.props.match.params.id}`}
-              className="button is-large is-primary is-fullwidth"
-            >
-              <span className="icon is-medium" aria-hidden="true">
-                <FontAwesomeIcon icon={faDonate} aria-hidden="true" />
-              </span>
-              <span>Donar</span>
-            </Link>
-          </div>
-        </React.Fragment>
-      );
-        }
+      if (this.state.type === "organization") {
+        return <div>Ves la campaña sin botón de donar</div>;
+      } else {
+        return (
+          <React.Fragment>
+            <div className="card">
+              <div className="card-content">
+                <div className="media-content columns">
+                  <div className="column">
+                    <h1 className="title is-2">{this.state.campaign.title}</h1>
+                    <img className="campaing-main-image" src={this.state.campaign.image} alt={this.state.campaign.title}/>
+                  </div>
+                    <div className="column">
+                      <p>Objetivo de recaudación: {this.state.campaign.fundraisingTarget}</p>
+                      <p>Recaudación actual: {this.state.campaign.totalDonations}</p>
+                      <Link
+                        to={`/donate/c/${this.props.match.params.id}`}
+                        className="button is-large is-primary is-fullwidth"
+                      >
+                        <span className="icon is-medium" aria-hidden="true">
+                          <FontAwesomeIcon icon={faDonate} aria-hidden="true" />
+                        </span>
+                        <span>Donar</span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </React.Fragment>
+        );
+      }
     }
   }
 }

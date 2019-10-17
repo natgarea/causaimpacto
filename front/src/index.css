@@ -186,3 +186,7 @@ select, option, button {
   align-items: center;
   height: 150px;
 }
+
+.campaign-main-img {
+  width: 500px;
+}
