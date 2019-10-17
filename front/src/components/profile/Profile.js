@@ -86,18 +86,179 @@ export default class Profile extends Component {
 
   render() {
     if (!this.state.user) {
-      return <div>Ves el perfil pero te pide que te loguees para donar si es un perfil de org</div>;
+      return (
+        <div>
+          Ves el perfil pero te pide que te loguees para donar si es un perfil
+          de org
+        </div>
+      );
     } else {
       if (
         this.state.type === "organization" &&
         this.state.profile.type === "donor"
       ) {
-        return <div>Si eres organización y visualizas perfil de usuario</div>;
+        return (
+          <React.Fragment>
+            <div className="card">
+              <div className="card-content columns">
+                <div className="column">
+                  <div className="media">
+                    <div className="media-left">
+                      <figure className="image is-256x256">
+                        <img
+                          className="fixed-logo-size"
+                          src={this.state.profile.image}
+                          alt={this.state.profile.username}
+                        />
+                      </figure>
+                    </div>
+                    <div className="media-content">
+                      <h1 className="title is-1">
+                        {this.state.profile.userFirstname}{" "}
+                        {this.state.profile.userSurname}
+                      </h1>
+                      <p>Ha donado: {this.state.profile.userAmountDonated}€</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </React.Fragment>
+        );
       } else if (
         this.state.type === "organization" &&
         this.state.profile.type === "organization"
       ) {
-        return <div>Si eres org y visualizas perfil de org</div>;
+        return (
+          <React.Fragment>
+            <div className="card">
+              <div className="card-content columns">
+                <div className="column">
+                  <div className="media">
+                    <div className="media-left">
+                      <figure className="image is-256x256">
+                        <img
+                          className="fixed-logo-size"
+                          src={this.state.profile.image}
+                          alt={this.state.profile.orgName}
+                        />
+                      </figure>
+                    </div>
+                    <div className="media-content">
+                      <h1 className="title is-1">
+                        {this.state.profile.orgName}
+                      </h1>
+                      <h3 className="title is-5">Sobre nosotros</h3>
+                      {this.state.profile.orgDescription}
+                      {this.state.profile.orgLicense &&
+                      this.state.profile.orgRegistrar ? (
+                        <p className="has-margin-1">
+                          <span className="is-bold">Registro:</span> Nº{" "}
+                          {this.state.profile.orgLicense} -{" "}
+                          {this.state.profile.orgRegistrar}
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+                <div className="column">
+                  <div
+                    className={
+                      (this.state.type === "donor") !== "donor"
+                        ? "column"
+                        : "hide"
+                    }
+                  ></div>
+                  <div className="has-margin-2">
+                    <h3 className="title is-5">Detalles de contacto</h3>
+                    <ul>
+                      {this.state.profile.orgUrl ? (
+                        <li className="has-margin-1">
+                          <span className="is-bold">
+                            <span className="icon is-medium" aria-hidden="true">
+                              <FontAwesomeIcon
+                                icon={faGlobe}
+                                aria-hidden="true"
+                              />
+                            </span>
+                          </span>{" "}
+                          <a href={this.state.profile.orgUrl}>
+                            {this.state.profile.orgUrl}
+                          </a>
+                        </li>
+                      ) : null}
+                      {this.state.profile.orgEmail ? (
+                        <li className="has-margin-1">
+                          <span className="icon is-medium" aria-hidden="true">
+                            <FontAwesomeIcon
+                              icon={faEnvelope}
+                              aria-hidden="true"
+                            />
+                          </span>{" "}
+                          <a href={`mailto:${this.state.profile.orgEmail}`}>
+                            {this.state.profile.orgEmail}
+                          </a>
+                        </li>
+                      ) : null}
+                      {this.state.profile.orgTelephone ? (
+                        <li className="has-margin-1">
+                          <span className="icon is-medium" aria-hidden="true">
+                            <FontAwesomeIcon
+                              icon={faPhoneSquareAlt}
+                              aria-hidden="true"
+                            />
+                          </span>{" "}
+                          {this.state.profile.orgTelephone}
+                        </li>
+                      ) : null}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* salto a la siguiente sección */}
+            <div className="has-margin-5">
+              <h3 className="title">Campañas activas</h3>
+              {this.state.campaigns.length > 0 ? (
+                <div className="columns campaign-blurb-columns">
+                  {this.state.campaigns.map((campaign, i) => (
+                    <CampaignBlurb
+                      key={i}
+                      id={campaign._id}
+                      title={campaign.title}
+                      image={campaign.image}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p>No hay campañas actualmente.</p>
+              )}
+            </div>
+
+            {/* salto a la siguiente sección */}
+            <div className="has-margin-5">
+              <h3 className="title">Comentarios de los usuarios</h3>
+              {this.state.comments.length > 0 ? (
+                <div className="donation-comments">
+                  {this.state.comments.map((comment, i) => (
+                    <Comment
+                      key={i}
+                      anonymous={comment.anonymousDonation}
+                      comment={comment.comment}
+                      firstname={comment.user.userFirstname}
+                      surname={comment.user.userSurname}
+                      image={comment.user.image}
+                      amount={comment.amountDonated}
+                      date={comment.created_at}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p>No hay comentarios.</p>
+              )}
+            </div>
+          </React.Fragment>
+        );
       } else if (
         this.state.type === "donor" &&
         this.state.profile.type === "organization"
@@ -246,8 +407,202 @@ export default class Profile extends Component {
         this.state.type === "donor" &&
         this.state.profile.type === "donor"
       ) {
-        return <div>Si eres usuario y visualizas perfil de usuario</div>;
-      } else return <div>Hola</div>;
+        return (
+          <React.Fragment>
+            <div className="card">
+              <div className="card-content columns">
+                <div className="column">
+                  <div className="media">
+                    <div className="media-left">
+                      <figure className="image is-256x256">
+                        <img
+                          className="fixed-logo-size"
+                          src={this.state.profile.image}
+                          alt={this.state.profile.username}
+                        />
+                      </figure>
+                    </div>
+                    <div className="media-content">
+                      <h1 className="title is-1">
+                        {this.state.profile.userFirstname}{" "}
+                        {this.state.profile.userSurname}
+                      </h1>
+                      <p>Ha donado: {this.state.profile.userAmountDonated}€</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </React.Fragment>
+        );
+      } else {
+        if (this.state.profile.type === "donor") {
+          return (
+            <React.Fragment>
+              <div className="card">
+                <div className="card-content columns">
+                  <div className="column">
+                    <div className="media">
+                      <div className="media-left">
+                        <figure className="image is-256x256">
+                          <img
+                            className="fixed-logo-size"
+                            src={this.state.profile.image}
+                            alt={this.state.profile.username}
+                          />
+                        </figure>
+                      </div>
+                      <div className="media-content">
+                        <h1 className="title is-1">
+                          {this.state.profile.userFirstname}{" "}
+                          {this.state.profile.userSurname}
+                        </h1>
+                        <p>
+                          Ha donado: {this.state.profile.userAmountDonated}€
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </React.Fragment>
+          );
+        } else {
+          return (
+            <React.Fragment>
+              <div className="card">
+                <div className="card-content columns">
+                  <div className="column">
+                    <div className="media">
+                      <div className="media-left">
+                        <figure className="image is-256x256">
+                          <img
+                            className="fixed-logo-size"
+                            src={this.state.profile.image}
+                            alt={this.state.profile.orgName}
+                          />
+                        </figure>
+                      </div>
+                      <div className="media-content">
+                        <h1 className="title is-1">
+                          {this.state.profile.orgName}
+                        </h1>
+                        <h3 className="title is-5">Sobre nosotros</h3>
+                        {this.state.profile.orgDescription}
+                        {this.state.profile.orgLicense &&
+                        this.state.profile.orgRegistrar ? (
+                          <p className="has-margin-1">
+                            <span className="is-bold">Registro:</span> Nº{" "}
+                            {this.state.profile.orgLicense} -{" "}
+                            {this.state.profile.orgRegistrar}
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="column">
+                    <div
+                      className={
+                        (this.state.type === "donor") !== "donor"
+                          ? "column"
+                          : "hide"
+                      }
+                    ></div>
+                    <div className="has-margin-2">
+                      <h3 className="title is-5">Detalles de contacto</h3>
+                      <ul>
+                        {this.state.profile.orgUrl ? (
+                          <li className="has-margin-1">
+                            <span className="is-bold">
+                              <span
+                                className="icon is-medium"
+                                aria-hidden="true"
+                              >
+                                <FontAwesomeIcon
+                                  icon={faGlobe}
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            </span>{" "}
+                            <a href={this.state.profile.orgUrl}>
+                              {this.state.profile.orgUrl}
+                            </a>
+                          </li>
+                        ) : null}
+                        {this.state.profile.orgEmail ? (
+                          <li className="has-margin-1">
+                            <span className="icon is-medium" aria-hidden="true">
+                              <FontAwesomeIcon
+                                icon={faEnvelope}
+                                aria-hidden="true"
+                              />
+                            </span>{" "}
+                            <a href={`mailto:${this.state.profile.orgEmail}`}>
+                              {this.state.profile.orgEmail}
+                            </a>
+                          </li>
+                        ) : null}
+                        {this.state.profile.orgTelephone ? (
+                          <li className="has-margin-1">
+                            <span className="icon is-medium" aria-hidden="true">
+                              <FontAwesomeIcon
+                                icon={faPhoneSquareAlt}
+                                aria-hidden="true"
+                              />
+                            </span>{" "}
+                            {this.state.profile.orgTelephone}
+                          </li>
+                        ) : null}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* salto a la siguiente sección */}
+              <div className="has-margin-5">
+                <h3 className="title">Campañas activas</h3>
+                {this.state.campaigns.length > 0 ? (
+                  <div className="columns campaign-blurb-columns">
+                    {this.state.campaigns.map((campaign, i) => (
+                      <CampaignBlurb
+                        key={i}
+                        id={campaign._id}
+                        title={campaign.title}
+                        image={campaign.image}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <p>No hay campañas actualmente.</p>
+                )}
+              </div>
+
+              {/* salto a la siguiente sección */}
+              <div className="has-margin-5">
+                <h3 className="title">Comentarios de los usuarios</h3>
+                {this.state.comments.length > 0 ? (
+                  <div className="donation-comments">
+                    {this.state.comments.map((comment, i) => (
+                      <Comment
+                        key={i}
+                        anonymous={comment.anonymousDonation}
+                        comment={comment.comment}
+                        firstname={comment.user.userFirstname}
+                        surname={comment.user.userSurname}
+                        image={comment.user.image}
+                        amount={comment.amountDonated}
+                        date={comment.created_at}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <p>No hay comentarios.</p>
+                )}
+              </div>
+            </React.Fragment>
+          );
+        }
+      }
     }
   }
 }
