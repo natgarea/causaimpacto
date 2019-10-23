@@ -11,7 +11,6 @@ export default class EditCampaign extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.id)
     this.campaignService.getCampaign(this.props.match.params.id).then(response => {
      
       this.setState({
@@ -26,8 +25,6 @@ export default class EditCampaign extends Component {
       ...this.state.campaign,
       image: imageUrl
     };
-
-    console.log()
 
     this.campaignService.updateCampaign(this.props.match.params.id, updatedCampaign);
   };

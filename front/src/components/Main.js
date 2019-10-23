@@ -45,7 +45,6 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log(this.state.results);
     return (
       <React.Fragment>
         <div className="main">

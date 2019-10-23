@@ -35,7 +35,6 @@ export default class CampaignControls extends Component {
   }
 
   render() {
-    console.log(this.state.campaigns)
     return (
       <div className="column">
         <div className="card">

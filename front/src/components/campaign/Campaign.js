@@ -44,7 +44,6 @@ export default class Campaign extends Component {
   }
 
   getCampaignDonations() {
-    console.log("se ha llamado getCampaignDonations()")
     this.donationService.getCampaignDonations(this.props.match.params.id)
       .then(response => {
         let comments = response

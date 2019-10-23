@@ -38,7 +38,6 @@ class DonateCampaign extends Component {
   };
 
   render() {
-    // return (<div></div>) }
     const onSuccess = payment => {
       let donation = {
         user: this.props.userInSession._id,
@@ -58,6 +57,7 @@ class DonateCampaign extends Component {
     const onCancel = data => console.log("Cancelled payment!", data);
     return (
       <div>
+        <h3 className="title">Donaciones</h3>
         <form>
           <div className="field">
             <label className="label">Cantidad:</label>

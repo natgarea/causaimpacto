@@ -34,7 +34,6 @@ export default class AddCampaign extends Component {
               fundraisingTarget: 0,
               suggestedDonations: 0
             });
-            console.log(response)
             let orgCampaignsUpdate = [...this.props.userInSession.orgCampaigns, response._id]
             let updatedUser = {
               ...this.props.userInSession,

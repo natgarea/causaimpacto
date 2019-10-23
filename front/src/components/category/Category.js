@@ -27,10 +27,8 @@ export default class Category extends Component {
         )
     }
     getCategoryById() {
-        console.log(this.props.match.params.id)
         return this.categoryService.getCategoryById(this.props.match.params.id)
         .then(response => {
-            console.log(response)
             this.setState({
             ...this.state,
             category: response.name

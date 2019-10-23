@@ -8,9 +8,6 @@ export default class UserList extends Component {
     
     }
   }
-  componentDidMount() {
-    console.log(this.props.donors)
-  }
 
   render() {
     let obj = {};
