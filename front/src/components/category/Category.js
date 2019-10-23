@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import UserService from '../../services/UserService';
 import CategoryService from '../../services/CategoryService';
+import "./style.css";
 
 export default class Category extends Component {
     constructor(props){
@@ -38,11 +39,16 @@ export default class Category extends Component {
     render() {
         return (
             <div>
-                <h3 className="title">Organizaciones en <span className="txt-is-orange">{this.state.category}</span></h3>
-                <ul>
+                <h3 className="title">Categoría: <span className="category-text">{this.state.category}</span></h3>
+                <ul className="category-organizations">
                     {this.state.organizations.map((org,i) => (
                     <li className="has-margin-2" key={i} >
-                         <Link to={`/profile/${org._id}`} alt={org.orgName}>{org.orgName}</Link>
+                        <div className="individual-organization">
+                            <div className="organization-logo">
+                         <Link to={`/profile/${org._id}`} alt={org.orgName}><img src={org.image} alt={org.orgName} /></Link>
+                         </div>
+                         <p><Link to={`/profile/${org._id}`} alt={org.orgName}>{org.orgName}</Link></p>
+                         </div>
                     </li>))}
                 </ul>
             </div>
