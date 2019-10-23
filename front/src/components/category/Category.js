@@ -42,7 +42,7 @@ export default class Category extends Component {
                 <ul>
                     {this.state.organizations.map((org,i) => (
                     <li className="has-margin-2" key={i} >
-                         <Link to={`/profile/${org.orgName}`} alt={org.orgName}>{org.orgName}</Link>
+                         <Link to={`/profile/${org._id}`} alt={org.orgName}>{org.orgName}</Link>
                     </li>))}
                 </ul>
             </div>
