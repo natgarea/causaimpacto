@@ -240,3 +240,13 @@ select, option, button {
   width: 500px;
   text-align: center;
 }
+
+
+.main {
+  height: 450px;
+  background-image: url("/images/group1.jpg");
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
