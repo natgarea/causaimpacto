@@ -51,15 +51,15 @@ export default class Main extends Component {
           <div className="align-items-center">
             <div className="align-items-center main-text">
               <img src="./images/logo.png" alt="logo" />
-              <p className="has-margin-3">
-                <h3 className="title is-3">
+              <div className="has-margin-3">
+              <h3 className="title is-3">
                   ¿Alguna vez has querido ayudar a otros pero no sabías cómo?
-                </h3>{" "}
+                </h3>
                 <span className="txt-is-orange is-bold">causa</span>
                 <span className="txt-is-blue is-bold">impacto</span> pretende
                 conectar a personas como tú con organizaciones que ayudan a
                 individuos en situaciones difíciles o de emergencia.
-              </p>
+              </div>
               <p>Comienza a buscar organizaciones y campañas de tu interés:</p>
             </div>
             <div className="main-search">

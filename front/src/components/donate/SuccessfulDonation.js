@@ -27,7 +27,7 @@ class SuccessfulDonation extends Component {
     render() {
         return (
             <div>
-                <h1 className="title">¡Gracias por tu donación {this.props.userInSession.userFirstname ? `, ${this.props.userInSession.userFirstname}!` : `, ${this.props.userInSession.username}!` }</h1>
+                <h1 className="title">¡Gracias por tu donación{this.props.userInSession.userFirstname ? `, ${this.props.userInSession.userFirstname}!` : `, ${this.props.userInSession.username}!` }</h1>
                 <form>
                 <div className="field">
               <label className="label">¿Te gustaría añadir un comentario a tu donación?</label>
